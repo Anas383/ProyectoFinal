@@ -126,17 +126,28 @@
                             <p class="mensajeError-oculto" id="mError-apellido2">&nbsp;¡El segundo apellido solo puede contener letras mayúsculas, minúsculas! [1-30]</p>
                         </div><br>
                         <!-- CONTRASEÑA -->
-                        <div class="grupo_password col-md-6 ">
-                            <label for="password">Contraseña</label>
+                        <div class="grupo_password  col-md-6">  
+                        <label for="password">Contraseña</label>
+                            <div class="input-group">
                             <input type="password" name="password" id="password" class="form-control" required><br>
+                                <div class="input-group-append">
+                                    <button id="show_password" class="btn btn-outline-dark" type="button" onclick="mostrarPassword()"> <span class="fa fa-eye-slash icon"></span> </button>
+                                </div>
+                            </div><br>
                             <p class="mensajeError-oculto" id="mError-password">&nbsp;¡La contraseña debe contener al menos, una mayúscula, una minúscula, un número, un carácter especial y una longitud mínima de 8 carácteres!</p>
-                        </div><br>
+                        </div>
+
                         <!-- REPETIR CONTRASEÑA -->
-                        <div class="grupo_repeatPassword col-md-6 ">
-                            <label for="repeatPassword">Repite la contraseña</label>
+                        <div class="grupo_repeatPassword col-md-6">  
+                        <label for="repeatPassword">Repite la contraseña</label>
+                            <div class="input-group">
                             <input type="password" name="repeatPassword" id="repeatPassword" class="form-control" required ><br>
+                                <div class="input-group-append">
+                                    <button id="show_repeatPassword" class="btn btn-outline-dark" type="button" onclick="mostrarRepeatPassword()"> <span class="fa fa-eye-slash iconR"></span> </button>
+                                </div>
+                            </div><br>
                             <p class="mensajeError-oculto" id="mError-repeatPassword">&nbsp;¡Las contraseñas no coinciden!</p>
-                        </div><br>
+                        </div>
                         <!-- TELÉFONO -->
                         <div class="grupo_telefono col-md-6 ">
                             <label for="telefono">Teléfono</label>
@@ -156,9 +167,9 @@
                             <p class="mensajeError-oculto" id="mError-email">&nbsp;¡El correo no cumple el formato.!</p>
                         </div><br>
                         <!-- imagen -->
-                        <div class="form-group">
-                            
-                            <input type="file" name="fotoPerfil" id="fotoPerfil">
+                        <div class="form-group grupo_ col-md-12 " >
+                            <label for="fotoPerfil">Foto de Perfil</label><br>
+                            <input type="file"  name="fotoPerfil" id="fotoPerfil">
                         </div><br>
                                             
     
@@ -195,7 +206,7 @@
     </div>
     <br>
     <?php include_once "../InterfazWeb/Footer.php"?>
-    
+   
     <!--Scripts-->  
     <script src="../../../JS/FormularioRegistro.js"></script> 
     <script src="https://use.fontawesome.com/releases/v5.15.2/js/all.js" data-auto-a11y="true"></script>

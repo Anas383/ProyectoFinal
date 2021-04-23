@@ -259,3 +259,4 @@ formularioEditarPerfil.addEventListener("submit", (e) => {
         e.preventDefault();
     }
 });
+

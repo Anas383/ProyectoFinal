@@ -103,12 +103,16 @@
                         <p class="mensajeError-oculto" id="mError-usuario">&nbsp;¡El usuario es incorrecto!</p>
                     </div><br>
                     <!-- CONTRASEÑA -->
-                    <div class="grupo_password">
+                    <div class="grupo_password ">  
                         <label for="password">Contraseña</label>
-                        <input type="password" name="password" id="password" class="form-control" required><br>
-                        <p class="mensajeError-oculto" id="mError-password">&nbsp;¡Contraseña es incorrecta!</p>
-                    </div><br>
-    
+                            <div class="input-group">
+                            <input type="password" name="password" id="password" class="form-control" required><br>
+                                <div class="input-group-append">
+                                    <button id="show_password" class="btn btn-outline-dark" type="button" onclick="mostrarPassword()"> <span class="fa fa-eye-slash icon"></span> </button>
+                                </div>
+                            </div><br>
+                            <p class="mensajeError-oculto" id="mError-password">&nbsp;¡La contraseña es incorrecta!</p>
+                        </div>
                     <center>
                         <div class="grupo_envio  ">
                             <input type="submit" class="btn btn-success btn-lg col-md-6" value="Enviar">

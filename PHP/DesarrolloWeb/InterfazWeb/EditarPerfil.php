@@ -98,54 +98,59 @@
             <span class="col-md-3"></span>
             <div class=" col-md-6 contenedorFormulario ">
                 <form action="#" id="FormularioEditarPerfil" method="post">
-                    <legend>Editar Perfil</legend>
+                    <legend>Editar Perfil  <?php echo $_SESSION['Usuario'];?></legend>
                     <div class="form-row">
                             <!-- USUARIO -->
                         <div class="grupo_usuario col-md-6 ">
-                            <label for="usuario" class="form-label">Usuario</label>&nbsp; <a href="#" style="text-decoration:none; color:black;"><i class="fas fa-pen "></i></a>
-                            <input type="text" name="usuario"  class="form-control" id="usuario" value="<?php echo $_SESSION['Usuario'];?>" readonly><br>
+                            <label for="usuario" class="form-label">Usuario</label>
+                            <input type="text" name="usuario"  class="form-control" id="usuario" value="<?php echo $_SESSION['Usuario'];?>"><br>
                             <p class="mensajeError-oculto" id="mError-usuario">&nbsp;¡El usuario puede contener muyúsculas, minúsculas, números, guiones y guiones bajos![3-9]</p>
                         </div><br>
                         
                         <!-- NOMBRE-->
                         <div class="grupo_nombre col-md-6  ">
-                            <label for="nombre"><strong>Nombre</strong></label>&nbsp; <a href="#" style="text-decoration:none; color:black;"><i class="fas fa-pen "></i></a>
-                            <input type="text" name="nombre" id="nombre" class="form-control" value="<?php echo $_SESSION['Nombre'];?>" readonly>
+                            <label for="nombre"><strong>Nombre</strong></label>&nbsp; 
+                            <input type="text" name="nombre" id="nombre" class="form-control" value="<?php echo $_SESSION['Nombre'];?>">
                             <br>
                             <p class="mensajeError-oculto" id="mError-nombre">&nbsp;¡El nombre solo puede contener letras mayúsculas, minúsculas y espacios para nombres compuestos![1-20]</p>
                         </div><br>
                         <!-- PRIMER APELLIDO-->
                         <div class="grupo_primerApellido col-md-6 ">
-                            <label for="primerApellido"> Primer Apellido</label>&nbsp; <a href="#" style="text-decoration:none; color:black;"><i class="fas fa-pen "></i></a>
-                            <input type="text" name="primerApellido"  id="primerApellido" class="form-control" value="<?php echo $_SESSION['PrimerApellido'];?>" readonly><br>
+                            <label for="primerApellido"> Primer Apellido</label>&nbsp; 
+                            <input type="text" name="primerApellido"  id="primerApellido" class="form-control" value="<?php echo $_SESSION['PrimerApellido'];?>"><br>
                             <p class="mensajeError-oculto" id="mError-apellido1">&nbsp;¡El primer apellido solo puede contener letras mayúsculas, minúsculas! [1-30]</p>
                         </div><br>
                         <!-- SEGUNDO APELLIDO-->
                         <div class="grupo_segundoApellido col-md-6 ">
-                            <label for="segundoApellido"> Segundo Apellido</label>&nbsp; <a href="#" style="text-decoration:none; color:black;"><i class="fas fa-pen "></i></a>
-                            <input type="text" name="segundoApellido"  id="segundoApellido" class="form-control" value="<?php echo $_SESSION['SegundoApellido'];?>" readonly><br>
+                            <label for="segundoApellido"> Segundo Apellido</label>&nbsp; 
+                            <input type="text" name="segundoApellido"  id="segundoApellido" class="form-control" value="<?php echo $_SESSION['SegundoApellido'];?>"><br>
                             <p class="mensajeError-oculto" id="mError-apellido2">&nbsp;¡El segundo apellido solo puede contener letras mayúsculas, minúsculas! [1-30]</p>
                         </div><br>
                         
                         <!-- TELÉFONO -->
                         <div class="grupo_telefono col-md-6 ">
-                            <label for="telefono">Teléfono</label>&nbsp; <a href="#" style="text-decoration:none; color:black;"><i class="fas fa-pen "></i></a>
-                            <input type="telefono" name="telefono"  id="telefono" class="form-control" value="<?php echo $_SESSION['Telefono'];?>" readonly><br>
+                            <label for="telefono">Teléfono</label>&nbsp; 
+                            <input type="telefono" name="telefono"  id="telefono" class="form-control" value="<?php echo $_SESSION['Telefono'];?>"><br>
                             <p class="mensajeError-oculto" id="mError-telefono">&nbsp;¡El teléfono no cumple el formato de España!</p>
                         </div><br>
                         <!-- DNI-->
                         <div class="grupo_dni col-md-6 ">
-                            <label for="dni">DNI</label>&nbsp; <a href="#" style="text-decoration:none; color:black;"><i class="fas fa-pen "></i></a>
-                            <input type="dni" name="dni" id="dni"  class="form-control" value="<?php echo $_SESSION['DNI'];?>" readonly><br>
+                            <label for="dni">DNI</label>&nbsp; 
+                            <input type="dni" name="dni" id="dni"  class="form-control" value="<?php echo $_SESSION['DNI'];?>"><br>
                             <p class="mensajeError-oculto" id="mError-dni">&nbsp;¡El DNI no cumple el formato.!</p>
                         </div><br>
                         <!-- EMAIL -->
                         <div class="grupo_email col-md-12 ">
-                            <label for="email">Correo electrónico</label>&nbsp; <a href="#" style="text-decoration:none; color:black;"><i class="fas fa-pen "></i></a>
-                            <input type="email" name="email" id="email"  class="form-control" value="<?php echo $_SESSION['Email'];?>" readonly><br>
+                            <label for="email">Correo electrónico</label>&nbsp; 
+                            <input type="email" name="email" id="email"  class="form-control" value="<?php echo $_SESSION['Email'];?>"><br>
                             <p class="mensajeError-oculto" id="mError-email">&nbsp;¡El correo no cumple el formato.!</p>
                         </div><br>
-                    
+                    <!-- imagen -->
+                        <div class="form-group grupo_ col-md-12 " >
+                            <label for="fotoPerfil">Foto de Perfil</label><br>
+                            <input type="file"  name="fotoPerfil" id="fotoPerfil">
+                        </div><br>
+                                    
     
                         <div class="grupo_envio col-md-12
                          ">
@@ -159,7 +164,7 @@
                                 if(isset($_GET['error']) && $_GET['error'] == "usuarioExiste"){ echo '<i class="fas fa-exclamation-triangle"></i>&nbsp;&nbsp;'."El usuario que ha introducido ya existe.";  } 
                                 if(isset($_GET['error']) && $_GET['error'] == "emailExiste"){ echo '<i class="fas fa-exclamation-triangle"></i>&nbsp;&nbsp;'."El email que ha introducido ya existe.";  }
                                 if(isset($_GET['error']) && $_GET['error'] == "dniExiste"){ echo '<i class="fas fa-exclamation-triangle"></i>&nbsp;&nbsp;'."El DNI que ha introducido ya existe.";  }
-                            ?>
+                        ?>
                             
                         </p>
     
