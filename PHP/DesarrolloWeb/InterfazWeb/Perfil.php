@@ -73,7 +73,7 @@
         <div class="contenedorPerfil">
            
             <h2>Foto de perfil </h2>
-            <img src="data:image/jpeg;base64,<?php echo base64_encode($_SESSION['FotoPerfil']);?>" class="img-responsive fotoPerfil" width="120vh" height="120vh" alt="" > 
+           <a href=""> <img src="data:image/jpeg;base64,<?php echo base64_encode($_SESSION['FotoPerfil']);?>" class="img-responsive fotoPerfil" width="120vh" height="120vh" alt="" > </a>
             <h2>Datos personales </h2><br>
             <span><b>Usuario:</b>&nbsp;&nbsp;<?php echo $_SESSION['Usuario'];?></span><br><br>
             <span><b>Nombre:</b>&nbsp;&nbsp;<?php echo $_SESSION['Nombre'];?></span><br><br>

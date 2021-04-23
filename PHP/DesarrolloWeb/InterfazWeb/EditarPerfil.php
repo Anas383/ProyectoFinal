@@ -145,15 +145,8 @@
                             <input type="email" name="email" id="email"  class="form-control" value="<?php echo $_SESSION['Email'];?>"><br>
                             <p class="mensajeError-oculto" id="mError-email">&nbsp;¡El correo no cumple el formato.!</p>
                         </div><br>
-                    <!-- imagen -->
-                        <div class="form-group grupo_ col-md-12 " >
-                            <label for="fotoPerfil">Foto de Perfil</label><br>
-                            <input type="file"  name="fotoPerfil" id="fotoPerfil">
-                        </div><br>
-                                    
     
-                        <div class="grupo_envio col-md-12
-                         ">
+                        <div class="grupo_envio col-md-12">
                             <input type="submit" class="btn btn-success btn-lg col-md-12" value="Enviar">
                         </div>
         
