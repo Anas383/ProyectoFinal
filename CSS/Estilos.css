@@ -12,11 +12,11 @@ body{
 
 .contenedor{
     background-color: #99868fe5;
-    padding: 5%;
-    border-radius: 10px;
+    padding: 4.063rem;
+    border-radius: 0.625rem;
     -webkit-box-shadow: -1px 17px 16px 10px rgba(0,0,0,0.75);
--moz-box-shadow: -1px 17px 16px 10px rgba(0,0,0,0.75);
-box-shadow: -1px 17px 16px 10px rgba(0,0,0,0.75);
+    -moz-box-shadow: -1px 17px 16px 10px rgba(0,0,0,0.75);
+    box-shadow: -1px 17px 16px 10px rgba(0,0,0,0.75);
 }
 
 .navbar{
@@ -43,7 +43,7 @@ box-shadow: -1px 17px 16px 10px rgba(0,0,0,0.75);
 
 .fuenteMenu a{
     font-family: 'Teko', sans-serif;
-    font-size: 4.32vh;
+    font-size: 1.688rem;
     transition: transform(0.5);
 }
 .fuenteMenu a:hover{
@@ -51,7 +51,7 @@ box-shadow: -1px 17px 16px 10px rgba(0,0,0,0.75);
 }
 .fuenteFooter a, p{
     font-family: 'Teko', sans-serif;
-    font-size: 4.32vh;
+    font-size: 1.688rem;
 }
 
 
@@ -64,7 +64,8 @@ box-shadow: -1px 17px 16px 10px rgba(0,0,0,0.75);
 
 .pieDePagina
 {
-    padding: 50px 0;
+    
+    padding: 3.125rem ;
     color:#f0f9ff;
     background-color:#212237;
     -webkit-box-shadow: -1px -4px 16px 10px rgba(0,0,0,0.75);
@@ -74,16 +75,16 @@ box-shadow: -1px 17px 16px 10px rgba(0,0,0,0.75);
 .pieDePagina h3 
 {
     margin-top: 0;
-    margin-bottom: 12px;
+    margin-bottom: 0.75rem;
     font-weight: bold;
-    font-size: 16px;
+    font-size: 1rem;
 }
 .pieDePagina ul 
 {
     padding: 0;
     list-style: none;
     line-height: 1.6;
-    font-size: 14px;
+    font-size: 0.875rem;
     margin-bottom: 0;
 }
 .pieDePagina ul a 
@@ -96,19 +97,19 @@ box-shadow: -1px 17px 16px 10px rgba(0,0,0,0.75);
 {
     opacity: 0.8;
 }
-@media(max-width: 767px) 
+@media(max-width: 47.938rem) 
 {
     .pieDePagina .item:not(.social) 
     {
         text-align: center;
-        padding-bottom: 20px;
+        padding-bottom: 1.25rem;
     }
 }
 .pieDePagina .item.text 
 {
-    margin-bottom: 36px;
+    margin-bottom: 2.25rem;
 }
-@media(max-width: 767px) 
+@media(max-width: 47.938rem) 
 {
     .pieDePagina .item.text 
     {
@@ -124,25 +125,25 @@ box-shadow: -1px 17px 16px 10px rgba(0,0,0,0.75);
 {
     text-align: center;
 }
-@media(max-width: 991px) 
+@media(max-width: 61.938rem) 
 {
     .pieDePagina .item.social 
     {
         text-align: center;
-        margin-top: 20px;
+        margin-top: 2.25rem;
     }
 }
 .pieDePagina .item.social > a  
 {
-    font-size: 20px;
-    width: 36px;
-    height: 36px;
-    line-height: 36px;
+    font-size: 2.25rem;
+    width: 2.25rem;
+    height: 2.25rem;
+    line-height: 2.25rem;
     display: inline-block;
     text-align: center;
     border-radius: 50%;
     box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.4);
-    margin: 0 8px;
+    margin: 0.5rem;
     color:#fff;
     opacity: 0.75;
 }
@@ -153,9 +154,9 @@ box-shadow: -1px 17px 16px 10px rgba(0,0,0,0.75);
 .pieDePagina .copyright 
 {
     text-align: center;
-    padding-top: 24px;
+    padding-top: 1.5rem;
     opacity: 0.3;
-    font-size: 13px;
+    font-size: 1.875rem;
     margin-bottom: 0;
 }
 .icono-instagram{
@@ -183,17 +184,17 @@ box-shadow: -1px 17px 16px 10px rgba(0,0,0,0.75);
 }
 .listaFooter
 {
-    margin-left: 10px;
+    margin-left: 0.625rem;
     font-size: 85%;
 }
 .mapa
 {
-    width: 250px;
-    height: 200px;
+    width: 15.625rem;
+    height: 12.5rem;
 }
 .mapa iframe
 {
-    border-radius: 10px;
+    border-radius: 0.625rem;
     width: 100%;
     height: 100%;
     box-shadow:black 3px 5px 3px;
@@ -204,7 +205,7 @@ box-shadow: -1px 17px 16px 10px rgba(0,0,0,0.75);
     width: 20%;
     height: 100%;
     text-align: center;
-    border-radius: 10px;
+    border-radius: 0.625rem;
     box-shadow:black 3px 5px 3px;
 
 }
@@ -237,13 +238,13 @@ box-shadow: -1px 17px 16px 10px rgba(0,0,0,0.75);
 {
     display: inline-block;
     position: relative;
-    width: 80px;
-    height: 80px;
+    width: 5rem;
+    height: 5rem;
 }
 .lds-roller div
 {
     animation: lds-roller 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
-    transform-origin: 40px 40px;
+    transform-origin: 2.5rem 2.5rem;
 }
 .lds-roller div:after
 {
@@ -343,7 +344,7 @@ box-shadow: -1px 17px 16px 10px rgba(0,0,0,0.75);
 {
     background:#212237;
     width: 100%;
-    height: 100vh;
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -365,7 +366,7 @@ box-shadow: -1px 17px 16px 10px rgba(0,0,0,0.75);
     position: relative; 
     top: 15%; 
     left: -0.5%;
-    font-size: 19px;
+    font-size: 1.188rem;
 }
 
 
@@ -401,7 +402,7 @@ box-shadow: -1px 17px 16px 10px rgba(0,0,0,0.75);
  
 }
 .mensajeError-activo{
-    font-size: 2.5vh;
+    font-size: 0.977rem;
     color: red;
     text-align: center;
     font-family: Arial, Helvetica, sans-serif;
@@ -411,7 +412,7 @@ box-shadow: -1px 17px 16px 10px rgba(0,0,0,0.75);
 .contenedorFormulario{
     background-color:white; 
     padding:2%; 
-    border-radius: 10px;
+    border-radius: 0.625rem;
     -webkit-box-shadow: 1px 3px 6px 11px rgba(0,0,0,0.75);
     -moz-box-shadow: 1px 3px 6px 11px rgba(0,0,0,0.75);
     box-shadow: 1px 3px 6px 11px rgba(0,0,0,0.75);
@@ -458,7 +459,7 @@ legend{
 
 .contenedorPerfil{
     background-color: #f0f9ff;
-    border-radius: 10px;
+    border-radius: 0.625rem;
     padding: 5%;
     -webkit-box-shadow: 1px 3px 6px 11px rgba(0,0,0,0.75);
     -moz-box-shadow: 1px 3px 6px 11px rgba(0,0,0,0.75);
@@ -471,7 +472,7 @@ legend{
 }
 .contenedorPerfil span{
     font-family: 'Times New Roman', Times, serif;
-    font-size: 3.5vh;
+    font-size: 1.367rem;
     
 
 }
@@ -481,21 +482,54 @@ legend{
     display: block;
     margin-left: auto;
     margin-right: auto;
-    border-radius: 60vh;
+    border-radius: 23.438rem;
     border: solid black 2px;
     box-shadow: 3px 5px 3px;
+    transition-property: filter;
+    transition-duration: 0.5s ;
+  
     
 }
+.fotoPerfil:hover{
+   
+    filter: brightness(40%);
+    
+}
+
+
 .botonesTablasEdicion{
     display:grid; 
     grid-template-columns: auto auto; 
     grid-gap:2%;
 }
 .cabeceraTabla{
-    border-radius: 10px;
+    border-radius: 0.625rem;
 }
 table{
 
  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
   
 }
+
+
+.tarjetasProductos{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    background-color:#212237e3; 
+    border-radius:0.625rem;
+    color: white;
+   
+}
+.tarjetasProductos img{
+    border-radius: 0.625rem 0.625rem 0px 0px;
+    height: 12.5rem;
+}
+
+.botonBuscar{
+    background-color: #212237;
+    transition-property: bachground;
+    transition-duration: 0.5s ;
+}
+.botonBuscar:hover{
+   background-color:#2a2c42 ;
+}
+

@@ -15,7 +15,7 @@ $telefono=$_POST['telefono'];
 $password= $_POST['password'];
 $email= $_POST['email'];
 $dni=$_POST['dni'];
-$fotoPerfil=addslashes(file_get_contents($_FILES['fotoPerfil']['tmp_name']));
+
 
 //NOS CONECTAMOS A LA BASE DE DATOS
 

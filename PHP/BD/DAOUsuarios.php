@@ -62,7 +62,13 @@ function eliminarUsuario($conexion, $idUsuario){
     $resultado = mysqli_query($conexion,$consulta);
     return $resultado;
 }
-
+function darseDeBaja($conexion, $idUsuario){
+    //BUSCAMOS SI EXISTE EL USUARIO
+    $consulta = "DELETE FROM Usuarios WHERE idUsuario = '$idUsuario'";
+    //EJECUTAMOS LA CONSULTA
+    $resultado = mysqli_query($conexion,$consulta);
+    return $resultado;
+}
 
 function listarUsuariosId($conexion, $idUsuario){
     //BUSCAMOS SI EXISTE EL USUARIO
@@ -71,6 +77,14 @@ function listarUsuariosId($conexion, $idUsuario){
     $resultado = mysqli_query($conexion,$consulta);
     return $resultado;
 }
+function actualizarFotoPerfil($conexion, $fotoPerfil, $idUsuario){
+    //BUSCAMOS SI EXISTE EL USUARIO
+    $consulta = "UPDATE Usuarios SET `FotoPerfil` = '$fotoPerfil' WHERE (`idUsuario` = '$idUsuario')";
+    //EJECUTAMOS LA CONSULTA
+    $resultado = mysqli_query($conexion,$consulta);
+    return $resultado;
+}
+
 
 function crearSesion($usuario){
     //Asignamos el id
@@ -78,6 +92,7 @@ function crearSesion($usuario){
     //Iniciamos la sesion
     session_start();
     $_SESSION['usuarioConectado']=true;
+   
     //Guardamos los datos en la sesion
     foreach($usuario as $indice=>$valor){
         $_SESSION[$indice] = $valor;

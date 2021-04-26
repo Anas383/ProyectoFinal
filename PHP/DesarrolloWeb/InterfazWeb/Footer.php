@@ -21,9 +21,9 @@
 </head>
 <body >
 
-    <div class="pieDePagina">
+    <div class="pieDePagina ">
         <footer>
-            <div class="container fuenteFooter ">
+            <div class="container fuenteFooter  ">
                 <div class="row">
                     <div class="col-sm-6 col-md-3 item">
                         <p><u>Contacto</u></p>
@@ -69,6 +69,8 @@
                     <div class="col item social"><br><a href="https://twitter.com/Anasabd17" target="_blank" class="icono-twitter"><i class="fab fa-twitter"></i></a><a href="https://www.instagram.com/anas_382/?hl=es" target="_blank" class="icono-instagram"><i class="fab fa-instagram"></i></a><a href="https://www.facebook.com/people/Anas-Abd/100009851070081/" target="_blank" class="icono-facebook"><i class="icon ion-social-facebook "></i></a><a href="mailto:AnasAbd382@gmail.com" class="icono-mail"><i class="far fa-envelope"></i></a><a href="tel:666014344" class="icono-telefono"><i class="fas fa-phone-alt"></i></a></div>
                 </div>
                 <p class="copyright ">AnimeTEK © 2021</p>
+                <br>
+                <br>
             </div>
         </footer>
     </div>

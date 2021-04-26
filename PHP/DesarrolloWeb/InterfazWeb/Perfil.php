@@ -2,6 +2,7 @@
 
     require '../../BD/ConectorBD.php';
     require '../../BD/DAOUsuarios.php';
+    require '../../BD/Config.php';
     $conexion=conectar(true);
     session_start();
 ?>
@@ -68,12 +69,71 @@
     </div><br>
 
     <?php include_once 'VentanaEmergenteLogOut.php';?>
-  
+    <?php include_once 'EmergenteFotoPerfil.php';?>
+    <p>
+        <?php
+            if(isset($_GET['fotoPerfilAplicarCambios']) && $_GET['fotoPerfilAplicarCambios'] == "AplicarCambiosFotoPerfil"){ echo '
+                <div class="modal" id="myModal" tabindex="-1">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">AnimeTEK.</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                           La proxima vez que inicies sesión se aplicaran los cambios.
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-success" data-dismiss="modal">Cerrar</button>
+                        
+                        </div>
+                        </div>
+                    </div>
+                </div>';}
+        ?>
+    </p>
+
+    <!-- EMERGENTE DARSE DE BAJA -->
+    
+<!-- Modal -->
+            <div class="modal fade" id="darseDeBaja" tabindex="-1" aria-labelledby="darseDeBajaLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="darseDeBajaLabel">AnimeTEK</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    
+                    <form action="DarseDeBaja.php?idUsuario=<?php echo openssl_encrypt($_SESSION['idUsuario'], COD, KEY)?>" id="FormularioDarseDeBaja" method="post" enctype="multipart/form-data">      
+                            <!-- imagen -->
+                            <div class="form-group grupo_ col-md-12 " >
+                                <div class="form-group">
+                                <label for="fotoPerfil">Escriba lo siguiente para confirmar la eliminación "DeleteMe"(escribalo sin comillas).</label><br>
+                                <input type="text" name="deleteme" id="deleteme" placeholder="Escriba aquí..." class="form-control" required><br>
+                                <p class="mensajeError-oculto" id="mError-deleteme">La palabra es incorrecta.</p>
+                                </div>
+                                
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                                <input type="submit" class="btn btn-success" value="Aceptar">
+                              
+                        </form>
+
+                        </div>
+                        </div>
+                </div>
+            </div>
+            
     <div class="container">
         <div class="contenedorPerfil">
            
             <h2>Foto de perfil </h2>
-           <a href=""> <img src="data:image/jpeg;base64,<?php echo base64_encode($_SESSION['FotoPerfil']);?>" class="img-responsive fotoPerfil" width="120vh" height="120vh" alt="" > </a>
+           <a href="#" data-toggle="modal" data-target="#actualizarFotoPerfil""> <img src="data:image/jpeg;base64,<?php echo base64_encode($_SESSION['FotoPerfil']);?>" class="img-responsive fotoPerfil" width="120vh" height="120vh" alt=""style="" > </a>
             <h2>Datos personales </h2><br>
             <span><b>Usuario:</b>&nbsp;&nbsp;<?php echo $_SESSION['Usuario'];?></span><br><br>
             <span><b>Nombre:</b>&nbsp;&nbsp;<?php echo $_SESSION['Nombre'];?></span><br><br>
@@ -83,7 +143,8 @@
             <span><b>Correo electrónico:</b>&nbsp;&nbsp;<div><?php echo $_SESSION['Email'];?></div></span><br>
             <span><b>DNI: </b>&nbsp;&nbsp;<?php echo $_SESSION['DNI'];?></span><br><br>    
             <a href="EditarPerfil.php" class="btn btn-outline-primary m-right"><i class="fas fa-pen"></i> &nbsp;Editar perfil</a>
-            <a href="EditarPerfil.php" class="btn btn-danger m-right"><i class="fas fa-user-times"></i>&nbsp; Darse de baja</a>
+            <a href="#"  data-toggle="modal" data-target="#darseDeBaja" class="btn btn-danger m-right"><i class="fas fa-user-times"></i>&nbsp; Darse de baja</a>
+           
             
         </div><br>
     </div>
@@ -91,7 +152,7 @@
     <?php include_once "Footer.php"?>
     
     <!--Scripts--> 
-    <script src="../../../JS/Home.js"></script>  
+    <script src="../../../JS/Deleteme.js"></script>  
     <script src="https://use.fontawesome.com/releases/v5.15.2/js/all.js" data-auto-a11y="true"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
 </body>

@@ -5,9 +5,10 @@
     require '../../BD/DAOProductos.php';
     require '../../BD/Config.php';
     $conexion=conectar(true);
+    $idCategoria= $_GET['idCategoria'];
     
-
 ?>
+
 
 
 <!DOCTYPE html>
@@ -77,11 +78,11 @@
     <h1>PRODUCTOS AnimeTEK</h1><br>
             <div class="row">
         
-                <div class="col-md-3">
+                <div class="col-md-4">
                     
                 <div class="dropdown">
                     <a class="btn text-light  dropdown-toggle" style=" background-color: #212237;" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                       Filtrar
+                        Filtrar
                     </a>
 
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
@@ -93,7 +94,7 @@
                                 while( $categorias = mysqli_fetch_assoc($resultadoConsultaCategorias)){ 
                         
                         ?>
-                        <a class="dropdown-item" href="Filtrar.php?idCategoria=<?php echo $categorias['idCategoria'];?>"><?php echo $categorias['NombreCategoria']?></a>
+                        <a class="dropdown-item" href="Filtrar.php?idCategoria=<?php echo $categorias['idCategoria']?>"><?php echo $categorias['NombreCategoria']?></a>
                         <?php
                                 }
                             }
@@ -102,13 +103,13 @@
                     </div>
                 </div>                            
                 </div>
-                <div class="col-md-5">
+                <div class="col-md-4">
                    
                 </div>
                 <div class="col-md-4">
                 <form class="form-inline my-2 my-lg-0">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Buscar..." aria-label="Search">
-                    <button class="btn  text-light my-2 my-sm-0 botonBuscar"  type="submit"><i class="fas fa-search"></i></button>
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-success my-2 my-sm-0" type="submit">Search</button>
                     </form>
                 </div>
                 
@@ -118,7 +119,7 @@
             <div class="row mb-5">
             
                 <?php    
-                    $resultadoConsulta = buscarProductosCatalogo($conexion);
+                    $resultadoConsulta =buscarUnaCategoriaCatalogo($conexion, $idCategoria);
                     if(mysqli_num_rows($resultadoConsulta)!=0){
                         
                         while( $productos = mysqli_fetch_assoc($resultadoConsulta)){          
