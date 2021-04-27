@@ -2,6 +2,7 @@
 
     require '../../BD/ConectorBD.php';
     require '../../BD/DAOUsuarios.php';
+    require '../../BD/DAOProductos.php';
     require '../../BD/Config.php';
     $conexion=conectar(true);
     session_start();
@@ -72,8 +73,8 @@
     <?php include_once 'EmergenteFotoPerfil.php';?>
     <p>
         <?php
-            if(isset($_GET['fotoPerfilAplicarCambios']) && $_GET['fotoPerfilAplicarCambios'] == "AplicarCambiosFotoPerfil"){ echo '
-                <div class="modal" id="myModal" tabindex="-1">
+            if(isset($_GET['fotoPerfilEmergente']) && $_GET['fotoPerfilEmergente'] == "reiniciarParaAplicar"){ echo '
+                <div class="modal" id="fotoPerfilEmergente" tabindex="-1">
                     <div class="modal-dialog">
                         <div class="modal-content">
                         <div class="modal-header">
@@ -152,7 +153,8 @@
     <?php include_once "Footer.php"?>
     
     <!--Scripts--> 
-    <script src="../../../JS/Deleteme.js"></script>  
+    <script src="../../../JS/Deleteme.js"></script> 
+    <script src="../../../JS/Perfil.js"></script>  
     <script src="https://use.fontawesome.com/releases/v5.15.2/js/all.js" data-auto-a11y="true"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
 </body>

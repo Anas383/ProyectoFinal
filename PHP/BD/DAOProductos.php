@@ -26,6 +26,14 @@ function buscarUnaCategoriaCatalogo($conexion, $idCategoria){
    return $resultado;
 }
 
+function contarProductos($conexion, $idCesta){
+    //COMPARAMOS LOS DATOS DEL USUARIO
+    $consulta = "SELECT Count(idCesta) FROM ProductosCarrito where idCesta='$idCesta'";
+    $resultado= mysqli_query($conexion,$consulta);
+   return $resultado;
+}
+
+
 
 
 ?>

@@ -59,8 +59,8 @@
             </button>
             <div class="collapse navbar-collapse fuenteMenu" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
-                    <a class="nav-item nav-link  active" href="Home.php">Home <span class="sr-only">Home</span></a>
-                    <a class="nav-item nav-link " href="Catalogo.php">Catálogo</a>
+                    <a class="nav-item nav-link " href="Home.php">Home <span class="sr-only">Home</span></a>
+                    <a class="nav-item nav-link active" href="Catalogo.php">Catálogo</a>
                     <a class="nav-item nav-link " href="MasSobreAnimeTEK.php">Más sobre AnimeTEK</a>
                    <?php include_once 'MenuAdministradores.php'?>
                       
@@ -78,13 +78,12 @@
     <h1>PRODUCTOS AnimeTEK</h1><br>
             <div class="row">
         
-                <div class="col-md-4">
+                <div class="col-md-3">
                     
                 <div class="dropdown">
-                    <a class="btn text-light  dropdown-toggle" style=" background-color: #212237;" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Filtrar
+                    <a class="btn btn-lg text-light  dropdown-toggle" style=" background-color: #212237;" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                       Filtrar  <i class="fas fa-filter"></i> &nbsp;&nbsp; &nbsp; &nbsp;
                     </a>
-
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                     <a class="dropdown-item" href="Catalogo.php">Todas</a>
                         <?php 
@@ -103,13 +102,19 @@
                     </div>
                 </div>                            
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-5">
                    
                 </div>
                 <div class="col-md-4">
-                <form class="form-inline my-2 my-lg-0">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-success my-2 my-sm-0" type="submit">Search</button>
+                    <form class="form-inline my-2 my-lg-0">
+                    <div class="input-group">
+                        <input class="form-control " type="search" placeholder="Buscar..." aria-label="Search">
+                        <div class="input-group-append">
+                            <button class="btn  text-light botonBuscar"  data-toggle="modal" data-target="#"  type="submit"><i class="fas fa-search"></i></button>
+                        </div>
+                    </div>
+                    
+                   
                     </form>
                 </div>
                 
@@ -132,7 +137,8 @@
                         </figure>
                         <div class="block-4-text p-4">
                             <h3 style=" font-size: 90%;"><?php echo $productos['NombreProducto']?></h3><br>
-                           <strong> <?php echo $productos['Precio'];?>&nbsp;€ </strong>                           <form action="#" method="post">
+                           <strong> <?php echo $productos['Precio'];?>&nbsp;€ </strong>                           
+                            <form action="#" method="post">
                                 <input type="hidden" name="idProducto" id="idProducto" value="<?php echo openssl_encrypt($productos['idProducto'], COD, KEY) ?>">
                                 <input type="hidden" name="nombreProducto" id="nombreProducto" value="<?php echo openssl_encrypt($productos['NombreProducto'], COD, KEY) ?>">
                                 <input type="hidden" name="precioProducto" id="precioProducto" value="<?php echo openssl_encrypt($productos['Precio'], COD, KEY) ?>">

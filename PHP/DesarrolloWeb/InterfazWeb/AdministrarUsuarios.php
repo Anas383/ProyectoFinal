@@ -2,6 +2,7 @@
 
     require '../../BD/ConectorBD.php';
     require '../../BD/DAOUsuarios.php';
+    require '../../BD/DAOProductos.php';
     $conexion=conectar(true);
     session_start();
 ?>

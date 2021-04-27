@@ -12,7 +12,14 @@
                 <nav class="navbar navbar-expand-lg navbar-dark">
                     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                         <div class="navbar-nav">
-                        <span > <a href="#"><i class="fas fa-shopping-cart"></i>&nbsp;(0)&nbsp;</a></span>
+                        <span > <a href="#"><i class="fas fa-shopping-cart"></i>&nbsp;
+                        (<?php 
+                        
+                            $idCesta=$_SESSION['idUsuario'];
+                            $contarProductos=contarProductos($conexion, $idCesta);
+                            $totalProductos=mysqli_fetch_assoc($contarProductos);
+                            print_r($totalProductos['Count(idCesta)']); 
+                        ?>)&nbsp;</a></span>
                             <div class="dropdown show">
                                 <a class=" dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <i class="fas fa-cog"></i> <?php echo $_SESSION['ROL']." : ".$_SESSION['Usuario'];?>
@@ -32,7 +39,7 @@
             }else{?>
             <!-- ENLACES PARA MÓVIL -->
             <div class="d-block d-sm-block d-md-none linksMenu fuenteMenu ">
-                <span > <a href="#"><i class="fas fa-shopping-cart"></i>&nbsp;(0)&nbsp;</a></span>
+              
                 <a href="../Login/Login.php"><i class="fas fa-sign-in-alt"></i>&nbsp;Iniciar Sesión</a>&nbsp;&nbsp;&nbsp;
                 <a href="../Registro/Registro.php" ><i class="fas fa-user"></i>  &nbsp;Regístrate</a>&nbsp;&nbsp;
                     
@@ -54,7 +61,12 @@
                     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                         <div class="navbar-nav">
                            
-                        <span > <a href="#"><i class="fas fa-shopping-cart"></i>&nbsp;(0)&nbsp;</a></span>
+                        <span > <a href="#"><i class="fas fa-shopping-cart"></i>&nbsp;(<?php 
+                        
+                            $idCesta=$_SESSION['idUsuario'];
+                            $contarProductos=contarProductos($conexion, $idCesta);
+                            $totalProductos=mysqli_fetch_assoc($contarProductos);
+                            print_r($totalProductos['Count(idCesta)']); ?>)&nbsp;</a></span>
                           
                             <div class="dropdown show">
                                 <a class=" dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
