@@ -1,10 +1,13 @@
 <?php
-
+    session_start();
     require '../../BD/ConectorBD.php';
     require '../../BD/DAOUsuarios.php';
     require '../../BD/DAOProductos.php';
+    require '../../BD/Config.php';
     $conexion=conectar(true);
-    session_start();
+   
+    
+
 ?>
 
 
@@ -14,12 +17,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Administrar Usuarios AnimeTEK</title>
+    <title>Home AnimeTEK</title>
     <link rel="icon" href="../../../IMG/Logo/LogoFullTransparente.ico">
      <!--Links para las fuentes de Google Fonts.-->
      <link rel="preconnect" href="https://fonts.gstatic.com">
      <link href="https://fonts.googleapis.com/css2?family=Teko:wght@300&display=swap" rel="stylesheet">
-
+   
         <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Kiwi+Maru:wght@300&display=swap" rel="stylesheet">
         <!--Link para la versión de Bootstrap.-->
@@ -28,6 +31,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
         <link rel="stylesheet" href="../../../CSS/Estilos.css">
+        <link rel="stylesheet" href="../../../CSS/Normalize.css">
         <script src="../../../JS/Loader.js"></script>
 
 </head>
@@ -58,11 +62,10 @@
                     <a class="nav-item nav-link " href="Home.php">Home <span class="sr-only">Home</span></a>
                     <a class="nav-item nav-link " href="Catalogo.php">Catálogo</a>
                     <a class="nav-item nav-link " href="MasSobreAnimeTEK.php">Más sobre AnimeTEK</a>
-                    <?php include_once 'MenuAdministradores.php'?>
+                   <?php include_once 'MenuAdministradores.php'?>
                       
                 </div>
                 
-            
             <?php include_once 'MenuUsuarios.php';?>
         </nav>
         
@@ -70,58 +73,77 @@
 
     <?php include_once 'VentanaEmergenteLogOut.php';?>
   
-    <div class="container-fluid">
+    <div class="container">
+        
     <div class="table-responsive">
-        <table class="table bg-light rounded ">
+        <table class="table bg-light rounded  text-center">
             
-            <thead class="bg-danger text-center  ">
+            <thead class="bg-danger   ">
               <tr>
-                <th scope="col">Id Usuario</th>
-                <th scope="col">Usuario</th>
-                <th scope="col">Nombre</th>
-                <th scope="col">Primer Apellido</th>
-                <th scope="col">Segundo Apellido</th>
-                <th scope="col">Telefono</th>
-                <th scope="col">Contraseña</th>
-                <th scope="col">Email</th>
-                <th scope="col">DNI</th>
-                <th scope="col">ROL</th>
+              <th scope="col">Producto</th>
+                <th scope="col">Precio del Producto</th>
                 <th scope="col">Acciones</th>
               </tr>
             </thead>
             <?php 
-                $listarUsuarios= listarUsuarios($conexion); 
-                while($fila=mysqli_fetch_assoc($listarUsuarios)){
+                $idCesta=$_SESSION['idUsuario'];
+                $listarProductosCarrito=  listarProductosCarrito($conexion,$idCesta); 
+                while($productosCarrito=mysqli_fetch_assoc($listarProductosCarrito)){
             ?>
             <tbody  >
+                    
                 <tr >
-                    <td><?php echo $fila['idUsuario'];?></td>
-                    <td><?php echo $fila['Usuario'];?></td>
-                    <td><?php echo $fila['Nombre'];?></td>
-                    <td><?php echo $fila['PrimerApellido'];?></td>
-                    <td><?php echo $fila['SegundoApellido'];?></td>
-                    <td><?php echo $fila['Telefono'];?></td>
-                    <td><?php echo $fila['Password'];?></td>
-                    <td><?php echo $fila['Email'];?></td>
-                    <td><?php echo $fila['DNI'];?></td>
-                    <td><?php echo $fila['ROL'];?></td>
-                    <td class="botonesTablasEdicion"><a href="ModificarUsuario.php?idUsuario=<?php echo $fila['idUsuario'];?>" class="btn btn-primary "><i class="fas fa-user-edit"></i>&nbsp;&nbsp;Modificar</a><a href="#" data-toggle="modal" data-target="#emergenteEliminarUsuario"  class="btn btn-danger "><i class="fas fa-user-minus"></i>&nbsp;&nbsp;Eliminar</a></td>
-                    <?php include_once 'EmergenteEliminarUsuario.php'?>
+                    
+                    <td><?php
+                    $idProductoCarritoNombre=$productosCarrito['idProductoCarrito'];
+                    $buscarNombreProducto=buscarNombreProductosCarrito($conexion,$idProductoCarritoNombre);
+                    $nombreProductoCarrito=mysqli_fetch_assoc($buscarNombreProducto);
+                    ?>
+                    <img src="data:image/jpeg;base64,<?php echo base64_encode($nombreProductoCarrito['Imagen']);?>" class="img-responsive  " align="left" width="70vh" height="70vh" alt=""style="border-radius: 5rem; " >
+                    <?php
+                    
+                    echo $nombreProductoCarrito['NombreProducto'];
+                    ?>
+                   </td>
+                  
+                    <td><?php echo $productosCarrito['PrecioProducto'];?>€</td>
+                    <td class="botonesTablasEdicion"><a href="#" class="btn btn-primary "><i class="fas fa-info-circle"></i></i>&nbsp;&nbsp;Detalles</a><a href="#" data-toggle="modal" data-target="#emergenteEliminarProducto"  class="btn btn-danger "><i class="fas fa-trash-alt"></i></i>&nbsp;&nbsp;Eliminar</a></td>
+                    <?php include_once 'EmergenteEliminarProductoCarrito.php'?>
                     <?php
                      }
                     ?>
                 </tr>
+                <tr class="bg-info">
+                     <td style="font-size: 1.7rem;">Precio Total:
+                     <?php 
+                       
+                       $precioTotalProductos= totalPrecioProductosCarrito($conexion, $idCesta);
+                       $precioTotal=mysqli_fetch_assoc($precioTotalProductos);
+                       $total=$precioTotal['SUM(PrecioProducto)'];
+                       if($total==NULL){
+                           $total='0.00';
+                        }
+                       $insertarPrecioTotalEnCarrito= insertarPrecioTotalTablaCarrito($conexion,$idCesta, $total);
+                       echo $total;
+                     ?>€</h4></td>
+                     <td>
+                        
+                        <button class="btn btn-warning btn-lg" type="submit">Realizar pago</button>
+                     </td>
+                     <td><a href="EmergenteVaciarCarrito.php" data-toggle="modal" data-target="#emergenteVaciarCarrito"  class="btn btn-danger btn-lg">Vaciar carrito</a></td>
+                     
+                </tr>
                
             </tbody>
         </table>
-       
+       </div>
       </div>
-    </div>
     <br>
     <?php include_once "Footer.php"?>
     
     <!--Scripts--> 
-    <script src="../../../JS/Home.js"></script>  
+    
+    <script src="../../../JS/Catalogo.js"></script>  
     <script src="https://use.fontawesome.com/releases/v5.15.2/js/all.js" data-auto-a11y="true"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
 </body>

@@ -46,6 +46,16 @@ function registrarUsuario($conexion,$usuario,$password, $nombre,$apellido1, $ape
     
 }
 
+function registrarUsuarioCarrito($conexion,$idCarrito, $idUsuario){
+    //INGRESAMOS LOS DATOS DEL USUARIO
+  
+     //EJECUTAMOS LA CONSULTA
+     $consulta = "INSERT INTO Carrito (idCarrito, idUsuario, PrecioTotal) VALUES ('$idCarrito', '$idUsuario', 0.00)";
+    $resultado = mysqli_query($conexion,$consulta);
+     return $resultado;
+    
+}
+
 
 function listarUsuarios($conexion){
     //BUSCAMOS SI EXISTE EL USUARIO

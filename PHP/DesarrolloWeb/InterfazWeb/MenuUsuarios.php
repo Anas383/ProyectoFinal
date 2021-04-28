@@ -12,7 +12,7 @@
                 <nav class="navbar navbar-expand-lg navbar-dark">
                     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                         <div class="navbar-nav">
-                        <span > <a href="#"><i class="fas fa-shopping-cart"></i>&nbsp;
+                        <span > <a href="MostrarCarrito.php"><i class="fas fa-shopping-cart"></i>&nbsp;
                         (<?php 
                         
                             $idCesta=$_SESSION['idUsuario'];
@@ -61,7 +61,7 @@
                     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                         <div class="navbar-nav">
                            
-                        <span > <a href="#"><i class="fas fa-shopping-cart"></i>&nbsp;(<?php 
+                        <span > <a href="MostrarCarrito.php"><i class="fas fa-shopping-cart"></i>&nbsp;(<?php 
                         
                             $idCesta=$_SESSION['idUsuario'];
                             $contarProductos=contarProductos($conexion, $idCesta);

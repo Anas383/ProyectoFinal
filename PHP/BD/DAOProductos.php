@@ -34,6 +34,56 @@ function contarProductos($conexion, $idCesta){
 }
 
 
+function añadirProductosAlCarrito($conexion,$cantidadProducto, $precioProducto, $idCesta, $idProducto){
+    //COMPARAMOS LOS DATOS DEL USUARIO
+    $consulta = "INSERT INTO ProductosCarrito (Cantidad, PrecioProducto, idCesta, idProductoCarrito) VALUES ('$cantidadProducto', '$precioProducto', '$idCesta', '$idProducto')";
+    $resultado= mysqli_query($conexion,$consulta);
+   return $resultado;
+}
+function listarProductosCarrito($conexion,$idCesta){
+    //COMPARAMOS LOS DATOS DEL USUARIO
+    $consulta = "SELECT * FROM TiendaMerchandising.ProductosCarrito where idCesta='$idCesta'";
+    $resultado= mysqli_query($conexion,$consulta);
+   return $resultado;
+}
+function buscarNombreProductosCarrito($conexion,$idProductoCarritoNombre){
+    //COMPARAMOS LOS DATOS DEL USUARIO
+    $consulta = "SELECT * FROM Productos where idProducto='$idProductoCarritoNombre'";
+    $resultado= mysqli_query($conexion,$consulta);
+   return $resultado;
+}
+
+
+function eliminarProductosCarrito($conexion,$idItem){
+    //COMPARAMOS LOS DATOS DEL USUARIO
+    $consulta = "DELETE FROM ProductosCarrito WHERE idItem = '$idItem' ";
+    $resultado= mysqli_query($conexion,$consulta);
+   return $resultado;
+}
+
+
+function totalPrecioProductosCarrito($conexion,$idCesta){
+    //COMPARAMOS LOS DATOS DEL USUARIO
+    $consulta = "SELECT SUM(PrecioProducto) FROM ProductosCarrito where idCesta='$idCesta' ";
+    $resultado= mysqli_query($conexion,$consulta);
+   return $resultado;
+}
+function insertarPrecioTotalTablaCarrito($conexion,$idCesta, $total){
+    //COMPARAMOS LOS DATOS DEL USUARIO
+    $consulta = "UPDATE Carrito SET PrecioTotal = '$total' WHERE idCarrito = '$idCesta'";
+    $resultado= mysqli_query($conexion,$consulta);
+   return $resultado;
+}
+
+function vaciarCarrito($conexion,$idCesta){
+    //COMPARAMOS LOS DATOS DEL USUARIO
+    $consulta = "DELETE FROM ProductosCarrito WHERE idCesta='$idCesta'";
+    $resultado= mysqli_query($conexion,$consulta);
+    return $resultado;
+}
+
+
+
 
 
 ?>

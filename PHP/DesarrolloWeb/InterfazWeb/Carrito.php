@@ -15,13 +15,12 @@ if($_SESSION['usuarioConectado']==false){
     $idProducto=$_POST['idProducto'];
     $precioProducto=$_POST['precioProducto'];
     $cantidadProducto=$_POST['cantidadProducto'];
-    $idUsuario=$_POST['idUsuario'];
+    $idCesta=$_POST['idUsuario'];
 
-    echo $idProducto;
-    echo $precioProducto;
-    echo $cantidadProducto;
-    echo $idUsuario;
+    $añadirProductosAlCarrito= añadirProductosAlCarrito($conexion,$cantidadProducto, $precioProducto, $idCesta, $idProducto);
+    header('Location: Catalogo.php');
 
+  
 }
     
 

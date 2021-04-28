@@ -4,6 +4,7 @@
 
 require '../../BD/ConectorBD.php';
 require '../../BD/DAOUsuarios.php';
+session_start();
 
 //RECOGEMOS LOS CAMPOS DEL HTML
 
@@ -16,6 +17,7 @@ $password= $_POST['password'];
 $email= $_POST['email'];
 $dni=$_POST['dni'];
 $fotoPerfil=addslashes(file_get_contents($_FILES['fotoPerfil']['tmp_name']));
+
 
 //NOS CONECTAMOS A LA BASE DE DATOS
 
@@ -39,6 +41,11 @@ if(mysqli_num_rows($buscarUsuario)!=0){
 }
 else{
     $realizarConsulta=registrarUsuario($conexion,$usuario,$password, $nombre,$apellido1, $apellido2,$telefono, $email, $dni, $fotoPerfil);
+    $ultimoId = mysqli_insert_id($conexion);
+    $idCarrito=$ultimoId;
+    $idUsuario=$ultimoId;
+    $registrarCarrito=registrarUsuarioCarrito($conexion,$idCarrito, $idUsuario);
+    
     header('Location:../InterfazWeb/Home.php?registrado=usuarioRegistrado');
 }
 

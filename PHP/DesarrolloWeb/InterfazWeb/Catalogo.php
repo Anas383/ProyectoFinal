@@ -164,10 +164,10 @@
                             <h3 style=" font-size: 90%;"><?php echo $productos['NombreProducto']?></h3><br>
                            <strong> <?php echo $productos['Precio'];?>&nbsp;€ </strong>                           
                             <form action="Carrito.php" method="post">
-                                <input type="text" name="idProducto" id="idProducto" value="<?php echo $productos['idProducto']; ?>">
-                                <input type="text" name="precioProducto" id="precioProducto" value="<?php echo $productos['Precio']; ?>">
-                                <input type="text" name="cantidadProducto" id="cantidadProducto" value="<?php echo '1'; ?>">
-                                <input type="text" name="idUsuario" id="idUsuario" value="<?php echo $_SESSION['idUsuario']; ?>">
+                                <input type="hidden" name="idProducto" id="idProducto" value="<?php echo $productos['idProducto']; ?>">
+                                <input type="hidden" name="precioProducto" id="precioProducto" value="<?php echo $productos['Precio']; ?>">
+                                <input type="hidden" name="cantidadProducto" id="cantidadProducto" value="<?php echo '1'; ?>">
+                                <input type="hidden" name="idUsuario" id="idUsuario" value="<?php echo $_SESSION['idUsuario']; ?>">
                                 <div class="row">
                                     <div class="m-auto"><br>
                                         <a class="btn btn-danger mt-1" href="">Ver detalles</a> 
