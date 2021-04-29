@@ -7,7 +7,7 @@ session_start();
 
 $idUsuario=$_GET['idUsuario'];
 
-$eliminarUsuario=eliminarUsuario($conexion, $idUsuario);
+$eliminarUsuario=eliminarCarro($conexion, $idUsuario);
 
-header('Location: AdministrarUsuarios.php');
+header("Location: EliminarUsuario.php?idUsuario=$idUsuario");
 ?>

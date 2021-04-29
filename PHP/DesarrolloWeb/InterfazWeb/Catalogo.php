@@ -103,13 +103,13 @@
                     </div>
                 </div>                            
                 </div>
-                <div class="col-md-5">
+                <div class="col-md-6">
                   
                 </div>
-                <div class="col-md-4">
-                    <form class="form-inline my-2 my-lg-0">
+                <div class="col-md-3">
+                    <form action="Buscar.php" method="GET" class="form-inline my-2 my-lg-0">
                     <div class="input-group">
-                        <input class="form-control " type="search" placeholder="Buscar..." aria-label="Search">
+                        <input class="form-control " type="search" name="busqueda" id="busqueda" placeholder="Buscar..." aria-label="Search">
                         <div class="input-group-append">
                             <button class="btn  text-light botonBuscar"  type="submit"><i class="fas fa-search"></i></button>
                         </div>

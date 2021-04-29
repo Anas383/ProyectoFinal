@@ -181,6 +181,7 @@
                             <input type="reset" class="btn btn-primary btn-lg col-md-12" value="Limpiar">
                             
                         </div>
+                        
                     </div>
                     <br>
                         <p class="errorFormulariosBD"><?php 

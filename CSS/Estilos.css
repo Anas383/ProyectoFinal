@@ -485,8 +485,10 @@ legend{
     border-radius: 23.438rem;
     border: solid black 2px;
     box-shadow: 3px 5px 3px;
+    background-image: url('https://www.labicok.com/wp-content/uploads/2020/06/default-user-image.png');
     transition-property: filter;
     transition-duration: 0.5s ;
+   
   
     
 }

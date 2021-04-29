@@ -82,6 +82,12 @@ function vaciarCarrito($conexion,$idCesta){
     return $resultado;
 }
 
+function inputBusqueda($conexion,$variableBusqueda){
+    //COMPARAMOS LOS DATOS DEL USUARIO
+    $consulta = "SELECT * FROM Productos where  NombreProducto like '%$variableBusqueda%' ;";
+    $resultado= mysqli_query($conexion,$consulta);
+    return $resultado;
+}
 
 
 

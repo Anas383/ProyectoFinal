@@ -5,10 +5,10 @@
     require '../../BD/DAOProductos.php';
     require '../../BD/Config.php';
     $conexion=conectar(true);
-    $idCategoria= $_GET['idCategoria'];
+   
     
-?>
 
+?>
 
 
 <!DOCTYPE html>
@@ -74,7 +74,7 @@
     <?php include_once 'VentanaEmergenteLogOut.php';?>
   
     <div class="container row-md contenedor">
-       
+    
     <h1>PRODUCTOS AnimeTEK</h1><br>
             <div class="row">
         
@@ -84,6 +84,7 @@
                     <a class="btn btn-lg text-light  dropdown-toggle" style=" background-color: #212237;" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                        Filtrar  <i class="fas fa-filter"></i> &nbsp;&nbsp; &nbsp; &nbsp;
                     </a>
+
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                     <a class="dropdown-item" href="Catalogo.php">Todas</a>
                         <?php 
@@ -93,7 +94,7 @@
                                 while( $categorias = mysqli_fetch_assoc($resultadoConsultaCategorias)){ 
                         
                         ?>
-                        <a class="dropdown-item" href="Filtrar.php?idCategoria=<?php echo $categorias['idCategoria']?>"><?php echo $categorias['NombreCategoria']?></a>
+                        <a class="dropdown-item" href="Filtrar.php?idCategoria=<?php echo $categorias['idCategoria'];?>"><?php echo $categorias['NombreCategoria']?></a>
                         <?php
                                 }
                             }
@@ -103,10 +104,10 @@
                 </div>                            
                 </div>
                 <div class="col-md-6">
-                   
+                  
                 </div>
                 <div class="col-md-3">
-                <form action="Buscar.php" method="GET" class="form-inline my-2 my-lg-0">
+                    <form action="Buscar.php" method="GET" class="form-inline my-2 my-lg-0">
                     <div class="input-group">
                         <input class="form-control " type="search" name="busqueda" id="busqueda" placeholder="Buscar..." aria-label="Search">
                         <div class="input-group-append">
@@ -120,11 +121,36 @@
                 
            
             </div><br>
-           
+            <p>
+                <?php
+                    if(isset($_GET['sesionNoIniciadaC']) && $_GET['sesionNoIniciadaC'] == "sesionCarritoNoIniciada"){ echo '
+                        <div class="modal" id="inicioCarrito" tabindex="-1">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">AnimeTEK</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                Para añadir productos a tu carrito inicia sesión.
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+                                    <a href="../Login/Login.php" class="btn btn-success"> Iniciar sesión</a>
+                                
+                                </div>
+                                </div>
+                            </div>
+                        </div>';}
+                ?>
+            </p>
             <div class="row mb-5">
             
                 <?php    
-                    $resultadoConsulta =buscarUnaCategoriaCatalogo($conexion, $idCategoria);
+                    $variableBusqueda=$_GET['busqueda'];
+                    $resultadoConsulta = inputBusqueda($conexion,$variableBusqueda);
                     if(mysqli_num_rows($resultadoConsulta)!=0){
                         
                         while( $productos = mysqli_fetch_assoc($resultadoConsulta)){          
@@ -138,16 +164,16 @@
                         <div class="block-4-text p-4">
                             <h3 style=" font-size: 90%;"><?php echo $productos['NombreProducto']?></h3><br>
                            <strong> <?php echo $productos['Precio'];?>&nbsp;€ </strong>                           
-                            <form action="#" method="post">
-                                <input type="hidden" name="idProducto" id="idProducto" value="<?php echo openssl_encrypt($productos['idProducto'], COD, KEY) ?>">
-                                <input type="hidden" name="nombreProducto" id="nombreProducto" value="<?php echo openssl_encrypt($productos['NombreProducto'], COD, KEY) ?>">
-                                <input type="hidden" name="precioProducto" id="precioProducto" value="<?php echo openssl_encrypt($productos['Precio'], COD, KEY) ?>">
-                                <input type="hidden" name="cantidadProducto" id="cantidadProducto" value="<?php echo openssl_encrypt(1, COD, KEY) ?>">
-
+                            <form action="Carrito.php" method="post">
+                                <input type="hidden" name="idProducto" id="idProducto" value="<?php echo $productos['idProducto']; ?>">
+                                <input type="hidden" name="precioProducto" id="precioProducto" value="<?php echo $productos['Precio']; ?>">
+                                <input type="hidden" name="cantidadProducto" id="cantidadProducto" value="<?php echo '1'; ?>">
+                                <input type="hidden" name="idUsuario" id="idUsuario" value="<?php echo $_SESSION['idUsuario']; ?>">
                                 <div class="row">
                                     <div class="m-auto"><br>
-                                        <a class="btn btn-danger mt-1" href="">Ver detalles</a>      
-                                        <button class="btn btn-success mt-1" name="btnAccion" value="Agregar" type="submit">Añadir al carrito</button>
+                                        <a class="btn btn-danger mt-1" href="">Ver detalles</a> 
+                                         
+                                        <button class="btn btn-success mt-1" name="btnAccion" value="Agregar" data-toggle="modal" data-target="#inicioCarrito" type="submit">Añadir al carrito</button>
                                     </div>
                             
                                 </div>
@@ -175,7 +201,7 @@
     $('[data-toggle="popover"]').popover()
     })
     </script>
-    <script src="../../../JS/Home.js"></script>  
+    <script src="../../../JS/Catalogo.js"></script>  
     <script src="https://use.fontawesome.com/releases/v5.15.2/js/all.js" data-auto-a11y="true"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
 </body>

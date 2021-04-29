@@ -72,6 +72,13 @@ function eliminarUsuario($conexion, $idUsuario){
     $resultado = mysqli_query($conexion,$consulta);
     return $resultado;
 }
+function eliminarCarro($conexion, $idUsuario){
+     $consulta = "DELETE FROM Carrito WHERE idCarrito = '$idUsuario' ";
+    $resultado = mysqli_query($conexion,$consulta);
+     return $resultado;
+    
+}
+
 function darseDeBaja($conexion, $idUsuario){
     //BUSCAMOS SI EXISTE EL USUARIO
     $consulta = "DELETE FROM Usuarios WHERE idUsuario = '$idUsuario'";

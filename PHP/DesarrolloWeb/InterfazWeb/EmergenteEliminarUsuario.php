@@ -17,7 +17,7 @@
                     <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
                     <span class="">
                         <button type="button" class="btn btn-success">
-                            <a href="EliminarUsuario.php?idUsuario=<?php echo $fila['idUsuario'];?>" style="text-decoration: none; color:white">Aceptar</a>
+                            <a href="EliminarCarrito.php?idUsuario=<?php echo $fila['idUsuario'];?>" style="text-decoration: none; color:white">Aceptar</a>
                         </button>
                     </span>
 
