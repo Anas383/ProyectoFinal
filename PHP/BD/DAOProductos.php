@@ -70,7 +70,7 @@ function totalPrecioProductosCarrito($conexion,$idCesta){
 }
 function insertarPrecioTotalTablaCarrito($conexion,$idCesta, $total){
     //COMPARAMOS LOS DATOS DEL USUARIO
-    $consulta = "UPDATE Carrito SET PrecioTotal = '$total' WHERE idCarrito = '$idCesta'";
+    $consulta = "UPDATE Carrito SET `PrecioTotal` = '$total' WHERE (`idCarrito` = '$idCesta');";
     $resultado= mysqli_query($conexion,$consulta);
    return $resultado;
 }

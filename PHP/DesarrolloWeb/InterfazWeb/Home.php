@@ -55,10 +55,10 @@
             </button>
             <div class="collapse navbar-collapse fuenteMenu" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
-                    <a class="nav-item nav-link  active" href="Home.php">Home <span class="sr-only">Home</span></a>
-                    <a class="nav-item nav-link " href="Catalogo.php">Catálogo</a>
-                    <a class="nav-item nav-link " href="MasSobreAnimeTEK.php">Más sobre AnimeTEK</a>
-                   <?php include_once 'MenuAdministradores.php'?>
+                  <a class="nav-item nav-link  active" href="Home.php">Home <span class="sr-only">Home</span></a>
+                  <a class="nav-item nav-link " href="Catalogo.php">Catálogo</a>
+                  <a class="nav-item nav-link " href="MasSobreAnimeTEK.php">Más sobre AnimeTEK</a>
+                  <?php include_once 'MenuAdministradores.php'?>
                       
                 </div>
                 
