@@ -90,7 +90,7 @@
     
     <!--Scripts--> 
  
-    <script src="https://www.paypal.com/sdk/js?client-id=test&currency=USD"></script>
+    <script src="https://www.paypal.com/sdk/js?client-id=test&currency=EUR"></script>
     <script >
     
          // Render the PayPal button into #paypal-button-container
@@ -101,7 +101,11 @@
                 return actions.order.create({
                     purchase_units: [{
                         amount: {
-                            value: '<?php echo $precioTotal ?>'
+                
+                            value: '<?php echo $precioTotal ?>' ,
+                            description:"Compra de productos en la tienda AnimeTEK "
+                            
+                            
                         }
                     }]
                 });
@@ -111,7 +115,7 @@
             onApprove: function(data, actions) {
                 return actions.order.capture().then(function(details) {
                     // Show a success message to the buyer
-                    alert('Transaction completed by ' + details.payer.name.given_name + '!');
+                    alert('Pago completado por ' + details.payer.name.given_name + '!');
                 });
             }
 
