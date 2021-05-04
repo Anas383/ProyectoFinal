@@ -89,6 +89,21 @@ function inputBusqueda($conexion,$variableBusqueda){
     return $resultado;
 }
 
+function listarProductos($conexion){
+    //BUSCAMOS SI EXISTE EL USUARIO
+    $consulta = "Select * from Productos;";
+    //EJECUTAMOS LA CONSULTA
+    $resultado = mysqli_query($conexion,$consulta);
+    return $resultado;
+}
+function listarCategorias($conexion){
+    //BUSCAMOS SI EXISTE EL USUARIO
+    $consulta = "Select * from Categorias;";
+    //EJECUTAMOS LA CONSULTA
+    $resultado = mysqli_query($conexion,$consulta);
+    return $resultado;
+}
+
 
 
 

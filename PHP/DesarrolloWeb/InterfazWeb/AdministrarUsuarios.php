@@ -71,51 +71,52 @@
     <?php include_once 'VentanaEmergenteLogOut.php';?>
   
     <div class="container-fluid">
-    <div class="table-responsive">
-        <table class="table bg-light rounded ">
-            
-            <thead class="bg-danger text-center  ">
-              <tr>
-                <th scope="col">Id Usuario</th>
-                <th scope="col">Usuario</th>
-                <th scope="col">Nombre</th>
-                <th scope="col">Primer Apellido</th>
-                <th scope="col">Segundo Apellido</th>
-                <th scope="col">Telefono</th>
-                <th scope="col">Contraseña</th>
-                <th scope="col">Email</th>
-                <th scope="col">DNI</th>
-                <th scope="col">ROL</th>
-                <th scope="col">Acciones</th>
-              </tr>
-            </thead>
-            <?php 
-                $listarUsuarios= listarUsuarios($conexion); 
-                while($fila=mysqli_fetch_assoc($listarUsuarios)){
-            ?>
-            <tbody  >
-                <tr >
-                    <td><?php echo $fila['idUsuario'];?></td>
-                    <td><?php echo $fila['Usuario'];?></td>
-                    <td><?php echo $fila['Nombre'];?></td>
-                    <td><?php echo $fila['PrimerApellido'];?></td>
-                    <td><?php echo $fila['SegundoApellido'];?></td>
-                    <td><?php echo $fila['Telefono'];?></td>
-                    <td><?php echo $fila['Password'];?></td>
-                    <td><?php echo $fila['Email'];?></td>
-                    <td><?php echo $fila['DNI'];?></td>
-                    <td><?php echo $fila['ROL'];?></td>
-                    <td class="botonesTablasEdicion"><a href="ModificarUsuario.php?idUsuario=<?php echo $fila['idUsuario'];?>" class="btn btn-primary "><i class="fas fa-user-edit"></i>&nbsp;&nbsp;Modificar</a><a href="#" data-toggle="modal" data-target="#emergenteEliminarUsuario"  class="btn btn-danger "><i class="fas fa-user-minus"></i>&nbsp;&nbsp;Eliminar</a></td>
-                    <?php include_once 'EmergenteEliminarUsuario.php'?>
-                    <?php
-                     }
-                    ?>
+        <a href="#" class="btn btn-success mb-1"><i class="fas fa-user-plus"></i>&nbsp;&nbsp;Añadir Usuario</a>
+        <div class="table-responsive">
+            <table class="table bg-light rounded ">
+                
+                <thead class="bg-danger text-center  ">
+                <tr>
+                    <th scope="col">Id Usuario</th>
+                    <th scope="col">Usuario</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Primer Apellido</th>
+                    <th scope="col">Segundo Apellido</th>
+                    <th scope="col">Telefono</th>
+                    <th scope="col">Contraseña</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">DNI</th>
+                    <th scope="col">ROL</th>
+                    <th scope="col">Acciones</th>
                 </tr>
-               
-            </tbody>
-        </table>
-       
-      </div>
+                </thead>
+                <?php 
+                    $listarUsuarios= listarUsuarios($conexion); 
+                    while($fila=mysqli_fetch_assoc($listarUsuarios)){
+                ?>
+                <tbody  >
+                    <tr >
+                        <td><?php echo $fila['idUsuario'];?></td>
+                        <td><?php echo $fila['Usuario'];?></td>
+                        <td><?php echo $fila['Nombre'];?></td>
+                        <td><?php echo $fila['PrimerApellido'];?></td>
+                        <td><?php echo $fila['SegundoApellido'];?></td>
+                        <td><?php echo $fila['Telefono'];?></td>
+                        <td><?php echo $fila['Password'];?></td>
+                        <td><?php echo $fila['Email'];?></td>
+                        <td><?php echo $fila['DNI'];?></td>
+                        <td><?php echo $fila['ROL'];?></td>
+                        <td class="botonesTablasEdicion"><a href="ModificarUsuario.php?idUsuario=<?php echo $fila['idUsuario'];?>" class="btn btn-primary "><i class="fas fa-user-edit"></i>&nbsp;&nbsp;Modificar</a><a href="#" data-toggle="modal" data-target="#emergenteEliminarUsuario"  class="btn btn-danger "><i class="fas fa-user-minus"></i>&nbsp;&nbsp;Eliminar</a></td>
+                        <?php include_once 'EmergenteEliminarUsuario.php'?>
+                        <?php
+                        }
+                        ?>
+                    </tr>
+                
+                </tbody>
+            </table>
+        
+        </div>
     </div>
     <br>
     <?php include_once "Footer.php"?>
