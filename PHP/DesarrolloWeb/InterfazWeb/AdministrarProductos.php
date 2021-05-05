@@ -71,7 +71,7 @@
     <?php include_once 'VentanaEmergenteLogOut.php';?>
   
     <div class="container-fluid">
-        <a href="#" class="btn btn-success mb-1"><i class="fas fa-plus"></i> &nbsp;Añadir Producto</a>
+        <a href="InsertarNuevoProducto.php" class="btn btn-success mb-1"><i class="fas fa-plus"></i> &nbsp;Añadir Producto</a>
         <div class="table-responsive">
             <table class="table bg-light rounded ">
                 
@@ -98,7 +98,7 @@
                         <td><?php echo $productos['DetallesProducto'];?></td>
                         <td><?php echo $productos['Precio'];?></td>
                         <td><?php echo $productos['Stock'];?></td>
-                        <td class="botonesTablasEdicion"><a href="ModificarUsuario.php" class="btn btn-primary "><i class="fas fa-user-edit"></i>&nbsp;&nbsp;Modificar</a><a href="EliminarProducto.php?<?php echo $productos['idProducto']?>"  class="btn btn-danger ">Eliminar</a></td>
+                        <td class="botonesTablasEdicion"><a href="ModificarUsuario.php" class="btn btn-primary "><i class="fas fa-user-edit"></i>&nbsp;&nbsp;Modificar</a><a href="ConfirmaEliminarProducto.php?idProducto=<?php echo $productos['idProducto']?>"  class="btn btn-danger ">Eliminar</a></td>
                         
                         <?php
                         }

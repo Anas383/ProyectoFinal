@@ -103,6 +103,55 @@ function listarCategorias($conexion){
     $resultado = mysqli_query($conexion,$consulta);
     return $resultado;
 }
+function buscarProductoPorID($conexion, $idProducto){
+    //BUSCAMOS SI EXISTE EL USUARIO
+    $consulta = "Select * from Productos where idProducto='$idProducto'";
+    //EJECUTAMOS LA CONSULTA
+    $resultado = mysqli_query($conexion,$consulta);
+    return $resultado;
+}
+function buscarCategoriaPorID($conexion, $idCategoria){
+    //BUSCAMOS SI EXISTE EL USUARIO
+    $consulta = "Select * from Categorias where idCategoria='$idCategoria'";
+    //EJECUTAMOS LA CONSULTA
+    $resultado = mysqli_query($conexion,$consulta);
+    return $resultado;
+}
+
+function eliminarProductoPorID($conexion, $idProducto){
+    //BUSCAMOS SI EXISTE EL USUARIO
+    $consulta = "Delete From Productos where idProducto='$idProducto'";
+    //EJECUTAMOS LA CONSULTA
+    $resultado = mysqli_query($conexion,$consulta);
+    return $resultado;
+}
+
+function buscarProductoPorNombre($conexion, $nombre){
+    //BUSCAMOS SI EXISTE EL USUARIO
+    $consulta = "Select * From Productos where NombreProducto='$nombre'";
+    //EJECUTAMOS LA CONSULTA
+    $resultado = mysqli_query($conexion,$consulta);
+    return $resultado;
+}
+
+
+
+function insertarNuevoProducto($conexion, $nombre, $categoria, $descripcion, $precio, $stock,  $imagenProducto ){
+    //BUSCAMOS SI EXISTE EL USUARIO
+    $consulta = "INSERT INTO Productos (idCategoria, NombreProducto, DetallesProducto, Precio, Stock, Imagen) VALUES ('$categoria', '$nombre', '$descripcion', '$precio', '$stock', '$imagenProducto');";
+    //EJECUTAMOS LA CONSULTA
+    $resultado = mysqli_query($conexion,$consulta);
+    return $resultado;
+}
+
+function eliminarCategoriaPorID($conexion, $idCategoria){
+    //BUSCAMOS SI EXISTE EL USUARIO
+    $consulta = "DELETE FROM Categorias WHERE idCategoria = '$idCategoria'";
+    //EJECUTAMOS LA CONSULTA
+    $resultado = mysqli_query($conexion,$consulta);
+    return $resultado;
+}
+
 
 
 

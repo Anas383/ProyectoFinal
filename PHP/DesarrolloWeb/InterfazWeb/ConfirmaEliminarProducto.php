@@ -3,6 +3,7 @@
     require '../../BD/ConectorBD.php';
     require '../../BD/DAOUsuarios.php';
     require '../../BD/DAOProductos.php';
+    require '../../BD/Config.php';
     $conexion=conectar(true);
     session_start();
 ?>
@@ -14,7 +15,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Administrar Usuarios AnimeTEK</title>
+    <title>Perfil <?php echo $_SESSION['Usuario'];?> AnimeTEK</title>
     <link rel="icon" href="../../../IMG/Logo/LogoFullTransparente.ico">
      <!--Links para las fuentes de Google Fonts.-->
      <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -69,46 +70,46 @@
     </div><br>
 
     <?php include_once 'VentanaEmergenteLogOut.php';?>
-  
-    <div class="container-fluid">
-        <a href="#" class="btn btn-success mb-1"><i class="fas fa-plus"></i> &nbsp;Añadir Categoría</a>
-        <div class="table-responsive">
-            <table class="table bg-light rounded   text-center">
-                
-                <thead class="bg-danger  ">
-                <tr>
-                    <th scope="col">Id Categoria</th>
-                    <th scope="col">Nombre de la categoría</th>
-                    <th scope="col">Descripción</th>
-                    <th scope="col">Acciones</th>
-                </tr>
-                </thead>
-                <?php 
-                    $listarCategorias= listarCategorias($conexion); 
-                    while($categorias=mysqli_fetch_assoc($listarCategorias)){
-                ?>
-                <tbody>
-                    <tr >
-                        <td><?php echo $categorias['idCategoria'];?></td>
-                        <td><?php echo $categorias['NombreCategoria'];?></td>
-                        <td><?php echo $categorias['DescripcionCategoria'];?></td>
-                        <td class="botonesTablasEdicion"><a href="ModificarUsuario.php" class="btn btn-primary "><i class="fas fa-user-edit"></i>&nbsp;&nbsp;Modificar</a><a href="ConfirmarCategoriaEliminada.php?idCategoria=<?php echo $categorias['idCategoria'];?>" class="btn btn-danger ">Eliminar</a></td>
-                        <?php include_once 'EmergenteEliminarCategorias.php'?>
-                        <?php
-                        }
-                        ?>
-                    </tr>
-                
-                </tbody>
-            </table>
         
-        </div>
+    <div class="container">
+        <div class="contenedorPerfil">
+           
+            <h2>¿Estás seguro de eliminar este producto?</h2><br>
+            <?php 
+            
+            $idProducto= $_GET['idProducto'];
+            $buscarProducto=buscarProductoPorID($conexion, $idProducto);
+            $producto=mysqli_fetch_assoc($buscarProducto);
+            $idCategoria=$producto['idCategoria'];
+            $buscarCategoria=buscarCategoriaPorID($conexion,$idCategoria);
+            $categoria=mysqli_fetch_assoc($buscarCategoria);
+          
+            
+            ?>
+            <p style="text-align: center; "><img src="data:image/jpeg;base64,<?php echo base64_encode($producto['Imagen']);?>" class="img-responsive border border-dark rounded " width="500rem" alingh height="400rem" alt="" ></p><br>
+            <h2 style="text-align: center;">Detalles del Producto </h2><br>
+            <span><b>ID del producto:</b>&nbsp;&nbsp;<?php echo $producto['idProducto'];?></span><br><br>
+            <span><b>Nombre del Producto:</b>&nbsp;&nbsp;<?php echo $producto['NombreProducto'];?><br><br>
+            <span><b>ID categoría:</b>&nbsp;&nbsp;<?php echo $producto['idCategoria'];?></span><br><br>
+            <span><b>Nombre categoría:</b>&nbsp;&nbsp;<?php echo $categoria['NombreCategoria'];?></span><br><br>
+            <span><b>Detalles del Producto:</b><br><?php echo $producto['DetallesProducto'];?></span><br><br>
+            <span><b>Precio:</b>&nbsp;&nbsp;<?php echo $producto['Precio'];?> €</span><br><br>
+            <span><b>Stock:</b>&nbsp;&nbsp;<?php echo $producto['Stock'];?> unidades</span><br><br>
+            <div class="row">
+               <a href="EliminarProducto.php?idProducto=<?php echo $producto['idProducto'];?>" class="btn btn-success btn-lg col-md-5 ">Confirmar</a>
+               <div class="col-md-2"></div>
+               <a href="AdministrarProductos.php" class="btn btn-danger btn-lg col-md-5">Cancelar</a>
+                
+            </div>
+           
+            
+        </div><br>
     </div>
     <br>
     <?php include_once "Footer.php"?>
     
     <!--Scripts--> 
-    <script src="../../../JS/Home.js"></script>  
+    
     <script src="https://use.fontawesome.com/releases/v5.15.2/js/all.js" data-auto-a11y="true"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
 </body>

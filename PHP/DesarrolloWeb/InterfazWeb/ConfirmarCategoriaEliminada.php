@@ -3,6 +3,7 @@
     require '../../BD/ConectorBD.php';
     require '../../BD/DAOUsuarios.php';
     require '../../BD/DAOProductos.php';
+    require '../../BD/Config.php';
     $conexion=conectar(true);
     session_start();
 ?>
@@ -14,7 +15,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Administrar Usuarios AnimeTEK</title>
+    <title>Administración AnimeTEK</title>
     <link rel="icon" href="../../../IMG/Logo/LogoFullTransparente.ico">
      <!--Links para las fuentes de Google Fonts.-->
      <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -69,46 +70,38 @@
     </div><br>
 
     <?php include_once 'VentanaEmergenteLogOut.php';?>
-  
-    <div class="container-fluid">
-        <a href="#" class="btn btn-success mb-1"><i class="fas fa-plus"></i> &nbsp;Añadir Categoría</a>
-        <div class="table-responsive">
-            <table class="table bg-light rounded   text-center">
-                
-                <thead class="bg-danger  ">
-                <tr>
-                    <th scope="col">Id Categoria</th>
-                    <th scope="col">Nombre de la categoría</th>
-                    <th scope="col">Descripción</th>
-                    <th scope="col">Acciones</th>
-                </tr>
-                </thead>
-                <?php 
-                    $listarCategorias= listarCategorias($conexion); 
-                    while($categorias=mysqli_fetch_assoc($listarCategorias)){
-                ?>
-                <tbody>
-                    <tr >
-                        <td><?php echo $categorias['idCategoria'];?></td>
-                        <td><?php echo $categorias['NombreCategoria'];?></td>
-                        <td><?php echo $categorias['DescripcionCategoria'];?></td>
-                        <td class="botonesTablasEdicion"><a href="ModificarUsuario.php" class="btn btn-primary "><i class="fas fa-user-edit"></i>&nbsp;&nbsp;Modificar</a><a href="ConfirmarCategoriaEliminada.php?idCategoria=<?php echo $categorias['idCategoria'];?>" class="btn btn-danger ">Eliminar</a></td>
-                        <?php include_once 'EmergenteEliminarCategorias.php'?>
-                        <?php
-                        }
-                        ?>
-                    </tr>
-                
-                </tbody>
-            </table>
         
-        </div>
+    <div class="container">
+        <div class="contenedorPerfil">
+           
+            <h2>¿Estás seguro de eliminar esta categoría?</h2><br>
+            <?php 
+            $idCategoria=$_GET['idCategoria'];
+            $buscarCategoria=buscarCategoriaPorID($conexion,$idCategoria);
+            $categoria=mysqli_fetch_assoc($buscarCategoria);
+          
+            
+            ?>
+            <p style="text-align: center; "><img src="data:image/jpeg;base64,<?php echo base64_encode($categoria['LogoCategoria']);?>" class="img-responsive border border-dark rounded " width="500rem" alingh height="400rem" alt="" ></p><br>
+            <h2 style="text-align: center;">Detalles de la Categoría </h2><br>
+            <span><b>ID categoría:</b>&nbsp;&nbsp;<?php echo $categoria['idCategoria'];?></span><br><br>
+            <span><b>Nombre categoría:</b>&nbsp;&nbsp;<?php echo $categoria['NombreCategoria'];?></span><br><br>
+            <span><b>Detalles de la categoría:</b><br><?php echo $categoria['DescripcionCategoria'];?></span><br><br>
+            <div class="row">
+               <a href="EliminarCategoria.php?idCategoria=<?php echo $categoria['idCategoria'];?>" class="btn btn-success btn-lg col-md-5 ">Confirmar</a>
+               <div class="col-md-2"></div>
+               <a href="AdministrarCategorias.php" class="btn btn-danger btn-lg col-md-5">Cancelar</a>
+                
+            </div>
+           
+            
+        </div><br>
     </div>
     <br>
     <?php include_once "Footer.php"?>
     
     <!--Scripts--> 
-    <script src="../../../JS/Home.js"></script>  
+    
     <script src="https://use.fontawesome.com/releases/v5.15.2/js/all.js" data-auto-a11y="true"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
 </body>

@@ -69,9 +69,33 @@
     </div><br>
 
     <?php include_once 'VentanaEmergenteLogOut.php';?>
+     <!-- VENTANA EMERGENTE PARA LOS USUARIOS AÑADIDOS -->
+     <p>
+        <?php
+            if(isset($_GET['registrado']) && $_GET['registrado'] == "usuarioRegistrado"){ echo '
+                <div class="modal" id="myModal" tabindex="-1">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Registro exitoso.</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            ¡ Se ha añadido un usuario correctamente!
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-success" data-dismiss="modal">Cerrar</button>
+                        </div>
+                        </div>
+                    </div>
+                </div>';}
+        ?>
+    </p>
   
     <div class="container-fluid">
-        <a href="#" class="btn btn-success mb-1"><i class="fas fa-user-plus"></i>&nbsp;&nbsp;Añadir Usuario</a>
+        <a href="InsertarNuevoUsuario.php" class="btn btn-success mb-1"><i class="fas fa-user-plus"></i>&nbsp;&nbsp;Añadir Usuario</a>
         <div class="table-responsive">
             <table class="table bg-light rounded ">
                 

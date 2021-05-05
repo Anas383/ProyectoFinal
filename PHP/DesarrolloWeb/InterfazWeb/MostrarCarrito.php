@@ -128,8 +128,9 @@
                      ?>€</h4></td>
                      <td>
                         
-                    <a href="Pagar.php?precioTotal=<?php echo $total;?>" class="btn btn-warning btn-lg">Realizar pago <strong>> ></strong></a>
+                    <a href="#" data-toggle="modal" data-target="#emergenteDireccionesAlPagar"  class="btn btn-warning btn-lg">Realizar pago <strong>> ></strong></a>
                     </td>
+                    <?php include_once 'VentanaEmergenteDireccionAlPagar.php'?>
                     <td><a href="EmergenteVaciarCarrito.php" data-toggle="modal" data-target="#emergenteVaciarCarrito"  class="btn btn-danger btn-lg">Vaciar carrito</a></td>
                      
                 </tr>
