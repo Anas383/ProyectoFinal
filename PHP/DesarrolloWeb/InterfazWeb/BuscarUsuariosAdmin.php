@@ -69,54 +69,86 @@
     </div><br>
 
     <?php include_once 'VentanaEmergenteLogOut.php';?>
+     <!-- VENTANA EMERGENTE PARA LOS USUARIOS AÑADIDOS -->
+     <p>
+        <?php
+            if(isset($_GET['registrado']) && $_GET['registrado'] == "usuarioRegistrado"){ echo '
+                <div class="modal" id="myModal" tabindex="-1">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Registro exitoso.</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            ¡ Se ha añadido un usuario correctamente!
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-success" data-dismiss="modal">Cerrar</button>
+                        </div>
+                        </div>
+                    </div>
+                </div>';}
+        ?>
+    </p>
   
     <div class="container-fluid">
-        <div class="row ">
+        <div class="row mr-1 ml-1">
             <div class="col-md-2">
-                <a href="InsertarNuevoProducto.php" class="btn btn-success mb-1"><i class="fas fa-plus"></i> &nbsp;Añadir Producto</a>
+                <a href="InsertarNuevoUsuario.php" class="btn btn-success mb-1"><i class="fas fa-user-plus"></i>&nbsp;&nbsp;Añadir Usuario</a>
             </div>
-            <div class="col-md-8"></div>
+            <div class="col-md-8"></div>     
             <div class="col-md-2">
-                <form action="BuscarProductosAdmin.php" method="GET" class="form-inline my-2 my-lg-0">
-                        <div class="input-group">
-                            <input class="form-control " type="search" name="busquedaProducto" id="busquedaProducto" placeholder="Buscar..." aria-label="Search">
-                            <div class="input-group-append">
-                                <button class="btn  text-light botonBuscar"  type="submit"><i class="fas fa-search"></i></button>
-                            </div>
-                        </div>                   
-                    </form>
-                </div>
+                <form action="BuscarUsuariosAdmin.php" method="GET" class="form-inline my-2 my-lg-0">
+                    <div class="input-group">
+                        <input class="form-control " type="search" name="busquedaUsuario" id="busquedaUsuario" placeholder="Buscar..." aria-label="Search">
+                        <div class="input-group-append">
+                            <button class="btn  text-light botonBuscar"  type="submit"><i class="fas fa-search"></i></button>
+                        </div>
+                    </div>                   
+                </form>
+            </div>  
         </div>
-        <div class="row">
+        <div class="row mr-1 ml-1">
         
-            <div class="table-responsive col-md-12">
+            <div class="table-responsive">
                 <table class="table bg-light rounded ">
                     
                     <thead class="bg-danger text-center  ">
                     <tr>
-                        <th scope="col">Id Producto</th>
-                        <th scope="col">Id Categoria</th>
-                        <th scope="col">Nombre del producto</th>
-                        <th scope="col">Detalles del producto</th>
-                        <th scope="col">Precio</th>
-                        <th scope="col">Stock</th>
+                        <th scope="col">Id Usuario</th>
+                        <th scope="col">Usuario</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Primer Apellido</th>
+                        <th scope="col">Segundo Apellido</th>
+                        <th scope="col">Telefono</th>
+                        <th scope="col">Contraseña</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">DNI</th>
+                        <th scope="col">ROL</th>
                         <th scope="col">Acciones</th>
                     </tr>
                     </thead>
                     <?php 
-                        $listarProductos= listarProductos($conexion); 
-                        while($productos=mysqli_fetch_assoc($listarProductos)){
+                          $variableBusqueda= $_GET['busquedaUsuario'];
+                          $buscarUsuarios= busquedUsuariosAdmin($conexion, $variableBusqueda); 
+                        while($fila=mysqli_fetch_assoc($buscarUsuarios)){
                     ?>
                     <tbody  >
                         <tr >
-                            <td><?php echo $productos['idProducto'];?></td>
-                            <td><?php echo $productos['idCategoria'];?></td>
-                            <td><?php echo $productos['NombreProducto'];?></td>
-                            <td><?php echo $productos['DetallesProducto'];?></td>
-                            <td><?php echo $productos['Precio'];?></td>
-                            <td><?php echo $productos['Stock'];?></td>
-                            <td class="botonesTablasEdicion"><a href="#" class="btn btn-primary "><i class="fas fa-pen"></i>&nbsp;&nbsp;Modificar</a><a href="ConfirmaEliminarProducto.php?idProducto=<?php echo $productos['idProducto']?>"  class="btn btn-danger "><i class="fas fa-trash-alt"></i>&nbsp;&nbsp;Eliminar</a></td>
-                            
+                            <td><?php echo $fila['idUsuario'];?></td>
+                            <td><?php echo $fila['Usuario'];?></td>
+                            <td><?php echo $fila['Nombre'];?></td>
+                            <td><?php echo $fila['PrimerApellido'];?></td>
+                            <td><?php echo $fila['SegundoApellido'];?></td>
+                            <td><?php echo $fila['Telefono'];?></td>
+                            <td><?php echo $fila['Password'];?></td>
+                            <td><?php echo $fila['Email'];?></td>
+                            <td><?php echo $fila['DNI'];?></td>
+                            <td><?php echo $fila['ROL'];?></td>
+                            <td class="botonesTablasEdicion"><a href="ModificarUsuario.php?idUsuario=<?php echo $fila['idUsuario'];?>" class="btn btn-primary "><i class="fas fa-user-edit"></i>&nbsp;&nbsp;Modificar</a><a href="ConfirmaEliminarUsuario.php?idUsuario=<?php echo $fila['idUsuario'];?>"  class="btn btn-danger "><i class="fas fa-user-minus"></i>&nbsp;&nbsp;Eliminar</a></td>
                             <?php
                             }
                             ?>
@@ -126,8 +158,8 @@
                 </table>
             
             </div>
-        
         </div>
+                
     </div>
     <br>
     <?php include_once "Footer.php"?>

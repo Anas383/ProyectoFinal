@@ -71,8 +71,23 @@
     <?php include_once 'VentanaEmergenteLogOut.php';?>
   
     <div class="container-fluid">
-        <a href="#" class="btn btn-success mb-1"><i class="fas fa-plus"></i> &nbsp;Añadir Categoría</a>
-        <div class="table-responsive">
+        <div class="row">
+            <div class="col-md-2"><a href="#" class="btn btn-success mb-1"><i class="fas fa-plus"></i> &nbsp;Añadir Categoría</a></div>
+            <div class="col-md-8"></div>
+            <div class="col-md-2">
+                <form action="BuscarCategoriasAdmin.php" method="GET" class="form-inline my-2 my-lg-0">
+                    <div class="input-group">
+                        <input class="form-control " type="search" name="busquedaCategoria" id="busquedaCategoria" placeholder="Buscar..." aria-label="Search">
+                        <div class="input-group-append">
+                            <button class="btn  text-light botonBuscar"  type="submit"><i class="fas fa-search"></i></button>
+                        </div>
+                    </div>                   
+                </form>
+            
+            </div>
+        </div>
+        <div class="row">
+        <div class="table-responsive col-md-12">
             <table class="table bg-light rounded   text-center">
                 
                 <thead class="bg-danger  ">
@@ -86,16 +101,18 @@
                 <?php 
                     $listarCategorias= listarCategorias($conexion); 
                     while($categorias=mysqli_fetch_assoc($listarCategorias)){
+                        
                 ?>
                 <tbody>
                     <tr >
                         <td><?php echo $categorias['idCategoria'];?></td>
                         <td><?php echo $categorias['NombreCategoria'];?></td>
                         <td><?php echo $categorias['DescripcionCategoria'];?></td>
-                        <td class="botonesTablasEdicion"><a href="ModificarUsuario.php" class="btn btn-primary "><i class="fas fa-user-edit"></i>&nbsp;&nbsp;Modificar</a><a href="ConfirmarCategoriaEliminada.php?idCategoria=<?php echo $categorias['idCategoria'];?>" class="btn btn-danger ">Eliminar</a></td>
-                        <?php include_once 'EmergenteEliminarCategorias.php'?>
+                        <td class="botonesTablasEdicion"><a href="#" class="btn btn-primary "><i class="fas fa-pen"></i>&nbsp;&nbsp;Modificar</a><a href="ConfirmarCategoriaEliminada.php?idCategoria=<?php echo $categorias['idCategoria'];?>" class="btn btn-danger "><i class="fas fa-times"></i>&nbsp;&nbsp;Eliminar</a></td>
                         <?php
+                             
                         }
+                      
                         ?>
                     </tr>
                 
@@ -103,6 +120,8 @@
             </table>
         
         </div>
+        </div>
+        
     </div>
     <br>
     <?php include_once "Footer.php"?>

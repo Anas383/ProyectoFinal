@@ -14,6 +14,11 @@ function consultaBuscarUsuario($conexion,$usuario){
     $resultado = mysqli_query($conexion,$consulta);
     return $resultado;
 }
+function consultaBuscarUsuarioID($conexion,$idUsuario){
+    $consulta = "Select * from Usuarios WHERE  idUsuario = '$idUsuario'";
+    $resultado = mysqli_query($conexion,$consulta);
+    return $resultado;
+}
 
 function buscarTelefono($conexion,$telefono){
     //BUSCAMOS SI EXISTE EL TELEFONO
@@ -59,7 +64,7 @@ function registrarUsuarioCarrito($conexion,$idCarrito, $idUsuario){
 
 function listarUsuarios($conexion){
     //BUSCAMOS SI EXISTE EL USUARIO
-    $consulta = "Select * from Usuarios where ROL='Usuario'";
+    $consulta = "Select * from Usuarios";
     //EJECUTAMOS LA CONSULTA
     $resultado = mysqli_query($conexion,$consulta);
     return $resultado;
@@ -102,7 +107,21 @@ function actualizarFotoPerfil($conexion, $fotoPerfil, $idUsuario){
     return $resultado;
 }
 
-
+function busquedUsuariosAdmin($conexion, $variableBusqueda){
+    //BUSCAMOS SI EXISTE EL USUARIO
+    $consulta = "SELECT * FROM Usuarios where idUsuario like '%$variableBusqueda%' 
+    or Usuario like '%$variableBusqueda%'
+    or Nombre like '%$variableBusqueda%'
+    or PrimerApellido like '%$variableBusqueda%'
+    or SegundoApellido like '%$variableBusqueda%'
+    or Telefono like '%$variableBusqueda%'
+    or Email like '%$variableBusqueda%'
+    or DNI like '%$variableBusqueda%'
+    or ROL like '%$variableBusqueda%';";
+    //EJECUTAMOS LA CONSULTA
+    $resultado = mysqli_query($conexion,$consulta);
+    return $resultado;
+}
 function crearSesion($usuario){
     //Asignamos el id
     session_id($usuario['Usuario']);

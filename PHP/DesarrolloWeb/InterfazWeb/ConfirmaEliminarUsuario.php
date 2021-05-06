@@ -3,6 +3,7 @@
     require '../../BD/ConectorBD.php';
     require '../../BD/DAOUsuarios.php';
     require '../../BD/DAOProductos.php';
+    require '../../BD/Config.php';
     $conexion=conectar(true);
     session_start();
 ?>
@@ -14,7 +15,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Administrar Usuarios AnimeTEK</title>
+    <title>Administración AnimeTEK</title>
     <link rel="icon" href="../../../IMG/Logo/LogoFullTransparente.ico">
      <!--Links para las fuentes de Google Fonts.-->
      <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -69,71 +70,44 @@
     </div><br>
 
     <?php include_once 'VentanaEmergenteLogOut.php';?>
-  
-    <div class="container-fluid">
-        <div class="row ">
-            <div class="col-md-2">
-                <a href="InsertarNuevoProducto.php" class="btn btn-success mb-1"><i class="fas fa-plus"></i> &nbsp;Añadir Producto</a>
-            </div>
-            <div class="col-md-8"></div>
-            <div class="col-md-2">
-                <form action="BuscarProductosAdmin.php" method="GET" class="form-inline my-2 my-lg-0">
-                        <div class="input-group">
-                            <input class="form-control " type="search" name="busquedaProducto" id="busquedaProducto" placeholder="Buscar..." aria-label="Search">
-                            <div class="input-group-append">
-                                <button class="btn  text-light botonBuscar"  type="submit"><i class="fas fa-search"></i></button>
-                            </div>
-                        </div>                   
-                    </form>
-                </div>
-        </div>
-        <div class="row">
         
-            <div class="table-responsive col-md-12">
-                <table class="table bg-light rounded ">
-                    
-                    <thead class="bg-danger text-center  ">
-                    <tr>
-                        <th scope="col">Id Producto</th>
-                        <th scope="col">Id Categoria</th>
-                        <th scope="col">Nombre del producto</th>
-                        <th scope="col">Detalles del producto</th>
-                        <th scope="col">Precio</th>
-                        <th scope="col">Stock</th>
-                        <th scope="col">Acciones</th>
-                    </tr>
-                    </thead>
-                    <?php 
-                        $listarProductos= listarProductos($conexion); 
-                        while($productos=mysqli_fetch_assoc($listarProductos)){
-                    ?>
-                    <tbody  >
-                        <tr >
-                            <td><?php echo $productos['idProducto'];?></td>
-                            <td><?php echo $productos['idCategoria'];?></td>
-                            <td><?php echo $productos['NombreProducto'];?></td>
-                            <td><?php echo $productos['DetallesProducto'];?></td>
-                            <td><?php echo $productos['Precio'];?></td>
-                            <td><?php echo $productos['Stock'];?></td>
-                            <td class="botonesTablasEdicion"><a href="#" class="btn btn-primary "><i class="fas fa-pen"></i>&nbsp;&nbsp;Modificar</a><a href="ConfirmaEliminarProducto.php?idProducto=<?php echo $productos['idProducto']?>"  class="btn btn-danger "><i class="fas fa-trash-alt"></i>&nbsp;&nbsp;Eliminar</a></td>
-                            
-                            <?php
-                            }
-                            ?>
-                        </tr>
-                    
-                    </tbody>
-                </table>
+    <div class="container">
+        <div class="contenedorPerfil">
+           
+           
+            <?php 
             
+            $idUsuario= $_GET['idUsuario'];
+            $buscarUsuario=consultaBuscarUsuarioID($conexion,$idUsuario);
+            $usuario=mysqli_fetch_assoc($buscarUsuario);
+            
+            ?>
+             <h2>¿Estás seguro de eliminar a <?php echo $usuario['Usuario'];?>?</h2><br><br>
+             <h2>Foto de perfil </h2>
+             <img src="data:image/jpeg;base64,<?php echo base64_encode($usuario['FotoPerfil']);?>" class="img-responsive fotoPerfil" width="120vh" height="120vh" alt=""style="" > 
+            <h2>Datos personales </h2><br>
+            <span><b>Usuario:</b>&nbsp;&nbsp;<?php echo $usuario['Usuario'];?></span><br><br>
+            <span><b>Nombre:</b>&nbsp;&nbsp;<?php echo $usuario['Nombre'];?></span><br><br>
+            <span><b>Primer Apellido:</b>&nbsp;&nbsp;<?php echo $usuario['PrimerApellido'];?></span><br><br>
+            <span><b>Segundo Apellido:</b>&nbsp;&nbsp;<?php echo $usuario['SegundoApellido'];?></span><br><br>
+            <span><b>Teléfono:</b>&nbsp;&nbsp;<?php echo $usuario['Telefono'];?></span><br><br>
+            <span><b>Correo electrónico:</b>&nbsp;&nbsp;<div><?php echo $usuario['Email'];?></div></span><br>
+            <span><b>DNI: </b>&nbsp;&nbsp;<?php echo $usuario['DNI'];?></span><br><br>    
+            <div class="row">
+               <a href="EliminarCarrito.php?idUsuario=<?php echo $usuario['idUsuario'];?>" class="btn btn-success btn-lg col-md-5 ">Confirmar</a>
+               <div class="col-md-2"></div>
+               <a href="AdministrarUsuarios.php" class="btn btn-danger btn-lg col-md-5">Cancelar</a>
+                
             </div>
-        
-        </div>
+           
+            
+        </div><br>
     </div>
     <br>
     <?php include_once "Footer.php"?>
     
     <!--Scripts--> 
-    <script src="../../../JS/Home.js"></script>  
+    
     <script src="https://use.fontawesome.com/releases/v5.15.2/js/all.js" data-auto-a11y="true"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
 </body>

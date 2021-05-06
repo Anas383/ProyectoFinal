@@ -71,63 +71,60 @@
     <?php include_once 'VentanaEmergenteLogOut.php';?>
   
     <div class="container-fluid">
-        <div class="row ">
-            <div class="col-md-2">
-                <a href="InsertarNuevoProducto.php" class="btn btn-success mb-1"><i class="fas fa-plus"></i> &nbsp;Añadir Producto</a>
-            </div>
+        <div class="row">
+            <div class="col-md-2"><a href="#" class="btn btn-success mb-1"><i class="fas fa-plus"></i> &nbsp;Añadir Categoría</a></div>
             <div class="col-md-8"></div>
             <div class="col-md-2">
-                <form action="BuscarProductosAdmin.php" method="GET" class="form-inline my-2 my-lg-0">
-                        <div class="input-group">
-                            <input class="form-control " type="search" name="busquedaProducto" id="busquedaProducto" placeholder="Buscar..." aria-label="Search">
-                            <div class="input-group-append">
-                                <button class="btn  text-light botonBuscar"  type="submit"><i class="fas fa-search"></i></button>
-                            </div>
-                        </div>                   
-                    </form>
-                </div>
-        </div>
-        <div class="row">
-        
-            <div class="table-responsive col-md-12">
-                <table class="table bg-light rounded ">
-                    
-                    <thead class="bg-danger text-center  ">
-                    <tr>
-                        <th scope="col">Id Producto</th>
-                        <th scope="col">Id Categoria</th>
-                        <th scope="col">Nombre del producto</th>
-                        <th scope="col">Detalles del producto</th>
-                        <th scope="col">Precio</th>
-                        <th scope="col">Stock</th>
-                        <th scope="col">Acciones</th>
-                    </tr>
-                    </thead>
-                    <?php 
-                        $listarProductos= listarProductos($conexion); 
-                        while($productos=mysqli_fetch_assoc($listarProductos)){
-                    ?>
-                    <tbody  >
-                        <tr >
-                            <td><?php echo $productos['idProducto'];?></td>
-                            <td><?php echo $productos['idCategoria'];?></td>
-                            <td><?php echo $productos['NombreProducto'];?></td>
-                            <td><?php echo $productos['DetallesProducto'];?></td>
-                            <td><?php echo $productos['Precio'];?></td>
-                            <td><?php echo $productos['Stock'];?></td>
-                            <td class="botonesTablasEdicion"><a href="#" class="btn btn-primary "><i class="fas fa-pen"></i>&nbsp;&nbsp;Modificar</a><a href="ConfirmaEliminarProducto.php?idProducto=<?php echo $productos['idProducto']?>"  class="btn btn-danger "><i class="fas fa-trash-alt"></i>&nbsp;&nbsp;Eliminar</a></td>
-                            
-                            <?php
-                            }
-                            ?>
-                        </tr>
-                    
-                    </tbody>
-                </table>
+                <form action="BuscarCategoriasAdmin.php" method="GET" class="form-inline my-2 my-lg-0">
+                    <div class="input-group">
+                        <input class="form-control " type="search" name="busquedaCategoria" id="busquedaCategoria" placeholder="Buscar..." aria-label="Search">
+                        <div class="input-group-append">
+                            <button class="btn  text-light botonBuscar"  type="submit"><i class="fas fa-search"></i></button>
+                        </div>
+                    </div>                   
+                </form>
             
             </div>
+        </div>
+        <div class="row">
+        <div class="table-responsive col-md-12">
+            <table class="table bg-light rounded   text-center">
+                
+                <thead class="bg-danger  ">
+                <tr>
+                    <th scope="col">Id Categoria</th>
+                    <th scope="col">Nombre de la categoría</th>
+                    <th scope="col">Descripción</th>
+                    <th scope="col">Acciones</th>
+                </tr>
+                </thead>
+                <?php 
+                    $variableBusqueda= $_GET['busquedaCategoria'];
+                    $buscarCategorias= busquedaCategoriasAdmin($conexion, $variableBusqueda); 
+                    while($categorias=mysqli_fetch_assoc($buscarCategorias)){
+                           
+                ?>
+                
+                <tbody>
+                    <tr >
+                        <td><?php echo $categorias['idCategoria'];?></td>
+                        <td><?php echo $categorias['NombreCategoria'];?></td>
+                        <td><?php echo $categorias['DescripcionCategoria'];?></td>
+                        <td class="botonesTablasEdicion"><a href="#" class="btn btn-primary "><i class="fas fa-pen"></i>&nbsp;&nbsp;Modificar</a><a href="ConfirmarCategoriaEliminada.php?idCategoria=<?php echo $categorias['idCategoria'];?>" class="btn btn-danger "><i class="fas fa-times"></i>&nbsp;&nbsp;Eliminar</a></td>
+                        <?php
+                        }
+                
+                        ?>
+
+                    </tr>
+                
+                
+                </tbody>
+            </table>
         
         </div>
+        </div>
+        
     </div>
     <br>
     <?php include_once "Footer.php"?>

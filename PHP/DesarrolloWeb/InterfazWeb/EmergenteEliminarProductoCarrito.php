@@ -11,7 +11,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    ¿Estás seguro de eliminar a este usuario?
+                    ¿Estás seguro de eliminar a este objeto?
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>

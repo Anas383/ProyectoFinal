@@ -104,8 +104,9 @@
                     </tr>
                     </thead>
                     <?php 
-                        $listarProductos= listarProductos($conexion); 
-                        while($productos=mysqli_fetch_assoc($listarProductos)){
+                        $variableBusqueda= $_GET['busquedaProducto'];
+                        $busquedaProductos= busquedaProductosAdmin($conexion, $variableBusqueda); 
+                        while($productos=mysqli_fetch_assoc($busquedaProductos)){
                     ?>
                     <tbody  >
                         <tr >

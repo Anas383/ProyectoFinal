@@ -152,7 +152,26 @@ function eliminarCategoriaPorID($conexion, $idCategoria){
     return $resultado;
 }
 
-
+function busquedaProductosAdmin($conexion, $variableBusqueda){
+    //BUSCAMOS SI EXISTE EL USUARIO
+    $consulta = "SELECT * FROM Productos where idProducto like '%$variableBusqueda%' 
+    or idCategoria like '%$variableBusqueda%'
+    or NombreProducto like '%$variableBusqueda%'
+    or Precio like '%$variableBusqueda%'
+    or Stock like '%$variableBusqueda%';";
+    //EJECUTAMOS LA CONSULTA
+    $resultado = mysqli_query($conexion,$consulta);
+    return $resultado;
+}
+function busquedaCategoriasAdmin($conexion, $variableBusqueda){
+    //BUSCAMOS SI EXISTE EL USUARIO
+    $consulta = "SELECT * FROM Categorias where idCategoria like '%$variableBusqueda%' 
+    or NombreCategoria like '%$variableBusqueda%'
+    or DescripcionCategoria like '%$variableBusqueda%';";
+    //EJECUTAMOS LA CONSULTA
+    $resultado = mysqli_query($conexion,$consulta);
+    return $resultado;
+}
 
 
 
