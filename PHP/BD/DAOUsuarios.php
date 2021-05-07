@@ -122,6 +122,26 @@ function busquedUsuariosAdmin($conexion, $variableBusqueda){
     $resultado = mysqli_query($conexion,$consulta);
     return $resultado;
 }
+
+
+function BuscarUsuarioDomicilio($conexion,$idUsuario){
+    $consulta = "Select * from Domicilio WHERE  idUsuarioCF = '$idUsuario'";
+    $resultado = mysqli_query($conexion,$consulta);
+    return $resultado;
+}
+
+
+function insertarDomicilioUsuario($conexion,$idUsuario, $provincia, $comunidadAutonoma, $calle, $numero,  $cp ){
+    $consulta = "INSERT INTO Domicilio (`idUsuarioCF`, `Provincia`, `ComunidadAutonoma`, `Calle`, `Numero`, `CP`) VALUES ('$idUsuario', '$provincia', '$comunidadAutonoma', '$calle', '$numero', '$cp')";
+    $resultado = mysqli_query($conexion,$consulta);
+    return $resultado;
+}
+
+function modificarDomicilioUsuario($conexion,$idUsuario, $provincia, $comunidadAutonoma, $calle, $numero, $piso, $cp ,$portal){
+    $consulta = "UPDATE Domicilio SET Provincia = '$provincia', ComunidadAutonoma = '$comunidadAutonoma', Calle = '$calle', Numero = '$numero', Piso = '$piso', CP = '$cp', Portal = '$portal' WHERE (idUsuarioCF = '$idUsuario');";
+    $resultado = mysqli_query($conexion,$consulta);
+    return $resultado;
+}
 function crearSesion($usuario){
     //Asignamos el id
     session_id($usuario['Usuario']);
