@@ -72,7 +72,7 @@
   
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-2"><a href="#" class="btn btn-success mb-1"><i class="fas fa-plus"></i> &nbsp;Añadir Categoría</a></div>
+            <div class="col-md-2"><a href="InsertarNuevaCategoria.php" class="btn btn-success mb-1"><i class="fas fa-plus"></i> &nbsp;Añadir Categoría</a></div>
             <div class="col-md-8"></div>
             <div class="col-md-2">
                 <form action="BuscarCategoriasAdmin.php" method="GET" class="form-inline my-2 my-lg-0">
@@ -108,7 +108,7 @@
                         <td><?php echo $categorias['idCategoria'];?></td>
                         <td><?php echo $categorias['NombreCategoria'];?></td>
                         <td><?php echo $categorias['DescripcionCategoria'];?></td>
-                        <td class="botonesTablasEdicion"><a href="#" class="btn btn-primary "><i class="fas fa-pen"></i>&nbsp;&nbsp;Modificar</a><a href="ConfirmarCategoriaEliminada.php?idCategoria=<?php echo $categorias['idCategoria'];?>" class="btn btn-danger "><i class="fas fa-times"></i>&nbsp;&nbsp;Eliminar</a></td>
+                        <td class="botonesTablasEdicion"><a href="ModificarCategoria.php?idCategoria=<?php echo $categorias['idCategoria'];?>" class="btn btn-primary "><i class="fas fa-pen"></i>&nbsp;&nbsp;Modificar</a><a href="ConfirmarCategoriaEliminada.php?idCategoria=<?php echo $categorias['idCategoria'];?>" class="btn btn-danger "><i class="fas fa-times"></i>&nbsp;&nbsp;Eliminar</a></td>
                         <?php
                              
                         }

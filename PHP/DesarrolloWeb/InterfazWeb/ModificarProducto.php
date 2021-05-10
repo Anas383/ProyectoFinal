@@ -5,6 +5,9 @@
     require '../../BD/DAOProductos.php';
     $conexion=conectar(true);
     session_start();
+    $idProducto=$_GET['idProducto'];
+    $buscarProducto=buscarProductoPorID($conexion, $idProducto);
+    $producto=mysqli_fetch_assoc($buscarProducto);
 ?>
 
 
@@ -75,12 +78,12 @@
         <div class="row">
             <span class="col-md-3"></span>
             <div class=" col-md-6 contenedorFormulario ">
-                <form action="ComprobarAñadirNuevoProducto.php" id="FormularioAñadirProductos" method="post" enctype="multipart/form-data">
-                    <legend>Añadir nuevo producto</legend>  
+                <form action="GuardarModificacionesProducto.php?idProducto=<?php echo $producto['idProducto'];?>" id="FormularioAñadirProductos" method="post" enctype="multipart/form-data">
+                    <legend>Modificar producto:<br><?php echo $producto['NombreProducto'];?> </legend>  
                         <!-- NOMBRE-->
                         <div class="grupo_nombre col-md-12  ">
                             <label for="nombre"><strong>Nombre del producto</strong></label>
-                            <input type="text" name="nombre"  id="nombre" class="form-control" required >
+                            <input type="text" name="nombre"  id="nombre" class="form-control" value="<?php echo $producto['NombreProducto'];?>" >
                             <br>
                             <p class="mensajeError-oculto" id="mError-nombre">&nbsp;¡El nombre solo puede contener letras mayúsculas, minúsculas y espacios para nombres compuestos![1-20]</p>
                         </div><br>
@@ -92,13 +95,18 @@
                                   <label class="input-group-text" for="categorias">Categorías</label>
                                 </div>
                                 <select class="custom-select" name="categorias" id="categorias">
-                                  <option selected>Elige una categoría</option>
+                                    <?php 
+                                        $categoriaProducto=buscarCategoriaPorID($conexion, $idProducto);
+                                        $categoriaP=mysqli_fetch_assoc($categoriaProducto);
+            
+                                    ?>
+                                  <option value="<?php echo $categoriaP['idCategoria']?>" selected><?php echo $categoriaP['NombreCategoria']?></option>
                                   <?php 
                                     $listarCategorias= listarCategorias($conexion);
                                     while( $categorias = mysqli_fetch_assoc($listarCategorias)){ 
                                   
                                   ?>
-                                  <option value="<?php echo $categorias['idCategoria'] ?>"><?php echo $categorias['NombreCategoria'] ?></option>
+                                  <option value="<?php echo $categorias['idCategoria']?>"><?php echo $categorias['NombreCategoria'] ?></option>
                                   <?php
                                     }
                                 ?>
@@ -108,7 +116,8 @@
 
                         <div class="grupo_descripcion form-group col-md-12">
                                 <label for="descripcion">Descripción del producto</label>
-                                <textarea class="form-control" id="descripcion" rows="3" name="descripcion" minlength="0" maxlength="10000"  required>
+                                <textarea class="form-control" id="descripcion" rows="3" name="descripcion" minlength="0" maxlength="10000"  >
+                                <?php echo $producto['DetallesProducto'];?>
                                 </textarea>
                                 <p>Carácteres: <span>
                                 </span></p>
@@ -117,31 +126,30 @@
 
                         <div class="grupo_precio col-md-12  ">
                             <label for="precio"><strong>Precio del producto</strong></label>
-                            <input type="text" name="precio" placeholder="00.00"  id="precio" class="form-control" required >
+                            <input type="text" name="precio" id="precio" class="form-control" value="<?php echo $producto['Precio'];?>" >
                             <br>
                             <p class="mensajeError-oculto" id="mError-precio">&nbsp;¡El precio no cumple el formato!</p>
                         </div><br>
                         <div class="grupo_stock col-md-12  ">
                             <label for="stock"><strong>Stock del producto</strong></label>
-                            <input type="number" name="stock"   id="stock" class="form-control" required >
+                            <input type="number" name="stock"   id="stock" class="form-control" value="<?php echo $producto['Stock'];?>"  >
                             
                         </div><br>
                         <!-- imagen -->
                         <div class="form-group grupo_imagen col-md-12 " >
                             <label for="imagen">Imagen del producto</label><br>
-                            <input type="file"  name="imagen" id="imagen" required>
+                            <input type="file"  name="imagen" id="imagen" >
                         </div><br>
 
                        <div class="grupo_envio ">
                             <input type="submit" class="btn btn-success btn-lg col-md-12" value="Enviar">
                         </div><br>
+                       
                         <p class="errorFormulariosBD"><?php 
                                 if(isset($_GET['error']) && $_GET['error'] == "nombreExiste"){ echo '<i class="fas fa-exclamation-triangle"></i>&nbsp;&nbsp;'."El nombre de este producto ya existe.";}
                             ?>
                             
                         </p>
-                       
-                        
                     </div>
                   
                         

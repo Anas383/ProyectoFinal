@@ -74,31 +74,30 @@
     <div class="container">
         <div class="contenedorPerfil">
            
-            <h2>¿Estás seguro de eliminar este producto?</h2><br>
+            <h2>¿Estás seguro de eliminar esta dirección?</h2><br>
             <?php 
             
-            $idProducto= $_GET['idProducto'];
-            $buscarProducto=buscarProductoPorID($conexion, $idProducto);
-            $producto=mysqli_fetch_assoc($buscarProducto);
-            $idCategoria=$producto['idCategoria'];
-            $buscarCategoria=buscarCategoriaPorID($conexion,$idCategoria);
-            $categoria=mysqli_fetch_assoc($buscarCategoria);
-          
-            
+            $idDireccion= $_GET['idDireccion'];
+            $buscarDireccion=buscarDomicilioID($conexion,$idDireccion);
+            $direccion=mysqli_fetch_assoc($buscarDireccion);
+           
+ 
             ?>
-            <p style="text-align: center; "><img src="data:image/jpeg;base64,<?php echo base64_encode($producto['Imagen']);?>" class="img-responsive border border-dark rounded " width="300rem" alingh height="300rem" alt="" ></p><br>
-            <h2 style="text-align: center;">Detalles del Producto </h2><br>
-            <span><b>ID del producto:</b>&nbsp;&nbsp;<?php echo $producto['idProducto'];?></span><br><br>
-            <span><b>Nombre del Producto:</b>&nbsp;&nbsp;<?php echo $producto['NombreProducto'];?><br><br>
-            <span><b>ID categoría:</b>&nbsp;&nbsp;<?php echo $producto['idCategoria'];?></span><br><br>
-            <span><b>Nombre categoría:</b>&nbsp;&nbsp;<?php echo $categoria['NombreCategoria'];?></span><br><br>
-            <span><b>Detalles del Producto:</b><br><?php echo $producto['DetallesProducto'];?></span><br><br>
-            <span><b>Precio:</b>&nbsp;&nbsp;<?php echo $producto['Precio'];?> €</span><br><br>
-            <span><b>Stock:</b>&nbsp;&nbsp;<?php echo $producto['Stock'];?> unidades</span><br><br>
+            <br>
+            <h2 style="text-align: center;">Detalles de la dirección</h2><br>
+            <span><b>ID del Domicilio:</b>&nbsp;&nbsp;<?php echo $direccion['idDomicilio'];?></span><br><br>
+            <span><b>Id del Usuario:</b>&nbsp;&nbsp;<?php echo $direccion['idUsuarioCF'];?><br><br>
+            <span><b>Provincia: </b>&nbsp;&nbsp;<?php echo $direccion['Provincia'];?></span><br><br>
+            <span><b>Comunidad Autónoma: </b>&nbsp;&nbsp;<?php echo $direccion['ComunidadAutonoma'];?></span><br><br>
+            <span><b>Calle: </b>&nbsp;&nbsp;<?php echo $direccion['Calle'];?></span><br><br>
+            <span><b>Número: </b>&nbsp;&nbsp;<?php echo $direccion['Numero'];?></span><br><br>
+            <span><b>Número: </b>&nbsp;&nbsp;<?php echo $direccion['CP'];?></span><br><br>
+            <span><b>Número: </b>&nbsp;&nbsp;<?php echo $direccion['Piso'];?></span><br><br>
+            <span><b>Piso:</b>&nbsp;&nbsp;<?php echo $direccion['Portal'];?></span><br><br>
             <div class="row">
-               <a href="EliminarProducto.php?idProducto=<?php echo $producto['idProducto'];?>" class="btn btn-success btn-lg col-md-5 ">Confirmar</a>
+               <a href="EliminarDireccion.php?idDireccion=<?php echo $direccion['idDomicilio'];?>" class="btn btn-success btn-lg col-md-5 ">Confirmar</a>
                <div class="col-md-2"></div>
-               <a href="AdministrarProductos.php" class="btn btn-danger btn-lg col-md-5">Cancelar</a>
+               <a href="AdministrarDirecciones.php" class="btn btn-danger btn-lg col-md-5">Cancelar</a>
                 
             </div>
            

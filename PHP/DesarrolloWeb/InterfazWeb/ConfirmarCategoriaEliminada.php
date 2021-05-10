@@ -82,7 +82,7 @@
           
             
             ?>
-            <p style="text-align: center; "><img src="data:image/jpeg;base64,<?php echo base64_encode($categoria['LogoCategoria']);?>" class="img-responsive border border-dark rounded " width="500rem" alingh height="400rem" alt="" ></p><br>
+            <p style="text-align: center; "><img src="data:image/jpeg;base64,<?php echo base64_encode($categoria['LogoCategoria']);?>" class="img-responsive border border-dark rounded " width="300rem" alingh height="300rem" alt="" ></p><br>
             <h2 style="text-align: center;">Detalles de la Categoría </h2><br>
             <span><b>ID categoría:</b>&nbsp;&nbsp;<?php echo $categoria['idCategoria'];?></span><br><br>
             <span><b>Nombre categoría:</b>&nbsp;&nbsp;<?php echo $categoria['NombreCategoria'];?></span><br><br>

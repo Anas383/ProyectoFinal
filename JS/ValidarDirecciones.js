@@ -202,14 +202,33 @@ function validarPortal() {
 
 
  formularioDirecciones.addEventListener("submit", (e) => {
+     if(piso.value=="" && portal.value==""){
+        if( validarCP() &&validarProvincia() && validarCA() && validarCalle() && validarNumero()){
+            validarCP();
+            validarProvincia(); 
+            validarCA() ;
+            validarCalle() ;
+            validarNumero();
+        } else {
+           e.preventDefault(); 
+        }
+     }else {
+      
+        if(validarCP() &&validarProvincia() && validarCA() && validarCalle() && validarNumero() && validarPiso() && validarPortal()){
+            validarCP();
+            validarProvincia(); 
+            validarCA() ;
+            validarCalle() ;
+            validarNumero();
+            validarPiso();
+            validarPortal();
+             
+         }else{
+            e.preventDefault();
+         }
 
-    if( validarCP() &&validarProvincia() && validarCA() && validarCalle() && validarNumero()){
-        validarCP();
-        validarProvincia(); 
-        validarCA() ;
-        validarCalle() ;
-        validarNumero()
-    }else{
-        e.preventDefault();
-    }
+        
+     }
+    
+   
 });

@@ -14,7 +14,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Administrar Usuarios AnimeTEK</title>
+    <title>Administrar Direcciones AnimeTEK</title>
     <link rel="icon" href="../../../IMG/Logo/LogoFullTransparente.ico">
      <!--Links para las fuentes de Google Fonts.-->
      <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -72,14 +72,12 @@
   
     <div class="container-fluid">
         <div class="row ">
-            <div class="col-md-2">
-                <a href="InsertarNuevoProducto.php" class="btn btn-success mb-1"><i class="fas fa-plus"></i> &nbsp;Añadir Producto</a>
-            </div>
+            <div class="col-md-2"></div>
             <div class="col-md-8"></div>
             <div class="col-md-2">
-                <form action="BuscarProductosAdmin.php" method="GET" class="form-inline my-2 my-lg-0">
+                <form action="BuscarDireccionAdmin.php" method="GET" class="form-inline my-2 my-lg-0">
                         <div class="input-group">
-                            <input class="form-control " type="search" name="busquedaProducto" id="busquedaProducto" placeholder="Buscar..." aria-label="Search">
+                            <input class="form-control " type="search" name="busquedaDireccion" id="busquedaDireccion" placeholder="Buscar..." aria-label="Search">
                             <div class="input-group-append">
                                 <button class="btn  text-light botonBuscar"  type="submit"><i class="fas fa-search"></i></button>
                             </div>
@@ -94,28 +92,43 @@
                     
                     <thead class="bg-danger text-center  ">
                     <tr>
-                        <th scope="col">Id Producto</th>
-                        <th scope="col">Id Categoria</th>
-                        <th scope="col">Nombre del producto</th>
-                        <th scope="col">Detalles del producto</th>
-                        <th scope="col">Precio</th>
-                        <th scope="col">Stock</th>
+                        <th scope="col">Id Domicilio</th>
+                        <th scope="col">Id Usuario</th>
+                        <th scope="col">Usuario</th>
+                        <th scope="col">Provincia</th>
+                        <th scope="col">Comunidad Autónoma</th>
+                        <th scope="col">Calle</th>
+                        <th scope="col">Número</th>
+                        <th scope="col">Código Postal</th>
+                        <th scope="col">Piso</th>
+                        <th scope="col">Portal</th>
                         <th scope="col">Acciones</th>
                     </tr>
                     </thead>
                     <?php 
-                        $listarProductos= listarProductos($conexion); 
-                        while($productos=mysqli_fetch_assoc($listarProductos)){
+                        $variableBusqueda=$_GET['busquedaDireccion'];
+                        $listarDirecciones= busquedDireccionesAdmin($conexion, $variableBusqueda); 
+                        while($direcciones=mysqli_fetch_assoc($listarDirecciones)){
                     ?>
                     <tbody  >
                         <tr >
-                            <td><?php echo $productos['idProducto'];?></td>
-                            <td><?php echo $productos['idCategoria'];?></td>
-                            <td><?php echo $productos['NombreProducto'];?></td>
-                            <td><?php echo $productos['DetallesProducto'];?></td>
-                            <td><?php echo $productos['Precio'];?></td>
-                            <td><?php echo $productos['Stock'];?></td>
-                            <td class="botonesTablasEdicion"><a href="ModificarProducto.php?idProducto=<?php echo $productos['idProducto'];?>" class="btn btn-primary "><i class="fas fa-pen"></i>&nbsp;&nbsp;Modificar</a><a href="ConfirmaEliminarProducto.php?idProducto=<?php echo $productos['idProducto']?>"  class="btn btn-danger "><i class="fas fa-trash-alt"></i>&nbsp;&nbsp;Eliminar</a></td>
+                            <td><?php echo $direcciones['idDomicilio'];?></td>
+                            <td><?php echo $direcciones['idUsuarioCF'];?></td>
+                            <?php 
+                                $idUsuario=$direcciones['idUsuarioCF'];
+                                $buscarUsuario=listarUsuariosId($conexion, $idUsuario);
+                                $usuario=mysqli_fetch_assoc($buscarUsuario);
+                            
+                            ?>
+                            <td><?php echo $usuario['Usuario'];?></td>
+                            <td><?php echo $direcciones['Provincia'];?></td>
+                            <td><?php echo $direcciones['ComunidadAutonoma'];?></td>
+                            <td><?php echo $direcciones['Calle'];?></td>
+                            <td><?php echo $direcciones['Numero'];?></td>
+                            <td><?php echo $direcciones['CP'];?></td>
+                            <td><?php echo $direcciones['Piso'];?></td>
+                            <td><?php echo $direcciones['Portal'];?></td>
+                            <td class="botonesTablasEdicion"><a href="ModificarDireccion.php?idUsuario=<?php echo $direcciones['idUsuarioCF'];?>" class="btn btn-primary "><i class="fas fa-pen"></i>&nbsp;&nbsp;Modificar</a><a href="ConfirmaEliminarDireccion.php?idDireccion=<?php echo $direcciones['idDomicilio']?>"  class="btn btn-danger "><i class="fas fa-trash-alt"></i>&nbsp;&nbsp;Eliminar</a></td>
                             
                             <?php
                             }

@@ -51,6 +51,23 @@ function registrarUsuario($conexion,$usuario,$password, $nombre,$apellido1, $ape
     
 }
 
+function modificarUsuario($conexion,$idUsuario, $usuario,$password, $nombre,$apellido1, $apellido2,$telefono, $email, $dni, $rol, $fotoPerfil){
+    //INGRESAMOS LOS DATOS DEL USUARIO
+    $consulta = "UPDATE Usuarios SET Usuario = '$usuario', Nombre = '$nombre', PrimerApellido = '$apellido1', SegundoApellido = '$apellido2', Telefono = '$telefono', Password = '$password', Email = '$email', DNI = '$dni', ROL = '$rol', FotoPerfil = '$fotoPerfil' WHERE idUsuario = '$idUsuario'";
+     //EJECUTAMOS LA CONSULTA
+     $resultado = mysqli_query($conexion,$consulta);
+     return $resultado;
+    
+}
+function modificarUsuarioSinImagen($conexion,$idUsuario, $usuario,$password, $nombre,$apellido1, $apellido2,$telefono, $email, $dni, $rol){
+    //INGRESAMOS LOS DATOS DEL USUARIO
+    $consulta = "UPDATE Usuarios SET Usuario = '$usuario', Nombre = '$nombre', PrimerApellido = '$apellido1', SegundoApellido = '$apellido2', Telefono = '$telefono', Password = '$password', Email = '$email', DNI = '$dni', ROL = '$rol' WHERE idUsuario = '$idUsuario'";
+     //EJECUTAMOS LA CONSULTA
+     $resultado = mysqli_query($conexion,$consulta);
+     return $resultado;
+    
+}
+
 function registrarUsuarioCarrito($conexion,$idCarrito, $idUsuario){
     //INGRESAMOS LOS DATOS DEL USUARIO
   
@@ -130,6 +147,11 @@ function BuscarUsuarioDomicilio($conexion,$idUsuario){
     return $resultado;
 }
 
+function buscarDomicilioID($conexion,$idDireccion){
+    $consulta = "Select * from Domicilio WHERE  idDomicilio = '$idDireccion'";
+    $resultado = mysqli_query($conexion,$consulta);
+    return $resultado;
+}
 
 function insertarDomicilioUsuario($conexion,$idUsuario, $provincia, $comunidadAutonoma, $calle, $numero,  $cp ){
     $consulta = "INSERT INTO Domicilio (`idUsuarioCF`, `Provincia`, `ComunidadAutonoma`, `Calle`, `Numero`, `CP`) VALUES ('$idUsuario', '$provincia', '$comunidadAutonoma', '$calle', '$numero', '$cp')";
@@ -142,6 +164,38 @@ function modificarDomicilioUsuario($conexion,$idUsuario, $provincia, $comunidadA
     $resultado = mysqli_query($conexion,$consulta);
     return $resultado;
 }
+
+function listarDirecciones($conexion ){
+    $consulta = "SELECT * FROM Domicilio";
+    $resultado = mysqli_query($conexion,$consulta);
+    return $resultado;
+}
+function eliminarDireccion($conexion, $idDireccion){
+    $consulta = "DELETE FROM Domicilio WHERE (idDomicilio = '$idDireccion')";
+    $resultado = mysqli_query($conexion,$consulta);
+    return $resultado;
+}
+
+
+function busquedDireccionesAdmin($conexion, $variableBusqueda){
+    //BUSCAMOS SI EXISTE EL USUARIO
+    $consulta = "SELECT  Domicilio. idDomicilio, idUsuarioCF, Provincia, ComunidadAutonoma, Calle, Numero, Piso, Portal, CP, Usuarios.Usuario  FROM Domicilio, Usuarios  
+    where idDomicilio like '%$variableBusqueda%' 
+    or idUsuarioCF like '%$variableBusqueda%' 
+    or Provincia like '%$variableBusqueda%'
+    or ComunidadAutonoma like '%$variableBusqueda%'
+    or Calle like '%$variableBusqueda%'
+    or Numero like '%$variableBusqueda%'
+    or CP like '%$variableBusqueda%' 
+    or Piso like '%$variableBusqueda%'
+    or Portal like '%$variableBusqueda%' 
+    or Usuario like '%$variableBusqueda%' ;";
+    //EJECUTAMOS LA CONSULTA
+    $resultado = mysqli_query($conexion,$consulta);
+    return $resultado;
+}
+
+
 function crearSesion($usuario){
     //Asignamos el id
     session_id($usuario['Usuario']);

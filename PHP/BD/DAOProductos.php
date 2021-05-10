@@ -173,6 +173,58 @@ function busquedaCategoriasAdmin($conexion, $variableBusqueda){
     return $resultado;
 }
 
+function comprobarNombreCategoria($conexion, $nombre){
+    //BUSCAMOS SI EXISTE EL USUARIO
+    $consulta = "SELECT * FROM Categorias where NombreCategoria='$nombre'";
+    //EJECUTAMOS LA CONSULTA
+    $resultado = mysqli_query($conexion,$consulta);
+    return $resultado;
+}
+function insertarNuevaCategoria($conexion, $nombre, $descripcion, $logo){
+    //BUSCAMOS SI EXISTE EL USUARIO
+    $consulta = "INSERT INTO Categorias (NombreCategoria, DescripcionCategoria, LogoCategoria) VALUES ('$nombre', '$descripcion', '$logo');";
+    //EJECUTAMOS LA CONSULTA
+    $resultado = mysqli_query($conexion,$consulta);
+    return $resultado;
+}
+
+function modificarSinImagenProducto($conexion,$idProducto, $nombre, $categoria, $descripcion, $precio, $stock){
+    //BUSCAMOS SI EXISTE EL USUARIO
+    $consulta = "UPDATE Productos SET idCategoria = '$categoria', NombreProducto = '$nombre', DetallesProducto = '$descripcion', Precio = '$precio', Stock = '$stock' WHERE (idProducto = '$idProducto');";
+    //EJECUTAMOS LA CONSULTA
+    $resultado = mysqli_query($conexion,$consulta);
+    return $resultado;
+}
+
+function modificarProducto($conexion, $idProducto, $nombre, $categoria, $descripcion, $precio, $stock, $imagenProducto){
+    //BUSCAMOS SI EXISTE EL USUARIO
+    $consulta = " UPDATE Productos SET idCategoria = '$categoria', NombreProducto = '$nombre', DetallesProducto = '$descripcion', Precio = '$precio', Stock = '$stock', Imagen = '$imagenProducto' WHERE idProducto = '$idProducto'";
+    //EJECUTAMOS LA CONSULTA
+    $resultado = mysqli_query($conexion,$consulta);
+    return $resultado;
+}
+
+function modificarCategoriaSinLogo($conexion, $nombre, $descripcion, $idCategoria){
+    //BUSCAMOS SI EXISTE EL USUARIO
+    $consulta = "UPDATE Categorias SET NombreCategoria = '$nombre', DescripcionCategoria = '$descripcion' WHERE (idCategoria = '$idCategoria');";
+    //EJECUTAMOS LA CONSULTA
+    $resultado = mysqli_query($conexion,$consulta);
+    return $resultado;
+}
+
+function modificarCategoriaLogo($conexion, $nombre, $descripcion, $logo, $idCategoria){
+    //BUSCAMOS SI EXISTE EL USUARIO
+    $consulta = "UPDATE Categorias SET NombreCategoria = '$nombre', DescripcionCategoria = '$descripcion', LogoCategoria = '$logo' WHERE (idCategoria = '$idCategoria');";
+    //EJECUTAMOS LA CONSULTA
+    $resultado = mysqli_query($conexion,$consulta);
+    return $resultado;
+}
+
+
+
+
+
+
 
 
 ?>

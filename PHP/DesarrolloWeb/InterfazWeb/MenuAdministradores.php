@@ -18,6 +18,8 @@
             <a class="dropdown-item" href="AdministrarProductos.php">Productos</a>
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="AdministrarCategorias.php">Categorías</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="AdministrarDirecciones.php">Direcciones</a>
         </div>
     </li>
     <?php
