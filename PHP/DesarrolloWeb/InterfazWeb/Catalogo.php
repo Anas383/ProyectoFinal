@@ -170,7 +170,7 @@
                                 <input type="hidden" name="idUsuario" id="idUsuario" value="<?php echo $_SESSION['idUsuario']; ?>">
                                 <div class="row">
                                     <div class="m-auto"><br>
-                                        <a class="btn btn-danger mt-1" href="">Ver detalles</a> 
+                                        <a class="btn btn-danger mt-1" href="DetallesProducto.php?idProducto=<?php echo $productos['idProducto']; ?>">Ver detalles</a> 
                                          
                                         <button class="btn btn-success mt-1" name="btnAccion" value="Agregar" data-toggle="modal" data-target="#inicioCarrito" type="submit">Añadir al carrito</button>
                                     </div>
