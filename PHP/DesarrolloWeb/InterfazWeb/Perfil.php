@@ -6,6 +6,12 @@
     require '../../BD/Config.php';
     $conexion=conectar(true);
     session_start();
+
+    $idUsuario= $_SESSION['idUsuario'];
+    $buscarUsuario=consultaBuscarUsuarioID($conexion,$idUsuario);
+    $usuario=mysqli_fetch_assoc($buscarUsuario);
+   
+
 ?>
 
 
@@ -15,7 +21,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Perfil <?php echo $_SESSION['Usuario'];?> AnimeTEK</title>
+    <title>Perfil <?php echo $usuario['Usuario'];?> AnimeTEK</title>
     <link rel="icon" href="../../../IMG/Logo/LogoFullTransparente.ico">
      <!--Links para las fuentes de Google Fonts.-->
      <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -71,30 +77,7 @@
 
     <?php include_once 'VentanaEmergenteLogOut.php';?>
     <?php include_once 'EmergenteFotoPerfil.php';?>
-    <p>
-        <?php
-            if(isset($_GET['fotoPerfilEmergente']) && $_GET['fotoPerfilEmergente'] == "reiniciarParaAplicar"){ echo '
-                <div class="modal" id="fotoPerfilEmergente" tabindex="-1">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title">AnimeTEK.</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                           La proxima vez que inicies sesión se aplicaran los cambios.
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-success" data-dismiss="modal">Cerrar</button>
-                        
-                        </div>
-                        </div>
-                    </div>
-                </div>';}
-        ?>
-    </p>
+    
 
     <!-- EMERGENTE DARSE DE BAJA -->
     
@@ -133,16 +116,17 @@
     <div class="container">
         <div class="contenedorPerfil">
            
+           
             <h2>Foto de perfil </h2>
-           <a href="#" data-toggle="modal" data-target="#actualizarFotoPerfil""> <img src="data:image/jpeg;base64,<?php echo base64_encode($_SESSION['FotoPerfil']);?>" class="img-responsive fotoPerfil" width="120vh" height="120vh" alt=""style="" > </a>
+           <a href="#" data-toggle="modal" data-target="#actualizarFotoPerfil""> <img src="data:image/jpeg;base64,<?php echo base64_encode($usuario['FotoPerfil']);?>" class="img-responsive fotoPerfil" width="120vh" height="120vh" alt=""style="" > </a>
             <h2>Datos personales </h2><br>
-            <span><b>Usuario:</b>&nbsp;&nbsp;<?php echo $_SESSION['Usuario'];?></span><br><br>
-            <span><b>Nombre:</b>&nbsp;&nbsp;<?php echo $_SESSION['Nombre'];?></span><br><br>
-            <span><b>Primer Apellido:</b>&nbsp;&nbsp;<?php echo $_SESSION['PrimerApellido'];?></span><br><br>
-            <span><b>Segundo Apellido:</b>&nbsp;&nbsp;<?php echo $_SESSION['SegundoApellido'];?></span><br><br>
-            <span><b>Teléfono:</b>&nbsp;&nbsp;<?php echo $_SESSION['Telefono'];?></span><br><br>
-            <span><b>Correo electrónico:</b>&nbsp;&nbsp;<div><?php echo $_SESSION['Email'];?></div></span><br>
-            <span><b>DNI: </b>&nbsp;&nbsp;<?php echo $_SESSION['DNI'];?></span><br><br>    
+            <span><b>Usuario:</b>&nbsp;&nbsp;<?php echo $usuario['Usuario'];?></span><br><br>
+            <span><b>Nombre:</b>&nbsp;&nbsp;<?php echo $usuario['Nombre'];?></span><br><br>
+            <span><b>Primer Apellido:</b>&nbsp;&nbsp;<?php echo $usuario['PrimerApellido'];?></span><br><br>
+            <span><b>Segundo Apellido:</b>&nbsp;&nbsp;<?php echo $usuario['SegundoApellido'];?></span><br><br>
+            <span><b>Teléfono:</b>&nbsp;&nbsp;<?php echo $usuario['Telefono'];?></span><br><br>
+            <span><b>Correo electrónico:</b>&nbsp;&nbsp;<div><?php echo $usuario['Email'];?></div></span><br>
+            <span><b>DNI: </b>&nbsp;&nbsp;<?php echo $usuario['DNI'];?></span><br><br>    
             <a href="EditarPerfil.php" class="btn btn-outline-primary m-right"><i class="fas fa-pen"></i> &nbsp;Editar perfil</a>
             <a href="#"  data-toggle="modal" data-target="#darseDeBaja" class="btn btn-danger m-right"><i class="fas fa-user-times"></i>&nbsp; Darse de baja</a>
            

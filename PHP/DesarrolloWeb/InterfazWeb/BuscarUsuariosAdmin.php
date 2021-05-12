@@ -77,7 +77,7 @@
                     <div class="modal-dialog">
                         <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title">Registro exitoso.</h5>
+                            <h5 class="modal-title">AnimeTEK</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                             </button>
@@ -95,22 +95,32 @@
     </p>
   
     <div class="container-fluid">
-        <div class="row mr-1 ml-1">
-            <div class="col-md-2">
-                <a href="InsertarNuevoUsuario.php" class="btn btn-success mb-1"><i class="fas fa-user-plus"></i>&nbsp;&nbsp;Añadir Usuario</a>
+        <div class="row ">
+        <div class="col-md-8">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item active " aria-current="page">Home</li>
+                        <li class="breadcrumb-item " aria-current="page">Administración de Usuarios</li>
+                    </ol>
+                </nav>
+
+                </div>
+                <div class="col-md-2">
+                    <a href="InsertarNuevoUsuario.php" class="btn btn-success mb-1 col-md-12"><i class="fas fa-user-plus"></i>&nbsp;&nbsp;Añadir Usuario</a>
+                </div>
+                    
+                <div class="col-md-2">
+                    <form action="BuscarUsuariosAdmin.php" method="GET" class="mb-1">
+                        <div class="input-group">
+                            <input class="form-control " type="search" name="busquedaUsuario" id="busquedaUsuario" placeholder="Buscar..." aria-label="Search">
+                            <div class="input-group-append">
+                                <button class="btn  text-light botonBuscar"  type="submit"><i class="fas fa-search"></i></button>
+                            </div>
+                        </div>                   
+                    </form>
+                </div>  
             </div>
-            <div class="col-md-8"></div>     
-            <div class="col-md-2">
-                <form action="BuscarUsuariosAdmin.php" method="GET" class="form-inline my-2 my-lg-0">
-                    <div class="input-group">
-                        <input class="form-control " type="search" name="busquedaUsuario" id="busquedaUsuario" placeholder="Buscar..." aria-label="Search">
-                        <div class="input-group-append">
-                            <button class="btn  text-light botonBuscar"  type="submit"><i class="fas fa-search"></i></button>
-                        </div>
-                    </div>                   
-                </form>
-            </div>  
-        </div>
+            <div cla
         <div class="row mr-1 ml-1">
         
             <div class="table-responsive">

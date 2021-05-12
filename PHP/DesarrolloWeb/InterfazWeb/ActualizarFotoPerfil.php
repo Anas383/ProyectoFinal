@@ -15,7 +15,7 @@ $idUsuario= $_GET['idUsuario'];
 
 echo $idUsuario;
 $actualizarFotoPerfil= actualizarFotoPerfil($conexion, $fotoPerfil, $idUsuario);
-header("Location: Perfil.php?fotoPerfilEmergente=reiniciarParaAplicar");
+header("Location: Perfil.php");
 
 
 

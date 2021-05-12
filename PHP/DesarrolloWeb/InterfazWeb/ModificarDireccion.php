@@ -74,6 +74,13 @@
         <div class="row">
             <span class="col-md-3"></span>
             <div class=" col-md-6 contenedorFormulario ">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                    <li class="breadcrumb-item active " aria-current="page">Home</li>
+                        <li class="breadcrumb-item active " aria-current="page">Administración de Direcciones</li>
+                        <li class="breadcrumb-item " aria-current="page">Modificar Direccion</li>
+                    </ol>
+                </nav>
                 <form action="GuardarModificacionesDomicilio.php" id="formularioDirecciones" method="post">
                     <legend>Modificar Dirección.</legend>
                     <div class="row">

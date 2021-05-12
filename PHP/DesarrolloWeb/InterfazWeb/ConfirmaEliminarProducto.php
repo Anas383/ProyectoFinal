@@ -15,7 +15,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Perfil <?php echo $_SESSION['Usuario'];?> AnimeTEK</title>
+    <title>Eliminar Producto AnimeTEK</title>
     <link rel="icon" href="../../../IMG/Logo/LogoFullTransparente.ico">
      <!--Links para las fuentes de Google Fonts.-->
      <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -73,6 +73,13 @@
         
     <div class="container">
         <div class="contenedorPerfil">
+        <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                <li class="breadcrumb-item active " aria-current="page">Home</li>
+                    <li class="breadcrumb-item active " aria-current="page">Administración de Productos</li>
+                    <li class="breadcrumb-item " aria-current="page">Eliminar Producto</li>
+                </ol>
+            </nav>
            
             <h2>¿Estás seguro de eliminar este producto?</h2><br>
             <?php 

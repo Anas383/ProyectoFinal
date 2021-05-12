@@ -17,7 +17,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home AnimeTEK</title>
+    <title>Catálogo AnimeTEK</title>
     <link rel="icon" href="../../../IMG/Logo/LogoFullTransparente.ico">
      <!--Links para las fuentes de Google Fonts.-->
      <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -75,7 +75,7 @@
   
     <div class="container row-md contenedor">
     
-    <h1>PRODUCTOS AnimeTEK</h1><br>
+    <h1 class="titulosPrincipal" >Catálogo AnimeTEK</h1><br><br>
             <div class="row">
         
                 <div class="col-md-3">

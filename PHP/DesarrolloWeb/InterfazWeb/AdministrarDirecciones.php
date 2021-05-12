@@ -72,10 +72,18 @@
   
     <div class="container-fluid">
         <div class="row ">
-            <div class="col-md-2"></div>
-            <div class="col-md-8"></div>
+           
+            <div class="col-md-10">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                <li class="breadcrumb-item active " aria-current="page">Home</li>
+                    <li class="breadcrumb-item  " aria-current="page">Administración de Direcciones</li>
+                    
+                </ol>
+            </nav>
+            </div>
             <div class="col-md-2">
-                <form action="BuscarDireccionAdmin.php" method="GET" class="form-inline my-2 my-lg-0">
+                <form action="BuscarDireccionAdmin.php" method="GET" class="mb-1">
                         <div class="input-group">
                             <input class="form-control " type="search" name="busquedaDireccion" id="busquedaDireccion" placeholder="Buscar..." aria-label="Search">
                             <div class="input-group-append">

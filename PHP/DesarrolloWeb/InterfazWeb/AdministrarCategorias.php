@@ -14,7 +14,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Administrar Usuarios AnimeTEK</title>
+    <title>Administrar Categorías AnimeTEK</title>
     <link rel="icon" href="../../../IMG/Logo/LogoFullTransparente.ico">
      <!--Links para las fuentes de Google Fonts.-->
      <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -72,10 +72,19 @@
   
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-2"><a href="InsertarNuevaCategoria.php" class="btn btn-success mb-1"><i class="fas fa-plus"></i> &nbsp;Añadir Categoría</a></div>
-            <div class="col-md-8"></div>
+        <div class="col-md-8">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                    <li class="breadcrumb-item active " aria-current="page">Home</li>
+                        <li class="breadcrumb-item  " aria-current="page">Administración de Categorías</li>
+                        
+                    </ol>
+                </nav>
+            </div>
+            <div class="col-md-2"><a href="InsertarNuevaCategoria.php" class="btn btn-success mb-1 col-md-12"><i class="fas fa-plus"></i> &nbsp;Añadir Categoría</a></div>
+            
             <div class="col-md-2">
-                <form action="BuscarCategoriasAdmin.php" method="GET" class="form-inline my-2 my-lg-0">
+                <form action="BuscarCategoriasAdmin.php" method="GET" class=" mb-1 ">
                     <div class="input-group">
                         <input class="form-control " type="search" name="busquedaCategoria" id="busquedaCategoria" placeholder="Buscar..." aria-label="Search">
                         <div class="input-group-append">

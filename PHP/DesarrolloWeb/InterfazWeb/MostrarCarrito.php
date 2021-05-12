@@ -17,7 +17,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home AnimeTEK</title>
+    <title>Carrito AnimeTEK</title>
     <link rel="icon" href="../../../IMG/Logo/LogoFullTransparente.ico">
      <!--Links para las fuentes de Google Fonts.-->
      <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -127,8 +127,15 @@
                        echo $total;
                      ?>€</h4></td>
                      <td>
-                        
-                    <a href="#" data-toggle="modal" data-target="#emergenteDireccionesAlPagar"  class="btn btn-warning btn-lg">Realizar pago <strong>> ></strong></a>
+                      <?php if($total==0.00){
+                          echo'<a href="Catalogo.php" class="btn btn-warning btn-lg">Ir a Catálogo</a>';
+                      }else{?>
+                        <a href="#" data-toggle="modal" data-target="#emergenteDireccionesAlPagar"  class="btn btn-success btn-lg">Realizar pago <strong>> ></strong></a>
+                      <?php
+
+
+                      } ?>
+                    
                     </td>
                     <?php include_once 'VentanaEmergenteDireccionAlPagar.php'?>
                     <td><a href="EmergenteVaciarCarrito.php" data-toggle="modal" data-target="#emergenteVaciarCarrito"  class="btn btn-danger btn-lg">Vaciar carrito</a></td>

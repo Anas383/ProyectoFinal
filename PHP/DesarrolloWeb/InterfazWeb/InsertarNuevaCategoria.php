@@ -76,6 +76,13 @@
         <div class="row">
             <span class="col-md-3"></span>
             <div class=" col-md-6 contenedorFormulario ">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                <li class="breadcrumb-item active " aria-current="page">Home</li>
+                    <li class="breadcrumb-item active " aria-current="page">Administración de Categorías</li>
+                    <li class="breadcrumb-item " aria-current="page">Modificar Categoría</li>
+                </ol>
+            </nav>
                 <form action="GuardarInsercionCategoria.php" method="post" enctype="multipart/form-data">
                     <legend>Añadir nueva categoría</legend>  
                         <!-- NOMBRE-->

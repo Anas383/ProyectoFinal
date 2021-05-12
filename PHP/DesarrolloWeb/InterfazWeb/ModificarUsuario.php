@@ -72,12 +72,20 @@ $usuario=mysqli_fetch_assoc($buscar);
     </div><br> 
 
     <?php include_once 'VentanaEmergenteLogOut.php';?>
- 
+    
     <div class="container">
-        
+        <
         <div class="row">
+            
             <span class="col-md-3"></span>
             <div class=" col-md-6 contenedorFormulario ">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                    <li class="breadcrumb-item active " aria-current="page">Home</li>
+                        <li class="breadcrumb-item active " aria-current="page">Administración de Usuarios</li>
+                        <li class="breadcrumb-item " aria-current="page">Modificar de Usuario</li>
+                    </ol>
+                </nav>
                 <form action="GuardarModificacionesUsuarioAdmin.php?idUsuario=<?php echo $usuario['idUsuario'];?>" id="FormularioRegistro" method="post" enctype="multipart/form-data">
                     <legend>Modificar <?php echo $usuario['Usuario']?> </legend>
                     <div class="form-row">

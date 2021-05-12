@@ -50,6 +50,23 @@ function registrarUsuario($conexion,$usuario,$password, $nombre,$apellido1, $ape
      return $resultado;
     
 }
+function editarPerfil($conexion,$idUsuario, $usuario,$password, $nombre,$apellido1, $apellido2,$telefono, $email, $dni, $fotoPerfil){
+    //INGRESAMOS LOS DATOS DEL USUARIO
+    $consulta = "UPDATE Usuarios SET Usuario = '$usuario', Nombre = '$nombre', PrimerApellido = '$apellido1', SegundoApellido = '$apellido2', Telefono = '$telefono', Password = '$password', Email = '$email', DNI = '$dni', FotoPerfil = '$fotoPerfil' WHERE idUsuario = '$idUsuario'";
+     //EJECUTAMOS LA CONSULTA
+     $resultado = mysqli_query($conexion,$consulta);
+     return $resultado;
+    
+}
+function editarPerfilSinImagen($conexion,$idUsuario, $usuario, $password, $nombre,$apellido1, $apellido2,$telefono, $email, $dni){
+    //INGRESAMOS LOS DATOS DEL USUARIO
+    $consulta = "UPDATE Usuarios SET Usuario = '$usuario', Nombre = '$nombre', PrimerApellido = '$apellido1', SegundoApellido = '$apellido2', Telefono = '$telefono', Password = '$password', Email = '$email', DNI = '$dni' WHERE idUsuario = '$idUsuario'";
+     //EJECUTAMOS LA CONSULTA
+     $resultado = mysqli_query($conexion,$consulta);
+     return $resultado;
+    
+}
+
 
 function modificarUsuario($conexion,$idUsuario, $usuario,$password, $nombre,$apellido1, $apellido2,$telefono, $email, $dni, $rol, $fotoPerfil){
     //INGRESAMOS LOS DATOS DEL USUARIO

@@ -75,13 +75,20 @@
         <div class="row">
             <span class="col-md-3"></span>
             <div class=" col-md-6 contenedorFormulario ">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item active " aria-current="page">Home</li>
+                    <li class="breadcrumb-item active " aria-current="page">Administración de Usuarios</li>
+                    <li class="breadcrumb-item " aria-current="page">Añadir nuevo Usuario</li>
+                </ol>
+            </nav>
                 <form action="ComprobarAñadirNuevoUsuario.php" id="FormularioRegistro" method="post" enctype="multipart/form-data">
                     <legend>Añadir nuevo usuario</legend>
                     <div class="form-row">
                             <!-- USUARIO -->
                         <div class="grupo_usuario col-md-6 ">
                             <label for="usuario" class="form-label">Usuario</label>
-                            <input type="text" name="usuario" placeholder="Ace_360" class="form-control" id="usuario" required autofocus><br>
+                            <input type="text" name="usuario" placeholder="Ace_360" class="form-control" id="usuario" required ><br>
                             <p class="mensajeError-oculto" id="mError-usuario">&nbsp;¡El usuario puede contener muyúsculas, minúsculas, números, guiones y guiones bajos![3-9]</p>
                         </div><br>
                         

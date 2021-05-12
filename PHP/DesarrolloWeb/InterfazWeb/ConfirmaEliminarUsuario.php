@@ -15,7 +15,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Administración AnimeTEK</title>
+    <title>Eliminar Usuario AnimeTEK</title>
     <link rel="icon" href="../../../IMG/Logo/LogoFullTransparente.ico">
      <!--Links para las fuentes de Google Fonts.-->
      <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -72,8 +72,15 @@
     <?php include_once 'VentanaEmergenteLogOut.php';?>
         
     <div class="container">
+        
         <div class="contenedorPerfil">
-           
+        <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                <li class="breadcrumb-item active " aria-current="page">Home</li>
+                    <li class="breadcrumb-item active " aria-current="page">Administración de Usuarios</li>
+                    <li class="breadcrumb-item " aria-current="page">Eliminar de Usuario</li>
+                </ol>
+            </nav>
            
             <?php 
             
