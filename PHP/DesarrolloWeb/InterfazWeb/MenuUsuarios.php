@@ -1,11 +1,6 @@
 
 
-<?php
- $idCesta=$_SESSION['idUsuario'];
- $contarProductos=contarProductos($conexion, $idCesta);
- $totalProductos=mysqli_fetch_assoc($contarProductos);
 
-?>
 <?php
                session_start();
                if($_SESSION['usuarioConectado']==true){ 
@@ -62,7 +57,11 @@
                            
                         <span > <a href="MostrarCarrito.php"><i class="fas fa-shopping-cart"></i>&nbsp;(<span id="numC">
                      
-                        <?php echo($totalProductos['Count(idCesta)']); ?></span>)&nbsp;</a></span>
+                        <?php 
+                        $idCesta=$_SESSION['idUsuario'];
+                        $contarProductos=contarProductos($conexion, $idCesta);
+                        $totalProductos=mysqli_fetch_assoc($contarProductos);
+                        echo($totalProductos['Count(idCesta)']); ?></span>)&nbsp;</a></span>
                           
                             <div class="dropdown show">
                                 <a class=" dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
