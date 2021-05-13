@@ -29,7 +29,7 @@ $idUsuario=$_SESSION['idUsuario'];
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
         <link rel="stylesheet" href="../../../CSS/Estilos.css">
-        <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+    
         <script src="../../../JS/Loader.js"></script>
       
 
@@ -76,11 +76,10 @@ $idUsuario=$_SESSION['idUsuario'];
     <div class="container">
         <div class="contenedorPerfil">
            
-           <form id="formularioComentarios" method="POST">
-                <input type="text" name="comentario" id="comentario">
-                <input type="hidden" name="idUsuario" id="idUsuario" value="<?php echo $idUsuario;?>">
-                <input type="hidden" name="idProducto" id="idProducto" value="<?php echo $idProducto;?>">
-                <input type="submit" id="btnEnviar" value="Enviar">
+           <form id="formularioComentarios" >
+               
+            <input type="text" name="search" id="search">
+            <button type="submit" id="enviar" >Enviar</button>
 
            </form>
            
@@ -91,28 +90,21 @@ $idUsuario=$_SESSION['idUsuario'];
     <?php include_once "Footer.php"?>
     
     <!--Scripts--> 
-    
+    <script src="https://code.jquery.com/jquery-3.5.1.js" type="text/javascript"></script>
     <script>
-
-$(document).ready(function(){
-    $("#btnEnviar").click("#formularioComentarios", function(e){
-        e.preventDefault();
-        let datos= $('#formularioComentarios').serialize();
-        alert(datos);
-        
-        $.ajax({
-           type:"POST",
-           url: "InsertarComentario.php",
-           data: datos,
-           success:function(data){
-                $('#respuesta').html(data);
-           }
-
+        $(document).ready(function(){
+            console.log("JQ Activo");
+            $('#enviar').click(function(e){
+                const postData={
+                   name: $('#search').val()
+                }
+                $.post('PruebaAjax.php', postData, function(response){
+                    alert(response+' es medio puto.');
+                });
+                e.preventDefault();
+            });
         });
-       
-    });
-});
-</script>
+    </script>
     <script src="https://use.fontawesome.com/releases/v5.15.2/js/all.js" data-auto-a11y="true"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
 </body>

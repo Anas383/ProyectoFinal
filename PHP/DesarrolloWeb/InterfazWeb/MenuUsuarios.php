@@ -1,6 +1,11 @@
 
 
+<?php
+ $idCesta=$_SESSION['idUsuario'];
+ $contarProductos=contarProductos($conexion, $idCesta);
+ $totalProductos=mysqli_fetch_assoc($contarProductos);
 
+?>
 <?php
                session_start();
                if($_SESSION['usuarioConectado']==true){ 
@@ -13,13 +18,7 @@
                     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                         <div class="navbar-nav">
                         <span > <a href="MostrarCarrito.php"><i class="fas fa-shopping-cart"></i>&nbsp;
-                        (<?php 
-                        
-                            $idCesta=$_SESSION['idUsuario'];
-                            $contarProductos=contarProductos($conexion, $idCesta);
-                            $totalProductos=mysqli_fetch_assoc($contarProductos);
-                            print_r($totalProductos['Count(idCesta)']); 
-                        ?>)&nbsp;</a></span>
+                        &nbsp;</a></span>
                             <div class="dropdown show">
                                 <a class=" dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <i class="fas fa-cog"></i> <?php echo $_SESSION['ROL']." : ".$_SESSION['Usuario'];?>
@@ -61,12 +60,9 @@
                     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                         <div class="navbar-nav">
                            
-                        <span > <a href="MostrarCarrito.php"><i class="fas fa-shopping-cart"></i>&nbsp;(<?php 
-                        
-                            $idCesta=$_SESSION['idUsuario'];
-                            $contarProductos=contarProductos($conexion, $idCesta);
-                            $totalProductos=mysqli_fetch_assoc($contarProductos);
-                            print_r($totalProductos['Count(idCesta)']); ?>)&nbsp;</a></span>
+                        <span > <a href="MostrarCarrito.php"><i class="fas fa-shopping-cart"></i>&nbsp;(<span id="numC">
+                     
+                        <?php echo($totalProductos['Count(idCesta)']); ?></span>)&nbsp;</a></span>
                           
                             <div class="dropdown show">
                                 <a class=" dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -96,3 +92,5 @@
             <?php
             }
             ?>
+
+       

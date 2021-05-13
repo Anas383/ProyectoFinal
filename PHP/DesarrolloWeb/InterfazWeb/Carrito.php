@@ -18,13 +18,12 @@ if($_SESSION['usuarioConectado']==false){
     $idCesta=$_POST['idUsuario'];
 
     $añadirProductosAlCarrito= añadirProductosAlCarrito($conexion,$cantidadProducto, $precioProducto, $idCesta, $idProducto);
+    
     header('Location: Catalogo.php');
 
   
 }
     
-
-
 
 
 ?>

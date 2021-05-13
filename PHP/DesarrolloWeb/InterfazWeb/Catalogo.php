@@ -172,7 +172,7 @@
                                     <div class="m-auto"><br>
                                         <a class="btn btn-danger mt-1" href="DetallesProducto.php?idProducto=<?php echo $productos['idProducto']; ?>">Ver detalles</a> 
                                          
-                                        <button class="btn btn-success mt-1" name="btnAccion" value="Agregar" data-toggle="modal" data-target="#inicioCarrito" type="submit">Añadir al carrito</button>
+                                        <button class="btn btn-success mt-1 enviar" onclick="numero(response)" value="<?php echo $productos['idProducto']; ?>"  name="btnAccion" id="enviar" value="Agregar" data-toggle="modal" data-target="#inicioCarrito" type="submit">Añadir al carrito</button> 
                                     </div>
                             
                                 </div>
@@ -195,6 +195,7 @@
     <?php include_once "Footer.php"?>
     
     <!--Scripts--> 
+    
     <script>
         $(function () {
     $('[data-toggle="popover"]').popover()
@@ -203,5 +204,37 @@
     <script src="../../../JS/Catalogo.js"></script>  
     <script src="https://use.fontawesome.com/releases/v5.15.2/js/all.js" data-auto-a11y="true"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js" type="text/javascript"></script>
+    <script>
+    $(document).ready(function(){
+       
+          
+        $('.enviar').click(function(e){
+            const postData={
+               name: $('.enviar').val(),
+               precio: $('#precioProducto').val(),
+               cantidad: $('#cantidadProducto').val()
+
+            }
+            $.post('PruebaAjax.php', postData, function(response){
+               
+            });
+            
+            
+            e.preventDefault();
+               
+            $.ajax({
+                url:'NumeroCarrito.php',
+                type:'GET',
+                success: function numero(response){
+                    let num= parseInt(response);
+                    num+=1;
+                    document.getElementById('numC').innerHTML=num;
+                }
+            })
+        });
+       
+    });
+</script>
 </body>
 </html>
