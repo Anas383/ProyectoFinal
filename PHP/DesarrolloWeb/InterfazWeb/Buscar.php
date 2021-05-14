@@ -75,7 +75,7 @@
   
     <div class="container row-md contenedor">
     
-    <h1>PRODUCTOS AnimeTEK</h1><br>
+    <h1 class="titulosPrincipal" >Catálogo AnimeTEK</h1><br><br>
             <div class="row">
         
                 <div class="col-md-3">
@@ -121,34 +121,37 @@
                 
            
             </div><br>
-            <p>
-                <?php
-                    if(isset($_GET['sesionNoIniciadaC']) && $_GET['sesionNoIniciadaC'] == "sesionCarritoNoIniciada"){ echo '
-                        <div class="modal" id="inicioCarrito" tabindex="-1">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title">AnimeTEK</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                Para añadir productos a tu carrito inicia sesión.
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
-                                    <a href="../Login/Login.php" class="btn btn-success"> Iniciar sesión</a>
-                                
-                                </div>
-                                </div>
+
+                <!-- VENTANA EMERGENTE PARA ELIMINAR PRODUCTO -->
+                <div class="modal fade" id="emergenteIniciaSesionCatalogo" tabindex="-1" role="dialog" aria-labelledby="emergenteIniciaSesionCatalogo"
+                    aria-hidden="true">
+                    <div class="modal-dialog ventanaEmergente" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title " id="emergenteIniciaSesionCatalogo">AnimeTEK</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true"><i class="fas fa-window-close"></i></span>
+                                </button>
                             </div>
-                        </div>';}
-                ?>
-            </p>
-            <div class="row mb-5">
+                            <div class="modal-body">
+                                Para añadir productos a tu carrito debes iniciar sesión.
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                                <span class="">
+                                    <button type="button" class="btn btn-success">
+                                        <a href="../Login/Login.php" style="text-decoration: none; color:white">Iniciar Sesión</a>
+                                    </button>
+                                </span>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+           
+  <div class="row mb-5">
             
-                <?php    
+  <?php    
                     $variableBusqueda=$_GET['busqueda'];
                     $resultadoConsulta = inputBusqueda($conexion,$variableBusqueda);
                     if(mysqli_num_rows($resultadoConsulta)!=0){
@@ -164,21 +167,36 @@
                         <div class="block-4-text p-4">
                             <h3 style=" font-size: 90%;"><?php echo $productos['NombreProducto']?></h3><br>
                            <strong> <?php echo $productos['Precio'];?>&nbsp;€ </strong>                           
-                            <form action="Carrito.php" method="post">
-                                <input type="hidden" name="idProducto" id="idProducto" value="<?php echo $productos['idProducto']; ?>">
-                                <input type="hidden" name="precioProducto" id="precioProducto" value="<?php echo $productos['Precio']; ?>">
-                                <input type="hidden" name="cantidadProducto" id="cantidadProducto" value="<?php echo '1'; ?>">
-                                <input type="hidden" name="idUsuario" id="idUsuario" value="<?php echo $_SESSION['idUsuario']; ?>">
+                           
+                                
+                                
                                 <div class="row">
                                     <div class="m-auto"><br>
-                                        <a class="btn btn-danger mt-1" href="">Ver detalles</a> 
-                                         
-                                        <button class="btn btn-success mt-1" name="btnAccion" value="Agregar" data-toggle="modal" data-target="#inicioCarrito" type="submit">Añadir al carrito</button>
+                                        <a class="btn btn-danger mt-1" href="DetallesProducto.php?idProducto=<?php echo $productos['idProducto']; ?>">Ver detalles</a> 
+                                        <?php
+
+
+
+                                            if($_SESSION['usuarioConectado']==false){
+
+                                           ?> 
+                                           <button class="btn btn-success mt-1" type="button"  data-toggle="modal" data-target="#emergenteIniciaSesionCatalogo" >Añadir al carrito</button> 
+                                           <?php    
+                                            }elseif($_SESSION['usuarioConectado']==true){
+                                
+                                            ?>
+                                        <button class="btn btn-success mt-1 enviar"   name="btnAccion" data-id="<?php echo $productos['idProducto'];?>" data-precio="<?php echo $productos['Precio']; ?>"  data-cantidad="<?php echo 1; ?>" >Añadir al carrito</button>
+                                        <?php
+                                         }
+                                                
+
+
+                                            ?> 
                                     </div>
                             
                                 </div>
                             
-                            </form>
+                           
                             
                         </div> 
                     </div>
@@ -196,13 +214,40 @@
     <?php include_once "Footer.php"?>
     
     <!--Scripts--> 
-    <script>
-        $(function () {
-    $('[data-toggle="popover"]').popover()
-    })
-    </script>
-    <script src="../../../JS/Catalogo.js"></script>  
+    
+    
+
     <script src="https://use.fontawesome.com/releases/v5.15.2/js/all.js" data-auto-a11y="true"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js" type="text/javascript"></script>
+    <script>
+    $(document).ready(function(){
+        
+       
+        
+        $('button[name=btnAccion]').on('click',function(e){
+            const postData={
+               idProducto: $(this).attr('data-id'),
+               precio:  $(this).attr('data-precio'),
+               cantidad:$(this).attr('data-cantidad')
+
+            }
+            $.post('Carrito.php', postData, function(response){
+               
+            });
+            e.preventDefault();
+               
+            $.ajax({
+                url:'NumeroCarrito.php',
+                type:'GET',
+                success: function numero(response){
+                    let num= parseInt(response);
+                    document.getElementById('numC').innerHTML=num;
+                }
+            })
+        });
+       
+    });
+</script>
 </body>
 </html>

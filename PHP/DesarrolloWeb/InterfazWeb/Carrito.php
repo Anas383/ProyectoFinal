@@ -9,15 +9,15 @@
 
 if($_SESSION['usuarioConectado']==false){
 
-  header('Location: Catalogo.php?sesionNoIniciadaC=sesionCarritoNoIniciada'); 
+  
     
 }elseif($_SESSION['usuarioConectado']==true){
-    $idProducto=$_POST['idProducto'];
-    $precioProducto=$_POST['precioProducto'];
-    $cantidadProducto=$_POST['cantidadProducto'];
-    $idCesta=$_POST['idUsuario'];
+  $idProducto= $_POST['idProducto'];
+  $precio= $_POST['precio'];
+  $cantidad= $_POST['cantidad'];
+  $idCesta=$_SESSION['idUsuario'];
 
-    $añadirProductosAlCarrito= añadirProductosAlCarrito($conexion,$cantidadProducto, $precioProducto, $idCesta, $idProducto);
+  $añadirProductosAlCarrito= añadirProductosAlCarrito($conexion,$cantidad, $precio, $idCesta, $idProducto);
     
     header('Location: Catalogo.php');
 

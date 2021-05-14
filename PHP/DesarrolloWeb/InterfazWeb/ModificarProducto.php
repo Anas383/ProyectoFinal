@@ -103,7 +103,8 @@
                                 </div>
                                 <select class="custom-select" name="categorias" id="categorias">
                                     <?php 
-                                        $categoriaProducto=buscarCategoriaPorID($conexion, $idProducto);
+                                        $idCategoriaProducto=$producto['idCategoria'];
+                                        $categoriaProducto=buscarCategoriaPorID($conexion, $idCategoriaProducto);
                                         $categoriaP=mysqli_fetch_assoc($categoriaProducto);
             
                                     ?>

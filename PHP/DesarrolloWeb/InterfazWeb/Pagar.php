@@ -114,8 +114,8 @@
             // Finalize the transaction
             onApprove: function(data, actions) {
                 return actions.order.capture().then(function(details) {
-                    // Show a success message to the buyer
-                    alert('Pago completado por ' + details.payer.name.given_name + '!');
+                    window.location="MostrarCarrito.php";
+                    
                 });
             }
 
