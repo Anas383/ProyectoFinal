@@ -76,12 +76,44 @@ $idUsuario=$_SESSION['idUsuario'];
     <div class="container">
         <div class="contenedorPerfil">
            
-           <form id="formularioComentarios" >
-               
-            <input type="text" name="search" id="search">
-            <button type="submit" id="enviar" >Enviar</button>
+        <div class="row">
+            <div class="m-auto"><br>
+                
+                <div class="input-group mb-3">
+                <textarea name="comentario" class="form-control"   aria-describedby="button-addon2" id="comentario" cols="40" rows="1"></textarea>
+                <div class="input-group-append">
+                <?php
 
-           </form>
+                    if($_SESSION['usuarioConectado']==false){
+
+                ?> 
+                    <button class="btn btn-success mt-1" type="button"  data-toggle="modal" data-target="#emergenteIniciaSesionCatalogo" >Añadir al carrito</button> 
+                <?php    
+                    }elseif($_SESSION['usuarioConectado']==true){
+
+                ?>
+                    <button class="btn btn-success  enviar"   name="btnAccion" data-idProducto="<?php echo $idProducto;?>" data-idUsuario="<?php echo $idUsuario; ?>">Enviar</button>
+                <?php
+                    }
+                ?> 
+                </div>
+                <br>
+               
+            </div>
+            <div class="dropdown-divider "></div>
+            
+                
+            <div name="mostrarComentarios"  id="mostrarComentarios" ></div>
+            <div class="dropdown-divider "></div>
+                
+                
+        
+ 
+
+                  
+            </div>
+
+        </div>
            
             
         </div><br>
@@ -91,20 +123,8 @@ $idUsuario=$_SESSION['idUsuario'];
     
     <!--Scripts--> 
     <script src="https://code.jquery.com/jquery-3.5.1.js" type="text/javascript"></script>
-    <script>
-        $(document).ready(function(){
-            console.log("JQ Activo");
-            $('#enviar').click(function(e){
-                const postData={
-                   name: $('#search').val()
-                }
-                $.post('PruebaAjax.php', postData, function(response){
-                    alert(response+' es medio puto.');
-                });
-                e.preventDefault();
-            });
-        });
-    </script>
+    <script src="../../../JS/DetallesProducto.js"></script>                
+    <script src="../../../JS/Catalogo.js"></script>
     <script src="https://use.fontawesome.com/releases/v5.15.2/js/all.js" data-auto-a11y="true"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
 </body>

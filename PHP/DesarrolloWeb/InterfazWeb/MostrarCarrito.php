@@ -138,7 +138,7 @@
                     
                     </td>
                     <?php include_once 'VentanaEmergenteDireccionAlPagar.php'?>
-                    <td><a href="EmergenteVaciarCarrito.php" data-toggle="modal" data-target="#emergenteVaciarCarrito"  class="btn btn-danger btn-lg">Vaciar carrito</a></td>
+                    <td><a href="VaciarCarrito.php" id="vaciarCarrito"  class="btn btn-danger btn-lg">Vaciar carrito</a></td>
                      
                 </tr>
                
@@ -153,5 +153,7 @@
     <script src="../../../JS/ValidarDirecciones.js"></script>    
     <script src="https://use.fontawesome.com/releases/v5.15.2/js/all.js" data-auto-a11y="true"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js" type="text/javascript"></script>               
+    <script src="../../../JS/Catalogo.js"></script>
 </body>
 </html>

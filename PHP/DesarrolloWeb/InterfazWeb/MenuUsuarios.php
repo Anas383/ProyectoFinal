@@ -12,7 +12,8 @@
                 <nav class="navbar navbar-expand-lg navbar-dark">
                     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                         <div class="navbar-nav">
-                        <span > <a href="MostrarCarrito.php"><i class="fas fa-shopping-cart"></i>&nbsp;
+                        <span > <a href="MostrarCarrito.php"><i class="fas fa-shopping-cart"></i>
+                        (<span id="numCM"></span>)&nbsp;
                         &nbsp;</a></span>
                             <div class="dropdown show">
                                 <a class=" dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -55,13 +56,7 @@
                     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                         <div class="navbar-nav">
                            
-                        <span > <a href="MostrarCarrito.php"><i class="fas fa-shopping-cart"></i>&nbsp;(<span id="numC">
-                     
-                        <?php 
-                        $idCesta=$_SESSION['idUsuario'];
-                        $contarProductos=contarProductos($conexion, $idCesta);
-                        $totalProductos=mysqli_fetch_assoc($contarProductos);
-                        echo($totalProductos['Count(idCesta)']); ?></span>)&nbsp;</a></span>
+                        <span > <a href="MostrarCarrito.php"><i class="fas fa-shopping-cart"></i>&nbsp;(<span id="numC"></span>)&nbsp;</a></span>
                           
                             <div class="dropdown show">
                                 <a class=" dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

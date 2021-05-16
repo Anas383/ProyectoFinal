@@ -212,6 +212,18 @@ function busquedDireccionesAdmin($conexion, $variableBusqueda){
     return $resultado;
 }
 
+function enviarComentarios($conexion, $comentario, $idUsuario, $idProducto ){
+    $consulta = "INSERT INTO ValoracionesComentarios (Comentario, idUsuario_VC, idProducto_VC) VALUES ('$comentario', '$idUsuario', '$idProducto');";
+    $resultado = mysqli_query($conexion,$consulta);
+    return $resultado;
+}
+function mostrarComentariosComentarios($conexion){
+    $consulta = "SELECT * FROM ValoracionesComentarios;";
+    $resultado = mysqli_query($conexion,$consulta);
+    return $resultado;
+}
+
+
 
 function crearSesion($usuario){
     //Asignamos el id

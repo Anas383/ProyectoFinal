@@ -75,9 +75,9 @@ function insertarPrecioTotalTablaCarrito($conexion,$idCesta, $total){
    return $resultado;
 }
 
-function vaciarCarrito($conexion,$idCesta){
+function vaciarCarrito($conexion,$idUsuario){
     //COMPARAMOS LOS DATOS DEL USUARIO
-    $consulta = "DELETE FROM ProductosCarrito WHERE idCesta='$idCesta'";
+    $consulta = "DELETE FROM ProductosCarrito WHERE idCesta='$idUsuario'";
     $resultado= mysqli_query($conexion,$consulta);
     return $resultado;
 }

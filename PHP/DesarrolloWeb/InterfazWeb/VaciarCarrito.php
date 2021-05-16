@@ -1,8 +1,11 @@
 <?php
+  require '../../BD/ConectorBD.php';
+  require '../../BD/DAOProductos.php';
+ $conexion=conectar(true);
+session_start();
+$idUsuario=$_SESSION['idUsuario'];
 
-$idCesta=$_GET['idCesta'];
-
-$vaciarCarrito=vaciarCarrito($conexion,$idCesta);
+$vaciarCarrito=vaciarCarrito($conexion,$idUsuario);
 
 header('Location: MostrarCarrito.php');
 
