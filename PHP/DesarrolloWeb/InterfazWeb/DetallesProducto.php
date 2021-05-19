@@ -29,7 +29,7 @@ $idUsuario=$_SESSION['idUsuario'];
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
         <link rel="stylesheet" href="../../../CSS/Estilos.css">
-    
+       
         <script src="../../../JS/Loader.js"></script>
       
 
@@ -75,6 +75,17 @@ $idUsuario=$_SESSION['idUsuario'];
     
     <div class="container">
         <div class="contenedorPerfil">
+
+
+        <div class="rating">
+            <input type="radio" class="star" name="star" data-valor="5"  id="star1"><label for="star1"></label>
+            <input type="radio" class="star" name="star" data-valor="4"  id="star2"><label for="star2"></label>
+            <input type="radio" class="star" name="star" data-valor="3" id="star3"><label for="star3"></label>
+            <input type="radio" class="star" name="star" data-valor="2" id="star4"><label for="star4"></label>
+            <input type="radio" class="star" name="star" data-valor="1" id="star5"><label for="star5"></label>
+            
+        
+        </div>
            
         <div class="row">
             <div class="m-auto"><br>
@@ -125,7 +136,36 @@ $idUsuario=$_SESSION['idUsuario'];
     <script src="https://code.jquery.com/jquery-3.5.1.js" type="text/javascript"></script>
     <script src="../../../JS/DetallesProducto.js"></script>                
     <script src="../../../JS/Catalogo.js"></script>
-    <script src="https://use.fontawesome.com/releases/v5.15.2/js/all.js" data-auto-a11y="true"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
 </body>
 </html>
+<script>
+    $(document).ready(function(){
+        
+        
+        
+        $('.star').on("click",function(e){
+          
+            
+            
+           
+            const postData={
+               valorEstrella:  $(this).attr('data-valor')
+    
+            }
+            
+            
+            
+            $.post('Estrellas.php', postData, function(response){
+                console.log(response);
+            });
+            e.preventDefault();
+
+               
+          
+        });
+       
+    });
+</script>
+
