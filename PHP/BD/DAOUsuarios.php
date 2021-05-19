@@ -212,13 +212,13 @@ function busquedDireccionesAdmin($conexion, $variableBusqueda){
     return $resultado;
 }
 
-function enviarComentarios($conexion, $comentario, $idUsuario, $idProducto ){
-    $consulta = "INSERT INTO ValoracionesComentarios (Comentario, idUsuario_VC, idProducto_VC) VALUES ('$comentario', '$idUsuario', '$idProducto');";
+function enviarComentarios($conexion, $comentario, $idUsuario, $idProducto, $usuario ){
+    $consulta = "INSERT INTO ValoracionesComentarios (Comentario, idUsuario_VC, idProducto_VC, Usuario) VALUES ('$comentario', '$idUsuario', '$idProducto', '$usuario');";
     $resultado = mysqli_query($conexion,$consulta);
     return $resultado;
 }
-function mostrarComentariosComentarios($conexion){
-    $consulta = "SELECT * FROM ValoracionesComentarios;";
+function mostrarComentariosComentarios($conexion, $idProducto){
+    $consulta = "SELECT * FROM ValoracionesComentarios WHERE idProducto_VC = '$idProducto';";
     $resultado = mysqli_query($conexion,$consulta);
     return $resultado;
 }

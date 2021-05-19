@@ -7,6 +7,8 @@ $conexion=conectar(true);
 session_start();
 $idProducto=$_GET['idProducto'];
 $idUsuario=$_SESSION['idUsuario'];
+
+
 ?>
 
 <!DOCTYPE html>
@@ -76,56 +78,84 @@ $idUsuario=$_SESSION['idUsuario'];
     <div class="container">
         <div class="contenedorPerfil">
 
-
-        <div class="rating">
-            <input type="radio" class="star" name="star" data-valor="5"  id="star1"><label for="star1"></label>
-            <input type="radio" class="star" name="star" data-valor="4"  id="star2"><label for="star2"></label>
-            <input type="radio" class="star" name="star" data-valor="3" id="star3"><label for="star3"></label>
-            <input type="radio" class="star" name="star" data-valor="2" id="star4"><label for="star4"></label>
-            <input type="radio" class="star" name="star" data-valor="1" id="star5"><label for="star5"></label>
-            
-        
-        </div>
-           
-        <div class="row">
-            <div class="m-auto"><br>
+            <?php 
                 
+                $idProducto= $_GET['idProducto'];
+                $buscarProducto=buscarProductoPorID($conexion, $idProducto);
+                $producto=mysqli_fetch_assoc($buscarProducto);
+                $idCategoria=$producto['idCategoria'];
+                $buscarCategoria=buscarCategoriaPorID($conexion,$idCategoria);
+                $categoria=mysqli_fetch_assoc($buscarCategoria);
+            
+                
+            ?>
+            <h2><?php echo $producto['NombreProducto'];?></h2><br>
+            <p style="text-align: center; "><img src="data:image/jpeg;base64,<?php echo base64_encode($producto['Imagen']);?>" class="img-responsive border border-dark rounded " width="400rem"  height="300rem" alt="" ></p><br>
+            <hr>
+            <p>Calificacion: </p>
+            
+                
+            <hr>
+            <h2>Detalles del Producto </h2><br>
+
+            <span><b>Categoría:</b>&nbsp;&nbsp;<?php echo $categoria['NombreCategoria'];?></span><br><br>
+            <span><b>Detalles del Producto:</b><br><?php echo $producto['DetallesProducto'];?></span><br><br>
+            <span><b>Precio:</b>&nbsp;&nbsp;<?php echo $producto['Precio'];?> €</span><br><br>
+            <span><b>Stock:</b>&nbsp;&nbsp;<?php echo $producto['Stock'];?> unidades</span><br><br>
+            <?php
+
+                if($_SESSION['usuarioConectado']==false){
+
+            ?>
+            <div class="row ">
+                <div class="col-md-4"></div>
+                <button class="btn btn-success mt-1 enviar col-md-4" style=" font-family: 'Fredoka One', cursive;"  name="iniciSesion"><i class="fas fa-cart-plus"></i> &nbsp;Inicia Sesion </button>
+                <div class="col-md-4"></div>
+            </div>
+            
+            <?php    
+                }elseif($_SESSION['usuarioConectado']==true){
+
+            ?>  
+            <div class="row ">
+                <div class="col-md-4"></div>
+                <button class="btn btn-success mt-1 enviar col-md-4" style=" font-family: 'Fredoka One', cursive;"  name="btnAccion" data-id="<?php echo $producto['idProducto'];?>" data-precio="<?php echo $producto['Precio']; ?>"   data-cantidad="<?php echo 1; ?>" ><i class="fas fa-cart-plus"></i> &nbsp;Añadir al carrito </button>
+                <div class="col-md-4"></div>
+            </div>
+             <br>   
+            <?php
+
+                }  
+            ?> 
+            <?php
+
+                if($_SESSION['usuarioConectado']==false){
+
+            ?> 
+            <?php    
+                }elseif($_SESSION['usuarioConectado']==true){
+
+            ?>
+            <h2>Comentarios</h2><br>
+
                 <div class="input-group mb-3">
-                <textarea name="comentario" class="form-control"   aria-describedby="button-addon2" id="comentario" cols="40" rows="1"></textarea>
-                <div class="input-group-append">
-                <?php
-
-                    if($_SESSION['usuarioConectado']==false){
-
-                ?> 
-                    <button class="btn btn-success mt-1" type="button"  data-toggle="modal" data-target="#emergenteIniciaSesionCatalogo" >Añadir al carrito</button> 
-                <?php    
-                    }elseif($_SESSION['usuarioConectado']==true){
-
-                ?>
-                    <button class="btn btn-success  enviar"   name="btnAccion" data-idProducto="<?php echo $idProducto;?>" data-idUsuario="<?php echo $idUsuario; ?>">Enviar</button>
-                <?php
-                    }
-                ?> 
+                    <textarea name="comentario" class="form-control"   aria-describedby="button-addon2" id="comentario" cols="40" rows="1"></textarea>
+                    <div class="input-group-append">
+            
+                        <button class="btn btn-success  enviar"   name="btnComentar" data-nombreUsuario="<?php echo $usu['Usuario']; ?>" data-idProducto="<?php echo $idProducto;?>" data-idUsuario="<?php echo $idUsuario; ?>">Enviar</button>
+                    </div>    
                 </div>
                 <br>
-               
-            </div>
-            <div class="dropdown-divider "></div>
+                
+              
+            <?php
+
+                }  
+            ?> 
+            <hr>
+            <div name="mostrarComentarios" class="border border-dark"  id="mostrarComentarios" ></div>
+            <hr>
             
-                
-            <div name="mostrarComentarios"  id="mostrarComentarios" ></div>
-            <div class="dropdown-divider "></div>
-                
-                
-        
- 
-
-                  
-            </div>
-
-        </div>
-           
             
         </div><br>
     </div>
@@ -133,39 +163,14 @@ $idUsuario=$_SESSION['idUsuario'];
     <?php include_once "Footer.php"?>
     
     <!--Scripts--> 
-    <script src="https://code.jquery.com/jquery-3.5.1.js" type="text/javascript"></script>
+    
     <script src="../../../JS/DetallesProducto.js"></script>                
     <script src="../../../JS/Catalogo.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js" type="text/javascript"></script>
 </body>
 </html>
-<script>
-    $(document).ready(function(){
-        
-        
-        
-        $('.star').on("click",function(e){
-          
-            
-            
-           
-            const postData={
-               valorEstrella:  $(this).attr('data-valor')
-    
-            }
-            
-            
-            
-            $.post('Estrellas.php', postData, function(response){
-                console.log(response);
-            });
-            e.preventDefault();
 
-               
-          
-        });
-       
-    });
-</script>
+
 
