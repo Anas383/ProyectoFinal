@@ -222,7 +222,22 @@ function mostrarComentariosComentarios($conexion, $idProducto){
     $resultado = mysqli_query($conexion,$consulta);
     return $resultado;
 }
+function mostrarValoracion($conexion, $idProducto, $idUsuario){
+    $consulta = "SELECT * FROM  ValoracionEstrellas where idProducto_VE='$idProducto' and idUsuario_VE='$idUsuario';";
+    $resultado = mysqli_query($conexion,$consulta);
+    return $resultado;
+}
 
+function insertarValoracion($conexion, $idProducto, $idUsuario, $estrellas){
+    $consulta = "INSERT INTO ValoracionEstrellas (idProducto_VE, idUsuario_VE, Valoracion) VALUES ('$idProducto', '$idUsuario', '$estrellas');";
+    $resultado = mysqli_query($conexion,$consulta);
+    return $resultado;
+}
+function actualizarValoracion($conexion, $idValoracionEstrellas, $estrellas){
+    $consulta = "UPDATE ValoracionEstrellas SET Valoracion = '$estrellas' WHERE (idValoracionEstrellas = '$idValoracionEstrellas');";
+    $resultado = mysqli_query($conexion,$consulta);
+    return $resultado;
+}
 
 
 function crearSesion($usuario){

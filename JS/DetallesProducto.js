@@ -2,6 +2,7 @@ $(document).ready(function(){
         
        
     mostrandoComentarios();
+    
     $('button[name=btnComentar]').click(function(e){
         const postData={
            idProducto: $(this).attr('data-idProducto'),
@@ -42,7 +43,9 @@ $(document).ready(function(){
                 });
              
                $('#mostrarComentarios').html(template);
+               $('#mostrarComentariosSinSesion').html(template);
             }
         })
    }
+   
 });

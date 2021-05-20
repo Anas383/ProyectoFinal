@@ -31,6 +31,7 @@ $idUsuario=$_SESSION['idUsuario'];
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
         <link rel="stylesheet" href="../../../CSS/Estilos.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.css">
        
         <script src="../../../JS/Loader.js"></script>
       
@@ -92,10 +93,35 @@ $idUsuario=$_SESSION['idUsuario'];
             <h2><?php echo $producto['NombreProducto'];?></h2><br>
             <p style="text-align: center; "><img src="data:image/jpeg;base64,<?php echo base64_encode($producto['Imagen']);?>" class="img-responsive border border-dark rounded " width="400rem"  height="300rem" alt="" ></p><br>
             <hr>
-            <p>Calificacion: </p>
+            <?php
+                $mostrarValoracion= mostrarValoracion($conexion, $idProducto, $idUsuario);
+                $valoracion=mysqli_fetch_assoc($mostrarValoracion);
+                $numero=$valoracion['Valoracion'];
+            ?>
+            <?php
+
+            if($_SESSION['usuarioConectado']==false){
+
+            ?> 
+            <?php    
+            }elseif($_SESSION['usuarioConectado']==true){
+
+            ?>
+           
+            <p>Calificación: <div id="rateYo" data-rateyo-rating="<?php 
+                if($numero==0){
+                    echo '0';
+                }else{
+                    echo $valoracion['Valoracion'];
+                }
             
-                
+            ?>"></div></p>
+
             <hr>
+            <?php
+
+            }  
+            ?>
             <h2>Detalles del Producto </h2><br>
 
             <span><b>Categoría:</b>&nbsp;&nbsp;<?php echo $categoria['NombreCategoria'];?></span><br><br>
@@ -132,10 +158,13 @@ $idUsuario=$_SESSION['idUsuario'];
                 if($_SESSION['usuarioConectado']==false){
 
             ?> 
+            
             <?php    
                 }elseif($_SESSION['usuarioConectado']==true){
+                    
 
             ?>
+            
             <h2>Comentarios</h2><br>
 
                 <div class="input-group mb-3">
@@ -147,14 +176,14 @@ $idUsuario=$_SESSION['idUsuario'];
                 </div>
                 <br>
                 
-              
+                <hr>
+                <div name="mostrarComentarios" class="border border-dark"  id="mostrarComentarios" ></div>
+                <hr>
             <?php
 
                 }  
             ?> 
-            <hr>
-            <div name="mostrarComentarios" class="border border-dark"  id="mostrarComentarios" ></div>
-            <hr>
+            
             
             
         </div><br>
@@ -169,6 +198,8 @@ $idUsuario=$_SESSION['idUsuario'];
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
+    <script src="../../../JS/Estrellas.js"></script>
 </body>
 </html>
 
