@@ -238,6 +238,13 @@ function actualizarValoracion($conexion, $idValoracionEstrellas, $estrellas){
     $resultado = mysqli_query($conexion,$consulta);
     return $resultado;
 }
+function hacerMediaValoracion($conexion,$idProducto){
+    //BUSCAMOS SI EXISTE EL USUARIO
+    $consulta = "SELECT format(AVG(Valoracion),1) FROM ValoracionEstrellas where idProducto_VE= '$idProducto';";
+    //EJECUTAMOS LA CONSULTA
+    $resultado = mysqli_query($conexion,$consulta);
+    return $resultado;
+}
 
 
 function crearSesion($usuario){

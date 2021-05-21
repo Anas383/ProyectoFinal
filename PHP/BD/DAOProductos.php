@@ -36,7 +36,7 @@ function contarProductos($conexion, $idCesta){
 
 function añadirProductosAlCarrito($conexion,$cantidadProducto, $precioProducto, $idCesta, $idProducto){
     //COMPARAMOS LOS DATOS DEL USUARIO
-    $consulta = "INSERT INTO ProductosCarrito (Cantidad, PrecioProducto, idCesta, idProductoCarrito) VALUES ('$cantidadProducto', '$precioProducto', '$idCesta', '$idProducto')";
+    $consulta = "INSERT INTO ProductosCarrito (Cantidad, PrecioProducto, idCesta, idProductoCarrito) VALUES ('$cantidadProducto', '$precioProducto', '$idCesta', '$idProducto')ON DUPLICATE KEY UPDATE Cantidad=Cantidad+1";
     $resultado= mysqli_query($conexion,$consulta);
    return $resultado;
 }
@@ -64,7 +64,7 @@ function eliminarProductosCarrito($conexion,$idItem){
 
 function totalPrecioProductosCarrito($conexion,$idCesta){
     //COMPARAMOS LOS DATOS DEL USUARIO
-    $consulta = "SELECT SUM(PrecioProducto) FROM ProductosCarrito where idCesta='$idCesta' ";
+    $consulta = "SELECT SUM(PrecioProducto*Cantidad) FROM ProductosCarrito where idCesta='$idCesta' ;";
     $resultado= mysqli_query($conexion,$consulta);
    return $resultado;
 }
@@ -219,6 +219,30 @@ function modificarCategoriaLogo($conexion, $nombre, $descripcion, $logo, $idCate
     $resultado = mysqli_query($conexion,$consulta);
     return $resultado;
 }
+
+function buscarProductosEnElCarrito($conexion, $idProducto){
+    //BUSCAMOS SI EXISTE EL USUARIO
+    $consulta = "SELECT * FROM ProductosCarrito;";
+    //EJECUTAMOS LA CONSULTA
+    $resultado = mysqli_query($conexion,$consulta);
+    return $resultado;
+}
+function actualizarCantidadProductosEnElCarrito($conexion, $idItem, $cantidad){
+    //BUSCAMOS SI EXISTE EL USUARIO
+    $consulta = "UPDATE ProductosCarrito SET Cantidad = '$cantidad'+1 WHERE (idItem = '$idItem');";
+    //EJECUTAMOS LA CONSULTA
+    $resultado = mysqli_query($conexion,$consulta);
+    return $resultado;
+}
+function actualizarStockProductos($conexion, $idProducto, $stock){
+    //BUSCAMOS SI EXISTE EL USUARIO
+    $consulta = "UPDATE Productos SET Stock = '$stock' WHERE (idProducto = '$idProducto');";
+    //EJECUTAMOS LA CONSULTA
+    $resultado = mysqli_query($conexion,$consulta);
+    return $resultado;
+}
+
+
 
 
 

@@ -15,6 +15,9 @@ if($_SESSION['usuarioConectado']==false){
   $idProducto= $_POST['idProducto'];
   $precio= $_POST['precio'];
   $cantidad= $_POST['cantidad'];
+  if($cantidad==0){
+    $cantidad+=1;
+  }
   $idCesta=$_SESSION['idUsuario'];
 
   $añadirProductosAlCarrito= añadirProductosAlCarrito($conexion,$cantidad, $precio, $idCesta, $idProducto);

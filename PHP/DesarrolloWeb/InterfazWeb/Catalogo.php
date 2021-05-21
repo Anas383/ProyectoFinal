@@ -184,7 +184,7 @@
                                             }elseif($_SESSION['usuarioConectado']==true){
                                 
                                             ?>
-                                        <button class="btn btn-success mt-1 enviar"   name="btnAccion" data-id="<?php echo $productos['idProducto'];?>" data-precio="<?php echo $productos['Precio']; ?>"  data-cantidad="<?php echo 1; ?>" >Añadir al carrito</button>
+                                        <button class="btn btn-success mt-1 enviar"   name="btnAccion" data-id="<?php echo $productos['idProducto'];?>" data-precio="<?php echo $productos['Precio']; ?>"  data-cantidad="<?php echo $productos['Cantidad']; ?>" >Añadir al carrito</button>
                                         <?php
                                          }
                                                 

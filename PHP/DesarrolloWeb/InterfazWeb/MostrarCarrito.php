@@ -82,6 +82,7 @@
               <tr>
               <th scope="col">Producto</th>
                 <th scope="col">Precio del Producto</th>
+                <th scope="col">Cantidad</th>
                 <th scope="col">Acciones</th>
               </tr>
             </thead>
@@ -107,6 +108,7 @@
                    </td>
                   
                     <td><?php echo $productosCarrito['PrecioProducto'];?>€</td>
+                    <td><?php echo $productosCarrito['Cantidad'];?>ud.</td>
                     <td class="botonesTablasEdicion"><a href="#" class="btn btn-primary "><i class="fas fa-info-circle"></i></i>&nbsp;&nbsp;Detalles</a><a href="#" data-toggle="modal" data-target="#emergenteEliminarProducto"  class="btn btn-danger "><i class="fas fa-trash-alt"></i></i>&nbsp;&nbsp;Eliminar</a></td>
                     <?php include_once 'EmergenteEliminarProductoCarrito.php'?>
                     <?php
@@ -119,7 +121,7 @@
                        
                        $precioTotalProductos= totalPrecioProductosCarrito($conexion, $idCesta);
                        $precioTotal=mysqli_fetch_assoc($precioTotalProductos);
-                       $total=$precioTotal['SUM(PrecioProducto)'];
+                       $total=$precioTotal['SUM(PrecioProducto*Cantidad)'];
                        if($total==NULL){
                            $total='0.00';
                         }
@@ -138,8 +140,9 @@
                     
                     </td>
                     <?php include_once 'VentanaEmergenteDireccionAlPagar.php'?>
+                    <td></td>
                     <td><a href="VaciarCarrito.php" id="vaciarCarrito"  class="btn btn-danger btn-lg">Vaciar carrito</a></td>
-                     
+                    
                 </tr>
                
             </tbody>

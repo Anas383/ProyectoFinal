@@ -91,7 +91,7 @@ $idUsuario=$_SESSION['idUsuario'];
                 
             ?>
             <h2><?php echo $producto['NombreProducto'];?></h2><br>
-            <p style="text-align: center; "><img src="data:image/jpeg;base64,<?php echo base64_encode($producto['Imagen']);?>" class="img-responsive border border-dark rounded " width="400rem"  height="300rem" alt="" ></p><br>
+            <p style="text-align: center; "><img src="data:image/jpeg;base64,<?php echo base64_encode($producto['Imagen']);?>" class="img-responsive border border-dark rounded " width="300rem"  height="300rem" alt="" ></p><br>
             <hr>
             <?php
                 $mostrarValoracion= mostrarValoracion($conexion, $idProducto, $idUsuario);
@@ -116,6 +116,21 @@ $idUsuario=$_SESSION['idUsuario'];
                 }
             
             ?>"></div></p>
+            <span class="row">
+            <?php
+                $media=mysqli_fetch_assoc(hacerMediaValoracion($conexion,$idProducto));
+                $porcentajeMedia=($media['format(AVG(Valoracion),1)']*100)/5;
+                    // $numeroVal= ($valoracion['Valoracion']*100)/5;
+                ?>
+                <div class="col-md-5">Calificación Media del producto:  </div>
+                <div class="col-md-2 "><?php echo $media['format(AVG(Valoracion),1)'];?> <i class="fas fa-star text-warning"></i></div>
+                <div class="col-md-5 mt-2">
+                <div class="progress ">
+                    <div class="progress-bar bg-warning" role="progressbar" style="width: <?php echo $porcentajeMedia;?>%" aria-valuenow="<?php echo $porcentajeMedia;?>" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+                    
+                </div>
+            </span>
 
             <hr>
             <?php
@@ -168,23 +183,25 @@ $idUsuario=$_SESSION['idUsuario'];
             <h2>Comentarios</h2><br>
 
                 <div class="input-group mb-3">
-                    <textarea name="comentario" class="form-control"   aria-describedby="button-addon2" id="comentario" cols="40" rows="1"></textarea>
+                    <textarea name="comentario" class="form-control" placeholder="Escribe tu comentario..."  aria-describedby="button-addon2" id="comentario" cols="40" rows="1"></textarea>
                     <div class="input-group-append">
             
                         <button class="btn btn-success  enviar"   name="btnComentar" data-nombreUsuario="<?php echo $usu['Usuario']; ?>" data-idProducto="<?php echo $idProducto;?>" data-idUsuario="<?php echo $idUsuario; ?>">Enviar</button>
                     </div>    
                 </div>
                 <br>
-                
+                <label for="desplegarComentarios" class="input-group-text" style="cursor: pointer;"><i class="fas fa-sort-down flechaArriba" style="font-size:1.25rem;"></i>&nbsp;<b>Mostrar comentarios <i class="fas fa-comments"></i></b></label>
+                <input type="checkbox" name="desplegarComentarios" id="desplegarComentarios" style="display: none;">
                 <hr>
-                <div name="mostrarComentarios" class="border border-dark"  id="mostrarComentarios" ></div>
+                <div name="mostrarComentarios" class="border border-dark"  id="mostrarComentarios" style="display: none;" ></div>
                 <hr>
             <?php
 
                 }  
             ?> 
             
-            
+        
+
             
         </div><br>
     </div>
@@ -202,6 +219,24 @@ $idUsuario=$_SESSION['idUsuario'];
     <script src="../../../JS/Estrellas.js"></script>
 </body>
 </html>
+<script>
+            $(document).ready(function()
+            {
+                $("#desplegarComentarios").click(function(evento)
+                {
+                    if($("#desplegarComentarios").is(":checked"))
+                    {
+                        $("#mostrarComentarios").css("display", "block");
+                        $('.flechaArriba').removeClass('fas fa-sort-down').addClass('fas fa-sort-up');
+                    }
+                    else
+                    {
+                        $("#mostrarComentarios").css("display", "none");
+                        $('.flechaArriba').removeClass('fas fa-sort-up').addClass('fas fa-sort-down');
+                    }
+                });
+            });
+        </script>
 
 
 
