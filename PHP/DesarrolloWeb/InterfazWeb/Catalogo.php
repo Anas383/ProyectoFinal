@@ -184,7 +184,8 @@
                                             }elseif($_SESSION['usuarioConectado']==true){
                                 
                                             ?>
-                                        <button class="btn btn-success mt-1 enviar"   name="btnAccion" data-id="<?php echo $productos['idProducto'];?>" data-precio="<?php echo $productos['Precio']; ?>"  data-cantidad="<?php echo $productos['Cantidad']; ?>" >Añadir al carrito</button>
+                                        <button class="btn btn-success mt-1 enviar"   name="btnAccion" <?php if($productos['Stock']==0){echo 'data-toggle="modal" data-target="#exampleModal"'; }?> 
+                                        data-stock="<?php echo $productos['Stock'];?>" data-id="<?php echo $productos['idProducto'];?>" data-precio="<?php echo $productos['Precio']; ?>"  data-cantidad="<?php echo $productos['Cantidad']; ?>" >Añadir al carrito</button>
                                         <?php
                                          }
                                                 
@@ -207,7 +208,25 @@
             </div>                    
         </div>      
                
-    
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+       No hay Stock
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
     </div>
     <br>
     <?php include_once "Footer.php"?>

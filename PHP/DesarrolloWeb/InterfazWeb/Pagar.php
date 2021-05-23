@@ -114,7 +114,7 @@
             // Finalize the transaction
             onApprove: function(data, actions) {
                 return actions.order.capture().then(function(details) {
-                    window.location="MostrarCarrito.php";
+                    window.location="VaciarCarritoPaypal.php";
                     
                 });
             }

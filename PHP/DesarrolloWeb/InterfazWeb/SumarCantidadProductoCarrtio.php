@@ -7,7 +7,7 @@ $conexion=conectar(true);
 
 
 $idItem=$_GET['idItem'];
-$eliminarItem=eliminarProductosCarrito($conexion,$idItem);
+$sumarCantidad= SumarCantidadProductosEnElCarrito($conexion, $idItem);
 
 header('Location: MostrarCarrito.php');
 ?>

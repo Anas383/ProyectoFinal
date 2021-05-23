@@ -34,12 +34,22 @@ $(document).ready(function(){
               
                let comentarios= JSON.parse(response); 
                 let template='';
+        
                 comentarios.forEach(comentarios => {
+                 
                     template += `
                     <p>&nbsp;&nbsp;${comentarios.Nombre}</p>
                     <textarea class='form-control' cols="30" rows="5" disabled>${comentarios.Comentario} </textarea>
                     
+                    
+                    
                     `
+                    if($("button[name=btnComentar]").attr('data-idUsuario')==comentarios.idUsuario){
+                        template+=`
+                        <span><i class="fas fa-trash"></i></span>
+                        
+                        `
+                    }
                 });
              
                $('#mostrarComentarios').html(template);
@@ -49,3 +59,4 @@ $(document).ready(function(){
    }
    
 });
+

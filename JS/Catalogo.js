@@ -6,10 +6,13 @@ $(document).ready(function(){
         const postData={
            idProducto: $(this).attr('data-id'),
            precio:  $(this).attr('data-precio'),
-           cantidad:$(this).attr('data-cantidad')
+           cantidad:$(this).attr('data-cantidad'),
+           stock:$(this).attr('data-stock')
+           
 
         }
         $.post('Carrito.php', postData, function(response){
+        
             mostrarNumeroCarrito();
         });
         e.preventDefault();

@@ -7,13 +7,15 @@ $idP=$_GET['id'];
 
 
 $resultado =  mostrarComentariosComentarios($conexion, $idP);
-
+$iconoBorrar="NEPE";
 $json= array();
 
 while($mostrar= mysqli_fetch_array($resultado)){
     $json[]= array(
         'Comentario' => $mostrar['Comentario'],
         'Nombre' => $mostrar['Usuario'],
+        'idUsuario' => $mostrar['idUsuario_VC'],
+        
     );
 }
 

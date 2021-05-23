@@ -108,9 +108,9 @@
                    </td>
                   
                     <td><?php echo $productosCarrito['PrecioProducto'];?>€</td>
-                    <td><?php echo $productosCarrito['Cantidad'];?>ud.</td>
-                    <td class="botonesTablasEdicion"><a href="#" class="btn btn-primary "><i class="fas fa-info-circle"></i></i>&nbsp;&nbsp;Detalles</a><a href="#" data-toggle="modal" data-target="#emergenteEliminarProducto"  class="btn btn-danger "><i class="fas fa-trash-alt"></i></i>&nbsp;&nbsp;Eliminar</a></td>
-                    <?php include_once 'EmergenteEliminarProductoCarrito.php'?>
+                    <td><a href="SumarCantidadProductoCarrtio.php?idItem=<?php echo $productosCarrito['idItem'];?>" class="btn btn-success" style="font-size: 10px; color: white;"><i class="fas fa-plus"></i></a>&nbsp;<?php echo $productosCarrito['Cantidad'];?>ud. &nbsp; <a href="RestarCantidadProductoCarrtio.php?idItem=<?php echo $productosCarrito['idItem'];?>&cantidad=<?php echo $productosCarrito['Cantidad'];?>" class="btn btn-danger" style="font-size: 10px; color: white;"><i class="fas fa-minus"></i></a></td>
+                    <td class="botonesTablasEdicion"><a href="#" class="btn btn-primary "><i class="fas fa-info-circle"></i></i>&nbsp;&nbsp;Detalles</a><a href="EliminarProductoCarrito.php?idItem=<?php echo $productosCarrito['idItem'];?>"  class="btn btn-danger "><i class="fas fa-trash-alt"></i></i>&nbsp;&nbsp;Eliminar</a></td>
+
                     <?php
                      }
                     ?>

@@ -1,10 +1,10 @@
 <?php 
-   session_start();
-   require '../../BD/ConectorBD.php';
-   require '../../BD/DAOUsuarios.php';
-   require '../../BD/DAOProductos.php';
+session_start();
+require '../../BD/ConectorBD.php';
+require '../../BD/DAOUsuarios.php';
+require '../../BD/DAOProductos.php';
 
-   $conexion=conectar(true);
+$conexion=conectar(true);
                         
 $idCesta=$_SESSION['idUsuario'];
 $contarProductos=contarProductos($conexion, $idCesta);
