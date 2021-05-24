@@ -12,8 +12,8 @@ $(document).ready(function(){
 
         }
         $.post('Carrito.php', postData, function(response){
-        
-            mostrarNumeroCarrito();
+            mostrarNumeroCarrito(); 
+            console.log(response);
         });
         e.preventDefault();
            
@@ -23,10 +23,12 @@ $(document).ready(function(){
         $.ajax({
             url:'NumeroCarrito.php',
             type:'GET',
+
             success: function numero(response){
                 let num= parseInt(response);
                 document.getElementById('numC').innerHTML=num;
                 document.getElementById('numCM').innerHTML=num;
+               
             }
         })
     }

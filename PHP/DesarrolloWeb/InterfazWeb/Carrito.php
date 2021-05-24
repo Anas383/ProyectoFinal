@@ -18,21 +18,26 @@ if($_SESSION['usuarioConectado']==false){
   $stock= $_POST['stock'];
   $idCesta=$_SESSION['idUsuario'];
   $comprobarProducto=buscarProductosEnElCarrito2($conexion, $idProducto, $idCesta);
+  $product=mysqli_fetch_assoc($comprobarProducto);
+
   if($cantidad==0){
     $cantidad+=1;
   }
-
-  if($stock==0){
-   echo "No hay Stock";
+  if($product['Cantidad']>=$stock){
+    echo 'Has excedido el stock';
+  }
+  elseif($stock==0){
+    
   }else{
     
-  if(mysqli_num_rows($comprobarProducto)!=0){
-    $product=mysqli_fetch_assoc($comprobarProducto);
+  if(mysqli_num_rows($comprobarProducto)!=0 ){
+    
     $idItem=$product['idItem'];
-    $cantidad=$product['Cantidad'];
-     $actualizar=actualizarCantidadProductosEnElCarrito($conexion, $idItem, $cantidad);
+    $cantidadP=$product['Cantidad'];
+     $actualizar=actualizarCantidadProductosEnElCarrito($conexion, $idItem, $cantidadP);
      
-  }else{
+  }
+  else{
     $añadirProductosAlCarrito= añadirProductosAlCarrito($conexion,$cantidad, $precio, $idCesta, $idProducto);
     
   }

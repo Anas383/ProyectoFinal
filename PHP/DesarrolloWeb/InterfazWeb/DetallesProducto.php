@@ -160,7 +160,8 @@ $idUsuario=$_SESSION['idUsuario'];
             ?>  
             <div class="row ">
                 <div class="col-md-4"></div>
-                <button class="btn btn-success mt-1 enviar col-md-4" style=" font-family: 'Fredoka One', cursive;"  name="btnAccion" data-id="<?php echo $producto['idProducto'];?>" data-precio="<?php echo $producto['Precio']; ?>"   data-cantidad="<?php echo 1; ?>" ><i class="fas fa-cart-plus"></i> &nbsp;Añadir al carrito </button>
+                <button class="btn btn-success mt-1 enviar col-md-4" style=" font-family: 'Fredoka One', cursive;"   name="btnAccion" <?php if($producto['Stock']==0){echo 'data-toggle="modal" data-target="#productoSinStock"'; }?> 
+                                        data-stock="<?php echo $producto['Stock'];?>" data-id="<?php echo $producto['idProducto'];?>" data-precio="<?php echo $producto['Precio']; ?>"  data-cantidad="<?php echo $producto['Cantidad']; ?>">Añadir al carrito</button>
                 <div class="col-md-4"></div>
             </div>
              <br>   
@@ -236,7 +237,7 @@ $idUsuario=$_SESSION['idUsuario'];
                     }
                 });
             });
-        </script>
+</script>
 
 
 

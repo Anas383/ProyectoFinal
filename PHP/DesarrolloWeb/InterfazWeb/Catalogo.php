@@ -164,9 +164,11 @@
                             <img  data-toggle="popover" data-trigger="hover" title="<?php echo $productos['NombreProducto']?>" data-content="<?php echo $productos['DetallesProducto'];?>" src="data:image/jpeg;base64,<?php echo base64_encode($productos['Imagen']);?>" width="100%" height="317" alt="Image placeholder" class="img-fluid">
                         </figure>
                         <div class="block-4-text p-4">
-                            <h3 style=" font-size: 90%;"><?php echo $productos['NombreProducto']?></h3><br>
-                           <strong> <?php echo $productos['Precio'];?>&nbsp;€ </strong>                           
-                           
+                            <h3 style=" font-size: 90%;"><?php echo $productos['NombreProducto']?></h3>
+                            <span class="text-danger"><?php if($productos['Stock']==0){echo '¡Producto agotado!'.'<i class="far fa-frown"></i>'; }?></span><br>
+                           <strong> <?php echo $productos['Precio'];?>&nbsp;€ </strong>
+                                                   
+                         
                                 
                                 
                                 <div class="row">
@@ -184,8 +186,8 @@
                                             }elseif($_SESSION['usuarioConectado']==true){
                                 
                                             ?>
-                                        <button class="btn btn-success mt-1 enviar"   name="btnAccion" <?php if($productos['Stock']==0){echo 'data-toggle="modal" data-target="#exampleModal"'; }?> 
-                                        data-stock="<?php echo $productos['Stock'];?>" data-id="<?php echo $productos['idProducto'];?>" data-precio="<?php echo $productos['Precio']; ?>"  data-cantidad="<?php echo $productos['Cantidad']; ?>" >Añadir al carrito</button>
+                                        <button class="btn btn-success mt-1 enviar"   name="btnAccion" <?php if($productos['Stock']==0){echo 'data-toggle="modal" data-target="#productoSinStock"'; }?> 
+                                        data-stock="<?php echo $productos['Stock'];?>" data-id="<?php echo $productos['idProducto'];?>" data-precio="<?php echo $productos['Precio']; ?>"  data-cantidad="<?php echo $productos['Cantidad']; ?>">Añadir al carrito</button>
                                         <?php
                                          }
                                                 
@@ -208,25 +210,25 @@
             </div>                    
         </div>      
                
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-       No hay Stock
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
+        <div class="modal fade" id="productoSinStock" tabindex="-1" aria-labelledby="productoSinStockLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="productoSinStockLabel">AnimeTEK</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                        El Producto está agotado.
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-success" data-dismiss="modal">Cerrar</button>
+                            
+                        </div>
+                    </div>
+            </div>
+        </div>
     </div>
     <br>
     <?php include_once "Footer.php"?>
@@ -239,5 +241,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.js" type="text/javascript"></script>
     <script src="../../../JS/Catalogo.js"></script>
+    
 </body>
 </html>
