@@ -120,10 +120,10 @@ $idUsuario=$_SESSION['idUsuario'];
             <?php
                 $media=mysqli_fetch_assoc(hacerMediaValoracion($conexion,$idProducto));
                 $porcentajeMedia=($media['format(AVG(Valoracion),1)']*100)/5;
-                    // $numeroVal= ($valoracion['Valoracion']*100)/5;
+                    
                 ?>
                 <div class="col-md-5">Calificación Media del producto:  </div>
-                <div class="col-md-2 "><?php echo $media['format(AVG(Valoracion),1)'];?> <i class="fas fa-star text-warning"></i></div>
+                <div class="col-md-2 "><?php if($media['format(AVG(Valoracion),1)']==NULL){echo "0.0";}else{echo $media['format(AVG(Valoracion),1)'];}?> <i class="fas fa-star text-warning"></i></div>
                 <div class="col-md-5 mt-2">
                 <div class="progress ">
                     <div class="progress-bar bg-warning" role="progressbar" style="width: <?php echo $porcentajeMedia;?>%" aria-valuenow="<?php echo $porcentajeMedia;?>" aria-valuemin="0" aria-valuemax="100"></div>

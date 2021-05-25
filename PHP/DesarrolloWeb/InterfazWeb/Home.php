@@ -30,6 +30,7 @@
         <link rel="stylesheet" href="../../../CSS/Estilos.css">
         <script src="../../../JS/Loader.js"></script>
         
+        
 
 </head>
 <body >
@@ -73,7 +74,7 @@
     <p>
         <?php
             if(isset($_GET['registrado']) && $_GET['registrado'] == "usuarioRegistrado"){ echo '
-                <div class="modal" id="myModal" tabindex="-1">
+                <div class="modal" id="usuarioSeRegistro" tabindex="-1">
                     <div class="modal-dialog">
                         <div class="modal-content">
                         <div class="modal-header">
@@ -169,21 +170,7 @@
                       </div>
                 </span>
              </div>
-             <button type="button" class="btn btn-primary" id="liveToastBtn">Show live toast</button>
-
-<div class="position-fixed bottom-0 right-0 p-3" style="z-index: 5; right: 0; bottom: 0;">
-  <div id="liveToast" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true" data-delay="2000">
-    <div class="toast-header">
-      <img src="..." class="rounded mr-2" alt="...">
-      <strong class="mr-auto">Bootstrap</strong>
-      <small>11 mins ago</small>
-      <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    <div class="toast-body">
-      Hello, world! This is a toast message.
-    </div>
+    
   </div>
 </div>
         </div><br>
@@ -192,10 +179,18 @@
     <?php include_once "Footer.php"?>
     
     <!--Scripts--> 
+    
+   
     <script src="../../../JS/Home.js"></script> 
     <script src="https://use.fontawesome.com/releases/v5.15.2/js/all.js" data-auto-a11y="true"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.js" type="text/javascript"></script>
+    <script>$('#usuarioSeRegistro').modal('show');</script>
+    <?php
+      if($_SESSION['usuarioConectado']==true){
+        echo ' <script src="https://code.jquery.com/jquery-3.5.1.js" type="text/javascript"></script>';
+      }
+    
+    ?>
     <script src="../../../JS/Catalogo.js"></script> 
 </body>
 </html>

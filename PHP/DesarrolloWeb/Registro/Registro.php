@@ -29,7 +29,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
         <link rel="stylesheet" href="../../../CSS/Estilos.css">
         <script src="../../../JS/Loader.js"></script>
-        
+        <script src="https://www.google.com/recaptcha/api.js" async defer></script>
          
       
 </head>
@@ -181,6 +181,14 @@
                             <input type="reset" class="btn btn-primary btn-lg col-md-12" value="Limpiar">
                             
                         </div>
+                        <div class="row mt-2">
+                            <div class="col-md-3"></div>
+                            <div class="g-recaptcha col-md-6" data-sitekey="6LeeQ-0aAAAAAK703DlDllGzHkYTKHrYSgHs6u1d" required></div>
+                            <div class="col-md-3"></div>
+                        </div>
+                            
+                        
+
                         
                     </div>
                     <br>
@@ -189,6 +197,9 @@
                                 if(isset($_GET['error']) && $_GET['error'] == "usuarioExiste"){ echo '<i class="fas fa-exclamation-triangle"></i>&nbsp;&nbsp;'."El usuario que ha introducido ya existe.";  } 
                                 if(isset($_GET['error']) && $_GET['error'] == "emailExiste"){ echo '<i class="fas fa-exclamation-triangle"></i>&nbsp;&nbsp;'."El email que ha introducido ya existe.";  }
                                 if(isset($_GET['error']) && $_GET['error'] == "dniExiste"){ echo '<i class="fas fa-exclamation-triangle"></i>&nbsp;&nbsp;'."El DNI que ha introducido ya existe.";  }
+                                if(isset($_GET['error']) && $_GET['error'] == "captchaNoVerificado"){ echo '<i class="fas fa-exclamation-triangle"></i>&nbsp;&nbsp;'."Verifica el reCAPTCHA";  }
+                                if(isset($_GET['error']) && $_GET['error'] == "errorAlVerificarCaptcha"){ echo '<i class="fas fa-exclamation-triangle"></i>&nbsp;&nbsp;'."Ha ocurrido un error al comprobar reCAPTCHA";  }
+
                             ?>
                             
                         </p>

@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    $('#myModal').modal('show')
+    
     mostrarNumeroCarrito();
         
     $('button[name=btnAccion]').on('click',function(e){
