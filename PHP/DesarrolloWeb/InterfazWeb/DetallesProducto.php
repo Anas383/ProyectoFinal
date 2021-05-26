@@ -182,13 +182,16 @@ $idUsuario=$_SESSION['idUsuario'];
             ?>
             
             <h2>Comentarios</h2><br>
-
+            <form id="form-comentarios">   
                 <div class="input-group mb-3">
+                    
                     <textarea name="comentario" class="form-control" placeholder="Escribe tu comentario..."  aria-describedby="button-addon2" id="comentario" cols="40" rows="1"></textarea>
                     <div class="input-group-append">
             
-                        <button class="btn btn-success  enviar"   name="btnComentar" data-nombreUsuario="<?php echo $usu['Usuario']; ?>" data-idProducto="<?php echo $idProducto;?>" data-idUsuario="<?php echo $idUsuario; ?>">Enviar</button>
-                    </div>    
+                        <button class="btn btn-success  enviar"   name="btnComentar" data-rol="<?php echo $_SESSION['ROL']; ?>" data-idProducto="<?php echo $idProducto;?>" data-idUsuario="<?php echo $idUsuario; ?>">Enviar</button>
+                    </div> 
+                    
+                    </form>   
                 </div>
                 <br>
                 <label for="desplegarComentarios" class="input-group-text" style="cursor: pointer;"><i class="fas fa-sort-down flechaArriba" style="font-size:1.25rem;"></i>&nbsp;<b>Mostrar comentarios <i class="fas fa-comments"></i></b></label>
@@ -201,8 +204,6 @@ $idUsuario=$_SESSION['idUsuario'];
                 }  
             ?> 
             
-        
-
             
         </div><br>
     </div>

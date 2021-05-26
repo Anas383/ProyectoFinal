@@ -4,6 +4,7 @@ require '../../BD/ConectorBD.php';
 require '../../BD/DAOUsuarios.php';
 $conexion=conectar(true);
 $idP=$_GET['id'];
+session_start();
 
 
 $resultado =  mostrarComentariosComentarios($conexion, $idP);
@@ -15,6 +16,8 @@ while($mostrar= mysqli_fetch_array($resultado)){
         'Comentario' => $mostrar['Comentario'],
         'Nombre' => $mostrar['Usuario'],
         'idUsuario' => $mostrar['idUsuario_VC'],
+        'idComentario'=> $mostrar['idValoracionesComentarios'],
+        'ROL' => $_SERVER['ROL']
         
     );
 }

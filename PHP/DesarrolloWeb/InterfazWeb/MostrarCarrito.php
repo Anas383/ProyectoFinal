@@ -130,7 +130,7 @@
                      ?>€</h4></td>
                      <td>
                       <?php if($total==0.00){
-                          echo'<a href="Catalogo.php" class="btn btn-warning btn-lg">Ir a Catálogo</a>';
+                          echo'<a href="Catalogo.php" class="btn btn-warning btn-lg">Ir a catálogo</a>';
                       }else{?>
                         <a href="#" data-toggle="modal" data-target="#emergenteDireccionesAlPagar"  class="btn btn-success btn-lg">Realizar pago <strong>> ></strong></a>
                       <?php

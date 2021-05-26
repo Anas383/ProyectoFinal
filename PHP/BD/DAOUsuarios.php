@@ -154,7 +154,16 @@ function busquedUsuariosAdmin($conexion, $variableBusqueda){
     or ROL like '%$variableBusqueda%';";
     //EJECUTAMOS LA CONSULTA
     $resultado = mysqli_query($conexion,$consulta);
-    return $resultado;
+   
+    if(mysqli_num_rows($resultado)!=0){
+       
+        return $resultado;
+    }
+    else
+    {
+        echo "<tr><td class='text-center'>Usuario no encontrado &nbsp;:(</td></tr>";
+        
+    }
 }
 
 
@@ -214,6 +223,11 @@ function busquedDireccionesAdmin($conexion, $variableBusqueda){
 
 function enviarComentarios($conexion, $comentario, $idUsuario, $idProducto, $usuario ){
     $consulta = "INSERT INTO ValoracionesComentarios (Comentario, idUsuario_VC, idProducto_VC, Usuario) VALUES ('$comentario', '$idUsuario', '$idProducto', '$usuario');";
+    $resultado = mysqli_query($conexion,$consulta);
+    return $resultado;
+}
+function eliminarComentarios($conexion, $idComentario ){
+    $consulta = "DELETE FROM ValoracionesComentarios WHERE (idValoracionesComentarios = '$idComentario');";
     $resultado = mysqli_query($conexion,$consulta);
     return $resultado;
 }

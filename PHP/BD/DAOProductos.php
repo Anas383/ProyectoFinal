@@ -86,7 +86,15 @@ function inputBusqueda($conexion,$variableBusqueda){
     //COMPARAMOS LOS DATOS DEL USUARIO
     $consulta = "SELECT * FROM Productos where  NombreProducto like '%$variableBusqueda%' ;";
     $resultado= mysqli_query($conexion,$consulta);
-    return $resultado;
+    if(mysqli_num_rows($resultado)!=0){
+       
+        return $resultado;
+    }
+    else
+    {
+        echo "<p class='titulosPrincipal'>No se han encontrado productos con ese nombre &nbsp;:(</p>";
+        
+    }
 }
 
 function listarProductos($conexion){
@@ -161,7 +169,15 @@ function busquedaProductosAdmin($conexion, $variableBusqueda){
     or Stock like '%$variableBusqueda%';";
     //EJECUTAMOS LA CONSULTA
     $resultado = mysqli_query($conexion,$consulta);
-    return $resultado;
+    if(mysqli_num_rows($resultado)!=0){
+       
+        return $resultado;
+    }
+    else
+    {
+        echo "<tr><td class='text-center'>No se han encontrado productos con ese nombre &nbsp;:(</td></tr>";
+        
+    }
 }
 function busquedaCategoriasAdmin($conexion, $variableBusqueda){
     //BUSCAMOS SI EXISTE EL USUARIO
@@ -170,7 +186,15 @@ function busquedaCategoriasAdmin($conexion, $variableBusqueda){
     or DescripcionCategoria like '%$variableBusqueda%';";
     //EJECUTAMOS LA CONSULTA
     $resultado = mysqli_query($conexion,$consulta);
-    return $resultado;
+    if(mysqli_num_rows($resultado)!=0){
+       
+        return $resultado;
+    }
+    else
+    {
+        echo "<tr><td class='text-center'>No se han encontrado categorías con ese nombre &nbsp;:(</td></tr>";
+        
+    }
 }
 
 function comprobarNombreCategoria($conexion, $nombre){
@@ -233,6 +257,7 @@ function buscarProductosEnElCarrito2($conexion, $idProducto, $idCesta){
     //EJECUTAMOS LA CONSULTA
     $resultado = mysqli_query($conexion,$consulta);
     return $resultado;
+    
 } 
 
 function actualizarCantidadProductosEnElCarrito($conexion, $idItem, $cantidad){
