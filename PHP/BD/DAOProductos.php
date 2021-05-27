@@ -46,6 +46,12 @@ function listarProductosCarrito($conexion,$idCesta){
     $resultado= mysqli_query($conexion,$consulta);
    return $resultado;
 }
+function buscarProductoCarrito($conexion,$idCesta, $idItem){
+    //COMPARAMOS LOS DATOS DEL USUARIO
+    $consulta = "SELECT * FROM ProductosCarrito where idCesta='$idCesta' and idItem ='$idItem'";
+    $resultado= mysqli_query($conexion,$consulta);
+   return $resultado;
+}
 function buscarNombreProductosCarrito($conexion,$idProductoCarritoNombre){
     //COMPARAMOS LOS DATOS DEL USUARIO
     $consulta = "SELECT * FROM Productos where idProducto='$idProductoCarritoNombre'";
@@ -259,6 +265,8 @@ function buscarProductosEnElCarrito2($conexion, $idProducto, $idCesta){
     return $resultado;
     
 } 
+
+
 
 function actualizarCantidadProductosEnElCarrito($conexion, $idItem, $cantidad){
     //BUSCAMOS SI EXISTE EL USUARIO

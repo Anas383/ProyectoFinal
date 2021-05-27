@@ -34,6 +34,7 @@ $idUsuario=$_SESSION['idUsuario'];
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.css">
        
         <script src="../../../JS/Loader.js"></script>
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
       
 
 </head>
@@ -143,6 +144,7 @@ $idUsuario=$_SESSION['idUsuario'];
             <span><b>Detalles del Producto:</b><br><?php echo $producto['DetallesProducto'];?></span><br><br>
             <span><b>Precio:</b>&nbsp;&nbsp;<?php echo $producto['Precio'];?> €</span><br><br>
             <span><b>Stock:</b>&nbsp;&nbsp;<?php echo $producto['Stock'];?> unidades</span><br><br>
+            
             <?php
 
                 if($_SESSION['usuarioConectado']==false){
@@ -150,7 +152,7 @@ $idUsuario=$_SESSION['idUsuario'];
             ?>
             <div class="row ">
                 <div class="col-md-4"></div>
-                <button class="btn btn-success mt-1 enviar col-md-4" style=" font-family: 'Fredoka One', cursive;"  name="iniciSesion"><i class="fas fa-cart-plus"></i> &nbsp;Inicia Sesion </button>
+                <button class="btn btn-success mt-1 enviar col-md-4" style=" font-family: 'Fredoka One', cursive;"  type="button"  data-toggle="modal" data-target="#emergenteIniciaSesionCatalogo" >Añadir al carrito</button> 
                 <div class="col-md-4"></div>
             </div>
             
@@ -161,7 +163,7 @@ $idUsuario=$_SESSION['idUsuario'];
             <div class="row ">
                 <div class="col-md-4"></div>
                 <button class="btn btn-success mt-1 enviar col-md-4" style=" font-family: 'Fredoka One', cursive;"   name="btnAccion" <?php if($producto['Stock']==0){echo 'data-toggle="modal" data-target="#productoSinStock"'; }?> 
-                                        data-stock="<?php echo $producto['Stock'];?>" data-id="<?php echo $producto['idProducto'];?>" data-precio="<?php echo $producto['Precio']; ?>"  data-cantidad="<?php echo $producto['Cantidad']; ?>">Añadir al carrito</button>
+                data-stock="<?php echo $producto['Stock'];?>" data-id="<?php echo $producto['idProducto'];?>" data-precio="<?php echo $producto['Precio']; ?>"  data-cantidad="<?php echo $producto['Cantidad']; ?>">Añadir al carrito</button>
                 <div class="col-md-4"></div>
             </div>
              <br>   
@@ -207,6 +209,52 @@ $idUsuario=$_SESSION['idUsuario'];
             
         </div><br>
     </div>
+    <!-- VENTANA EMERGENTE  -->
+    <div class="modal fade" id="emergenteIniciaSesionCatalogo" tabindex="-1" role="dialog" aria-labelledby="emergenteIniciaSesionCatalogo"
+                    aria-hidden="true">
+                    <div class="modal-dialog ventanaEmergente" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title " id="emergenteIniciaSesionCatalogo">AnimeTEK</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true"><i class="fas fa-window-close"></i></span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                Para añadir productos a tu carrito debes iniciar sesión.
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                                <span class="">
+                                    <button type="button" class="btn btn-success">
+                                        <a href="../Login/Login.php" style="text-decoration: none; color:white">Iniciar Sesión</a>
+                                    </button>
+                                </span>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        <div class="modal fade" id="productoSinStock" tabindex="-1" aria-labelledby="productoSinStockLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="productoSinStockLabel">AnimeTEK</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                        El Producto está agotado.
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-success" data-dismiss="modal">Cerrar</button>
+                            
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
     <br>
     <?php include_once "Footer.php"?>
     
@@ -222,6 +270,7 @@ $idUsuario=$_SESSION['idUsuario'];
 </body>
 </html>
 <script>
+    
             $(document).ready(function()
             {
                 $("#desplegarComentarios").click(function(evento)

@@ -174,8 +174,6 @@
                                         <a class="btn btn-danger mt-1" href="DetallesProducto.php?idProducto=<?php echo $productos['idProducto']; ?>">Ver detalles</a> 
                                         <?php
 
-
-
                                             if($_SESSION['usuarioConectado']==false){
 
                                            ?> 
@@ -188,10 +186,7 @@
                                         data-stock="<?php echo $productos['Stock'];?>" data-id="<?php echo $productos['idProducto'];?>" data-precio="<?php echo $productos['Precio']; ?>"  data-cantidad="<?php echo $productos['Cantidad']; ?>">Añadir al carrito</button>
                                         <?php
                                          }
-                                                
-
-
-                                            ?> 
+                                        ?> 
                                     </div>
                             
                                 </div>

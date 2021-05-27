@@ -1,6 +1,6 @@
 $(document).ready(function(){
         
-    
+  
     mostrandoComentarios();
     
     $('button[name=btnComentar]').click(function(e){
@@ -25,8 +25,7 @@ $(document).ready(function(){
     
    function mostrandoComentarios(){
        let idP=$('button[name=btnComentar]').attr('data-idProducto');
-       let nombreUsuario =$('button[name=btnComentar]').attr('data-nombreUsuario');
-       let rol=$('button[name=btnComentar]').attr('data-rol');;
+       let rol=$('button[name=btnComentar]').attr('data-rol');
     $.ajax({
             url:'MostrarComentarios.php',
             type:'GET',
@@ -47,8 +46,9 @@ $(document).ready(function(){
                     `
                     if($("button[name=btnComentar]").attr('data-idUsuario')==comentarios.idUsuario){
                         template+=`
-                        <button class='btn btn-danger ml-1 mt-1 mb-1 btnEliminar' data-id='${comentarios.idComentario}' name='btnEliminar' ><i class="fas fa-trash"></i></button>
-                        <button class='btn btn-primary ml-1 mt-1 mb-1 btnModificar'   data-id='${comentarios.idComentario}' name='btnModificar' ><i class="fas fa-pen"></i></button>
+                        <button  type="button"  class='btn btn-danger ml-1 mt-1 mb-1 btnEliminar' data-id='${comentarios.idComentario}' name='btnEliminar' ><i class="fas fa-trash"></i></button>
+                        <button class='btn btn-primary ml-1 mt-1 mb-1 btnModificar'  data-id='${comentarios.idComentario}' name='btnModificar' ><i class="fas fa-pen"></i></button>
+                        
                         
                         `
                     }else if(rol=='Administrador'){
@@ -59,36 +59,56 @@ $(document).ready(function(){
                     }
 
                 });
-               
+             
                $('#mostrarComentarios').html(template);
                $('#mostrarComentariosSinSesion').html(template);
             }
             
         })
    }
+  
    $(document).on('click','.btnEliminar', function(){
+   
        let idComentario= $(this).attr('data-id');
-       $.post('EliminarComentario.php', {'idComentario':idComentario}, function(response){
-             mostrandoComentarios();
-            
-            
-    });
+       mostrarAlertBorrar(idComentario);      
    })
+
+  
+  
    
    $(document).on('click','.btnModificar', function(){
-
         let idComentario= $(this).attr('data-id');
-        console.log(idComentario);
-
-        // $.post('EliminarComentario.php', {'idComentario':idComentario}, function(response){
-        //     mostrandoComentarios();
-            
-            
-        // });
-    })
+       
+    });
     
 
-
+    function mostrarAlertBorrar(idComentario){
+        swal("¿Estás seguro de eliminar este comentario?", {
+            buttons: {
+                catch: {
+                    text: "Confirmar",
+                    value: "aceptar",
+                    },
+                cancel: "Cancelar",
+              
+            },
+        })
+        .then((value) => {
+            switch (value) {
+        
+            case "aceptar":
+                $.post('EliminarComentario.php', {'idComentario':idComentario}, function(response){
+                    mostrandoComentarios(); 
+                });
+                swal("AnimeTEK", "¡El comentario se ha eliminado correctamente!", "success");
+                break;
+        
+        
+            
+                
+            }
+        });
+    } 
 
 
 });

@@ -108,7 +108,7 @@
                    </td>
                   
                     <td><?php echo $productosCarrito['PrecioProducto'];?>€</td>
-                    <td><a href="SumarCantidadProductoCarrtio.php?idItem=<?php echo $productosCarrito['idItem'];?>" class="btn btn-success" style="font-size: 10px; color: white;"><i class="fas fa-plus"></i></a>&nbsp;<?php echo $productosCarrito['Cantidad'];?>ud. &nbsp; <a href="RestarCantidadProductoCarrtio.php?idItem=<?php echo $productosCarrito['idItem'];?>&cantidad=<?php echo $productosCarrito['Cantidad'];?>" class="btn btn-danger" style="font-size: 10px; color: white;"><i class="fas fa-minus"></i></a></td>
+                    <td><a href="SumarCantidadProductoCarrtio.php?idItem=<?php echo $productosCarrito['idItem'];?>&idProducto=<?php echo $productosCarrito['idProductoCarrito'];?>" class="btn btn-success" style="font-size: 10px; color: white;"><i class="fas fa-plus"></i></a>&nbsp;<?php echo $productosCarrito['Cantidad'];?>ud. &nbsp; <a href="RestarCantidadProductoCarrtio.php?idItem=<?php echo $productosCarrito['idItem'];?>&cantidad=<?php echo $productosCarrito['Cantidad'];?>" class="btn btn-danger" style="font-size: 10px; color: white;"><i class="fas fa-minus"></i></a></td>
                     <td class="botonesTablasEdicion"><a href="#" class="btn btn-primary "><i class="fas fa-info-circle"></i></i>&nbsp;&nbsp;Detalles</a><a href="EliminarProductoCarrito.php?idItem=<?php echo $productosCarrito['idItem'];?>"  class="btn btn-danger "><i class="fas fa-trash-alt"></i></i>&nbsp;&nbsp;Eliminar</a></td>
 
                     <?php
@@ -132,6 +132,7 @@
                       <?php if($total==0.00){
                           echo'<a href="Catalogo.php" class="btn btn-warning btn-lg">Ir a catálogo</a>';
                       }else{?>
+                        
                         <a href="#" data-toggle="modal" data-target="#emergenteDireccionesAlPagar"  class="btn btn-success btn-lg">Realizar pago <strong>> ></strong></a>
                       <?php
 
@@ -149,14 +150,40 @@
         </table>
        </div>
       </div>
+      <p>
+        <?php
+            if(isset($_GET['stock']) && $_GET['stock'] == "limiteStockAlcanzado"){ echo '
+                <div class="modal" id="limiteStockAlcanzado" tabindex="-1">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">AnimeTEK</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            Ya no hay más stock de este producto.
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+                        
+                        </div>
+                        </div>
+                    </div>
+                </div>';}
+        ?>
+    </p>
     <br>
     <?php include_once "Footer.php"?>
     
     <!--Scripts--> 
+    <script>$('#limiteStockAlcanzado').modal('show');</script>
     <script src="../../../JS/ValidarDirecciones.js"></script>    
     <script src="https://use.fontawesome.com/releases/v5.15.2/js/all.js" data-auto-a11y="true"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.js" type="text/javascript"></script>               
     <script src="../../../JS/Catalogo.js"></script>
+   
 </body>
 </html>
