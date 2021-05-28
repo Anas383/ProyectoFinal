@@ -231,6 +231,11 @@ function eliminarComentarios($conexion, $idComentario ){
     $resultado = mysqli_query($conexion,$consulta);
     return $resultado;
 }
+function editarComentarios($conexion, $idComentario, $comentario){
+    $consulta = "UPDATE `TiendaMerchandising`.`ValoracionesComentarios` SET `Comentario` = '$comentario' WHERE (`idValoracionesComentarios` = '$idComentario');";
+    $resultado = mysqli_query($conexion,$consulta);
+    return $resultado;
+}
 function mostrarComentariosComentarios($conexion, $idProducto){
     $consulta = "SELECT * FROM ValoracionesComentarios WHERE idProducto_VC = '$idProducto';";
     $resultado = mysqli_query($conexion,$consulta);

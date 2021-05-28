@@ -312,7 +312,4 @@ function eliminarStockCarrito($conexion,$stock,$idProducto){
 
 
 
-
-
-
 ?>

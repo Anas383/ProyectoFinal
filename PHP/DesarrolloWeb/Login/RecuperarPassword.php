@@ -94,41 +94,22 @@
         <div class="row">
             <span class="col-md-3"></span>
             <div class=" col-md-6 contenedorFormulario ">
-                <form action="ComprobarLogin.php" id="FormularioLogin" method="post">
-                    <legend>Inicia sesión</legend>
+                <form action="MandarEmailRecuperacion.php" id="FormularioLogin" method="post">
+                    <legend>Recuperar Contraseña</legend>
                     <!-- USUARIO -->
-                    <div class="grupo_usuario">
-                        <label for="usuario" class="form-label">Usuario</label>
-                        <input type="text" name="usuario" class="form-control" id="usuario" required autofocus><br>
-                        <p class="mensajeError-oculto" id="mError-usuario">&nbsp;¡El usuario es incorrecto!</p>
+                    <div class="grupo_email">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="text" name="email" class="form-control" id="email" required autofocus><br>
+                        <p class="mensajeError-oculto" id="mError-email">&nbsp;¡El email es incorrecto!</p>
                     </div><br>
-                    <!-- CONTRASEÑA -->
-                    <div class="grupo_password ">  
-                        <label for="password">Contraseña</label>
-                            <div class="input-group">
-                            <input type="password" name="password" id="password" class="form-control" required><br>
-                                <div class="input-group-append">
-                                    <button id="show_password" class="btn btn-outline-dark" type="button" onclick="mostrarPassword()"> <span class="fa fa-eye-slash icon"></span> </button>
-                                </div>
-                            </div><br>
-                            <p class="mensajeError-oculto" id="mError-password">&nbsp;¡La contraseña es incorrecta!</p>
-                        </div>
+                   
                     <center>
                         <div class="grupo_envio  ">
                             <input type="submit" class="btn btn-success btn-lg col-md-6" value="Enviar">
                             
                         </div>
                     </center>
-                    <br>
-                    
-                    <div class="d-none d-sm-none d-md-block"><a href="../Registro/Registro.php">¿No tienes cuenta? Regístrate aquí.</a>&nbsp;&nbsp;&nbsp;&nbsp;
-                    <a href="RecuperarPassword.php">¿Has olvidado la contraseña?</a>    
-                    </div>
-                   
-                    <div class="d-block d-sm-block d-md-none">
-                    <a href="../Registro/Registro.php">¿No tienes cuenta? Regístrate aquí.</a><br><br>
-                    <a href="RecuperarPassword.php">¿Has olvidado la contraseña?</a>
-                    </div>
+                  
                     <br>
                     <br>
                     <p class="errorFormulariosBD">
