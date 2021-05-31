@@ -1,5 +1,8 @@
 <?php
-
+if(!isset($_SERVER['HTTP_REFERER'])){
+    header("Location: Home.php");
+    exit;
+}
     require '../../BD/ConectorBD.php';
     require '../../BD/DAOUsuarios.php';
     require '../../BD/DAOProductos.php';
@@ -92,7 +95,7 @@
                             <label for="nombre"><strong>Nombre del producto</strong></label>
                             <input type="text" name="nombre"  id="nombre" class="form-control" value="<?php echo $producto['NombreProducto'];?>" >
                             <br>
-                            <p class="mensajeError-oculto" id="mError-nombre">&nbsp;¡El nombre solo puede contener letras mayúsculas, minúsculas y espacios para nombres compuestos![1-20]</p>
+                            <p class="mensajeError-oculto" id="mError-nombre">&nbsp;¡El producto debe contenr un nombre</p>
                         </div><br>
 
                         <div class="grupo_categorias  col-md-12 ">
@@ -123,24 +126,20 @@
                         </div>
 
                         <div class="grupo_descripcion form-group col-md-12">
-                                <label for="descripcion">Descripción del producto</label>
-                                <textarea class="form-control" id="descripcion" rows="3" name="descripcion" minlength="0" maxlength="10000"  >
-                                <?php echo $producto['DetallesProducto'];?>
-                                </textarea>
-                                <p>Carácteres: <span>
-                                </span></p>
-                              
+                            <label for="descripcion">Descripción del producto</label>
+                            <textarea class="form-control" id="descripcion" rows="3" name="descripcion" minlength="1" maxlength="10000" required>
+                            <?php echo $producto['DetallesProducto'];?></textarea>
                         </div>
 
                         <div class="grupo_precio col-md-12  ">
                             <label for="precio"><strong>Precio del producto</strong></label>
-                            <input type="text" name="precio" id="precio" class="form-control" value="<?php echo $producto['Precio'];?>" >
+                            <input type="number" name="precio" step=".01" id="precio" class="form-control" value="<?php echo $producto['Precio'];?>" >
                             <br>
                             <p class="mensajeError-oculto" id="mError-precio">&nbsp;¡El precio no cumple el formato!</p>
                         </div><br>
                         <div class="grupo_stock col-md-12  ">
                             <label for="stock"><strong>Stock del producto</strong></label>
-                            <input type="number" name="stock"   id="stock" class="form-control" value="<?php echo $producto['Stock'];?>"  >
+                            <input type="number" name="stock"   id="stock" class="form-control" value="<?php echo $producto['Stock'];?>" required>
                             
                         </div><br>
                         <!-- imagen -->
@@ -182,5 +181,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.js" type="text/javascript"></script>               
     <script src="../../../JS/Catalogo.js"></script>
+    <script src="../../../JS/FormInsertarProducto.js"></script>
 </body>
 </html>

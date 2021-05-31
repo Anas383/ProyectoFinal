@@ -1,4 +1,8 @@
 <?php
+  if(!isset($_SERVER['HTTP_REFERER'])){
+      header("Location: Home.php");
+      exit;
+  }
  session_start();
  require '../../BD/ConectorBD.php';
  require '../../BD/DAOUsuarios.php';

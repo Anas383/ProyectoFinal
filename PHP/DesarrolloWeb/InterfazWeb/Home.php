@@ -1,10 +1,11 @@
 <?php
 
-    require '../../BD/ConectorBD.php';
-    require '../../BD/DAOUsuarios.php';
-    require '../../BD/DAOProductos.php';
-    $conexion=conectar(true);
-    session_start();
+  require '../../BD/ConectorBD.php';
+  require '../../BD/DAOUsuarios.php';
+  require '../../BD/DAOProductos.php';
+  $conexion=conectar(true);
+  session_start();
+
 ?>
 
 
@@ -22,6 +23,8 @@
 
         <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Kiwi+Maru:wght@300&display=swap" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
         <!--Link para la versión de Bootstrap.-->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <!--Links para el footer.-->
@@ -36,16 +39,8 @@
 <body >
     <!--Loader.-->
     <?php include_once "Loader.php"?>
-
-
     <!-- CABECERA PARA HOME ANIMETEK -->
-    <header class="cabecera d-none d-sm-none d-md-block">
-        <center>
-            <img src="../../../IMG/Anime.png"alt="" srcset=""><img src="../../../IMG/TEK.png" width="200px" height="150px" alt="" srcset="">
-        </center>      
-    </header>
-
-
+    <?php include_once 'CabeceraAnimeTEK.php';?>
     <!-- MENÚ ANIMETEK  -->
     <div class="sticky-top">
         <nav class="navbar navbar-expand-lg navbar-dark menu ">
@@ -69,7 +64,7 @@
         
     </div><br>
 
-    <?php include_once 'VentanaEmergenteLogOut.php';?>
+  <?php include_once 'VentanaEmergenteLogOut.php';?>
   <!-- VENTANA EMERGENTE PARA LOS USUARIOS REGISTRADOS -->
     <p>
         <?php
@@ -100,87 +95,102 @@
   
     <div class="container">
         <div class="contenedor">
-           
-            <div class="row">
-                
-                <span class="col-md-3">
-                    <h2 class="titulosPrincipal " >CATEGORIAS</h2>
-                   <br>
-                   <br>
+            
+        <div style="display: inline;">
+            <img class="d-none d-sm-none d-md-block" src="../../../IMG/Fondo/onePieceGif.gif" width="150rem" align="left" alt=""> 
+            <img class="d-none d-sm-none d-md-block" src="../../../IMG/Fondo/fortnite.gif" width="100rem" align="right" alt="">       
+            <div class="tituloHome  text-center d-none d-sm-none d-md-block">Productos</div>
+            
+        </div>
+        
+        <div class="tituloHome  d-block d-sm-block d-md-none" style="font-size:2.5rem">Productos</div>       
+        <div class="dropdown-divider "></div><br>        
+          <div class="row">
+              
+            <span class="d-none d-sm-none d-md-block col-md-3">
+            <p class="tituloHome " style="font-size:2rem">Categorías <span  style="font-size:1.5rem; color: black;"><i class="fas fa-list"></i></span></p>
+            <div class="list-group">
+              
+              <?php
+              
+              $buscarCategorias =  listarCategorias($conexion);
 
-                    <ul class="list-group">
-                        <li class="list-group-item active" aria-current="true">Categorias</li>
-                        <li class="list-group-item">A second item</li>
-                        <li class="list-group-item">A third item</li>
-                        <li class="list-group-item">A fourth item</li>
-                        <li class="list-group-item">And a fifth one</li>
-                      </ul>
-                </span>
-                <section class="col-md-6">
-                    <h1 class="titulosPrincipal text-center">PRODUCTOS</h1>
-                    <div class="dropdown-divider "></div><br>
-                    <div id="carouselExampleControls" class="carousel slide " data-ride="carousel">
-                        <div class="carousel-inner">
-                          <div class="carousel-item active">
-                            <img src="../../../IMG/Productos/TazaGoku.jpg " width="100%"   height="350vh" class="d-block w-100 rounded" alt="...">
-                          </div>
-                          <div class="carousel-item">
-                            <img src="../../../IMG/Productos/figuraGoku.jpg"  width="100%"   height="350vh" class="d-block w-100 rounded" alt="...">
-                          </div>
-                          <div class="carousel-item">
-                            <img src="../../../IMG/Productos/figuraBroly.jpg"  width="100%"   height="350vh" class="d-block w-100 rounded" alt="...">
-                          </div>
-                        </div>
-                        <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-                          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                          <span class="sr-only">Previous</span>
-                        </a>
-                        <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-                          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                          <span class="sr-only">Next</span>
-                        </a>
-                      </div>
+              while($categorias = mysqli_fetch_assoc($buscarCategorias))
+              {
+          ?>
+              <a href="Filtrar.php?idCategoria=<?php echo $categorias['idCategoria'];?>" class="list-group-item list-group-item-action"><?php echo $categorias['NombreCategoria'];?></a>
+            <?php
+              }
+            ?>
+            </div>
+            </span>
+
+            <section class="col-md-6 ">
+              
+              <div id="carouselExampleIndicators1" class="carousel slide border border-dark" data-ride="carousel">
+                       
+                <div class="carousel-inner">
+                    <?php
                       
-                </section>
-                <span class="col-md-3">
-                    <h2 class="titulosPrincipal">Recomendados</h2><br><br>
-                    <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
-                        <div class="carousel-inner">
-                          <div class="carousel-item active">
-                            <div class="card" style="width: 100%;">
-                                <img src="../../../IMG/Productos/figuraBroly.jpg" width="100%" height="200vh" class="card-img-top" alt="...">
-                                <div class="card-body">
-                                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                </div>
-                              </div>
-                          </div>
-                          <div class="carousel-item">
-                            <img src="../../../IMG/Productos/figuraGoku.jpg" width="100%" height="200vh" class="d-block w-100" alt="...">
-                            <div class="card-body">
-                                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                </div>
-                          </div>
-                          <div class="carousel-item">
-                            <img src="../../../IMG/Productos/TazaGoku.jpg" width="100%" height="200vh" class="d-block w-100" alt="...">
-                            <div class="card-body">
-                                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                </div>
-                          </div>
-                        </div>
-                      </div>
-                </span>
-             </div>
+                        $buscarProductosRandom =  buscarProductosRandom($conexion);
+                        $i = 0;
+                        while($productosRandom = mysqli_fetch_assoc($buscarProductosRandom))
+                        {
+                    ?>
+                            <div class="carousel-item <?php echo ($i == 0) ? 'active' : '';?>">
+                                <a href="DetallesProducto.php?idProducto=<?php echo $productosRandom['idProducto'];?>">
+                                    <img class="d-block w-100 rounded" src="data:image/jpeg;base64,<?php echo base64_encode($productosRandom['Imagen']);?>" alt="Videojuego" style="width:100%; height:400px;">
+                                </a>
+                            </div>
+                    <?php
+                            $i++;
+                        }
+                    ?>
+                </div>
+                <a class="carousel-control-prev" href="#carouselExampleIndicators1" role="button" data-slide="prev">
+                           <span  class="carousel-control-prev-icon" aria-hidden="true"></span>
+                           <span class="sr-only">Anterior</span>
+                       </a>
+                       <a class="carousel-control-next" href="#carouselExampleIndicators1" role="button" data-slide="next">
+                           <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                           <span class="sr-only">Siguiente</span>
+                       </a>
+               
+
+
+            </section>
+            <span class="col-md-3 ">
+            <p class="tituloHome " style="font-size: 1.6rem"> Destacados <i style="color: yellow;" class="fas fa-star"></i></p>
+            <div id="carouselExampleIndicators2" class="carousel slide" data-ride="carousel">
+                       
+                       <div class="carousel-inner">
+                           <?php
+                             
+                               $buscarDestacados =   productosDetacados($conexion);
+                               $i = 0;
+                               while($productosDestacados = mysqli_fetch_assoc($buscarDestacados))
+                               {
+                           ?>
+                                   <div class="carousel-item <?php echo ($i == 0) ? 'active' : '';?>">
+                                       <a href="DetallesProducto.php?idProducto=<?php echo $productosDestacados['idProducto'];?>">
+                                           <img class="d-block w-100 rounded" src="data:image/jpeg;base64,<?php echo base64_encode($productosDestacados['Imagen']);?>"  style="width:100%; height:300px;">
+                                       </a>
+                                   </div>
+                           <?php
+                                   $i++;
+                               }
+                           ?>
+                       </div>
+                       
+                     </div>
+            </span>
+          </div>
     
-  </div>
-</div>
-        </div><br>
+      </div>
     </div>
     <br>
     <?php include_once "Footer.php"?>
-    
     <!--Scripts--> 
-    
-   
     <script src="../../../JS/Home.js"></script> 
     <script src="https://use.fontawesome.com/releases/v5.15.2/js/all.js" data-auto-a11y="true"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>

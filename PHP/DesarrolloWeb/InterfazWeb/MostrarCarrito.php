@@ -36,17 +36,12 @@
 
 </head>
 <body >
+    
     <!--Loader.-->
     <?php include_once "Loader.php"?>
 
-
     <!-- CABECERA PARA HOME ANIMETEK -->
-    <header class="cabecera d-none d-sm-none d-md-block">
-        <center>
-            <img src="../../../IMG/Anime.png"alt="" srcset=""><img src="../../../IMG/TEK.png" width="200px" height="150px" alt="" srcset="">
-        </center>      
-    </header>
-
+    <?php include_once 'CabeceraAnimeTEK.php';?>
 
     <!-- MENÚ ANIMETEK  -->
     <div class="sticky-top">
@@ -116,7 +111,9 @@
                     ?>
                 </tr>
                 <tr class="bg-info">
-                     <td style="font-size: 1.7rem;">Precio Total:
+                     <td style="font-size: 1.7rem;">Precio Total:</td>
+                     
+                     <td style="font-size: 1.7rem;">
                      <?php 
                        
                        $precioTotalProductos= totalPrecioProductosCarrito($conexion, $idCesta);
@@ -127,9 +124,11 @@
                         }
                        $insertarPrecioTotalEnCarrito= insertarPrecioTotalTablaCarrito($conexion,$idCesta, $total);
                        echo $total;
-                     ?>€</h4></td>
-                     <td>
-                      <?php if($total==0.00){
+                     ?>€</h4>
+                    
+                    </td>
+                    <?php include_once 'VentanaEmergenteDireccionAlPagar.php'?>
+                    <td><?php if($total==0.00){
                           echo'<a href="Catalogo.php" class="btn btn-warning btn-lg">Ir a catálogo</a>';
                       }else{?>
                         
@@ -137,11 +136,7 @@
                       <?php
 
 
-                      } ?>
-                    
-                    </td>
-                    <?php include_once 'VentanaEmergenteDireccionAlPagar.php'?>
-                    <td></td>
+                      } ?></td>
                     <td><a href="VaciarCarrito.php" id="vaciarCarrito"  class="btn btn-danger btn-lg">Vaciar carrito</a></td>
                     
                 </tr>

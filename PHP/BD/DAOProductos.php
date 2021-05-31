@@ -310,6 +310,26 @@ function eliminarStockCarrito($conexion,$stock,$idProducto){
     return $resultado;
 }
 
+function buscarProductosRandom($conexion){
+    $consulta = "SELECT DISTINCT * FROM Productos   order by rand() Limit 6 ;";
+    $resultado= mysqli_query($conexion,$consulta);
+    return $resultado;
+}
+function buscarTazasYCamisetasRandom($conexion){
+    $consulta = "SELECT DISTINCT * FROM Productos  where idCategoria= '1' or idCategoria='14' order by rand() Limit 5 ;";
+    $resultado= mysqli_query($conexion,$consulta);
+    return $resultado;
+}
 
+function insertarValoracionMedia($conexion, $idProducto, $valoracionMedia){
+    $consulta = "UPDATE Productos SET ValoracionMedia = '$valoracionMedia' WHERE (idProducto = '$idProducto');";
+    $resultado= mysqli_query($conexion,$consulta);
+    return $resultado;
+}
+function productosDetacados($conexion){
+    $consulta = "SELECT * FROM Productos Order BY ValoracionMedia DESC LIMIT 5;";
+    $resultado= mysqli_query($conexion,$consulta);
+    return $resultado;
+}
 
 ?>

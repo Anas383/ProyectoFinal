@@ -6,11 +6,7 @@
     require '../../BD/Config.php';
     $conexion=conectar(true);
     $idCategoria= $_GET['idCategoria'];
-   
-    
-
 ?>
-
 
 <!DOCTYPE html>
 <html lang="es-ES">

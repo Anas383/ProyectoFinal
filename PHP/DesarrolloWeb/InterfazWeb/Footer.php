@@ -41,20 +41,7 @@
                     </div>
                     <div class="col-sm-6 col-md-3 item">
                         <p><u>Mapa del sitio</u></p>
-                        <ul>
-                           
-                            <li><a href="Home.php">Home</a></li>
-                            <li><a href="Catalogo.php">Catálogo</a></li>
-                            <li><a href="MasSobreAnimeTEK.php">Más Sobre AnimeTEK</a></li>
-                            <?php
-                                session_start();
-                                if($_SESSION['usuarioConectado']==true){ 
-                            ?>
-                            <li><a href="Perfil.php">Perfil</a></li>
-                            <?php
-                                }
-                            ?>
-                        </ul>
+                        <p>Para acceder al mapa del sitio de AnimeTEK pincha <a href="../InterfazWeb/SiteMap.php" class="text-danger" >aquí</a></p>
                     </div>
                     <div class="col-md-6 item">
                         <p ><u>AnimeTEK</u></p>
@@ -73,7 +60,7 @@
                 <br>
             </div>
         </footer>
-        <br>
+    <br>
     <br>
     <br>
     <br>

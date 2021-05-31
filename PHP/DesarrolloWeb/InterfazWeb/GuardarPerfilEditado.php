@@ -1,4 +1,8 @@
 <?php
+if(!isset($_SERVER['HTTP_REFERER'])){
+    header("Location: Home.php");
+    exit;
+}
 
 //IMPORTAMOS LOS ARCHIVOS NECESARIOS
 

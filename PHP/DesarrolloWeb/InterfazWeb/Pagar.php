@@ -1,4 +1,8 @@
 <?php
+if(!isset($_SERVER['HTTP_REFERER'])){
+    header("Location: Home.php");
+    exit;
+}
     require '../../BD/ConectorBD.php';
     require '../../BD/DAOUsuarios.php';
     require '../../BD/DAOProductos.php';
@@ -35,12 +39,8 @@
 <body >
 <?php include_once "Loader.php"?>
     <!-- CABECERA PARA HOME ANIMETEK -->
-    <header class="cabecera d-none d-sm-none d-md-block">
-        <center>
-            <img src="../../../IMG/Anime.png"alt="" srcset=""><img src="../../../IMG/TEK.png" width="200px" height="150px" alt="" srcset="">
-        </center>      
-    </header>
-
+   
+    <?php include_once 'CabeceraAnimeTEK.php';?>
     
     <!-- MENÚ ANIMETEK  -->
     <div class="sticky-top">

@@ -1,18 +1,34 @@
 <?php
+require '../../BD/ConectorBD.php';
+require '../../BD/DAOUsuarios.php';
+$conexion= conectar(true);
  use PHPMailer\PHPMailer\PHPMailer;
 
- if (isset($_POST['email'])) {
-     $name = "AnimeTEK";
-     $email = $_POST['email'];
-     $subject = "Recupera tu password AnimeTEK";
+ $usuario= $_POST['usuario'];
+ $email = $_POST['email'];
+ $dni=$_POST['dni'];
+ $buscarUsuario= consultaBuscarUsuario($conexion,$usuario);
+ $buscarEmail=buscarEmailRecoverPassword($conexion,$email, $usuario);
+ $buscarDNI= consultaBuscarDNIRecoverPassword($conexion,$dni, $usuario) ;
+ 
+    if(mysqli_num_rows($buscarUsuario)==0){
+    header('Location: RecuperarPassword.php?error=usuarioExiste');
+    }else if(mysqli_num_rows($buscarEmail)==0){
+    header('Location: RecuperarPassword.php?error=emailExiste');
+    }else if(mysqli_num_rows($buscarDNI)==0){
+    header('Location: RecuperarPassword.php?error=dniExiste');
+    }else{
+        $name = "AnimeTEK";
+     $subject = "Recupera tu contraseña AnimeTEK";
      $texto= "aquí";
-     $url="http://35.181.48.125/ProyectoAnimeTEK/PHP/DesarrolloWeb/Login/RenovarPassword.php";
+     $url="http://localhost/ProyectoAnimeTEK/PHP/DesarrolloWeb/Login/NuevaPassword.php?usuario=$usuario";
      $body ="Pulsa "."<a href='$url'>$texto</a>"." para cambiar tu contraseña.";
 
      require_once "PHPMailer/PHPMailer.php";
      require_once "PHPMailer/SMTP.php";
      require_once "PHPMailer/Exception.php";
-
+     $subject = utf8_decode($subject);
+     $body = utf8_decode($body);
      $mail = new PHPMailer();
 
      //SMTP Settings
@@ -32,13 +48,15 @@
      $mail->Body = $body;
 
      if ($mail->send()) {
-         header('Location: Login.php');
+         header('Location: Login.php?accion=emailEnviado');
      } else {
         echo "No";
          
      }
+    }
+     
 
      
- }
+
 
 ?>

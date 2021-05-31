@@ -1,4 +1,5 @@
 <?php 
+
 session_start();
 require '../../BD/ConectorBD.php';
 require '../../BD/DAOUsuarios.php';

@@ -121,6 +121,7 @@ $idUsuario=$_SESSION['idUsuario'];
             <?php
                 $media=mysqli_fetch_assoc(hacerMediaValoracion($conexion,$idProducto));
                 $porcentajeMedia=($media['format(AVG(Valoracion),1)']*100)/5;
+                insertarValoracionMedia($conexion, $idProducto, $media['format(AVG(Valoracion),1)']);
                     
                 ?>
                 <div class="col-md-5">Calificación Media del producto:  </div>

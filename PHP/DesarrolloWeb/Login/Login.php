@@ -28,7 +28,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
         <link rel="stylesheet" href="../../../CSS/Estilos.css">
         <script src="../../../JS/Loader.js"></script>
-      
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 <body >
     <!--Loader.-->
@@ -99,7 +99,7 @@
                     <!-- USUARIO -->
                     <div class="grupo_usuario">
                         <label for="usuario" class="form-label">Usuario</label>
-                        <input type="text" name="usuario" class="form-control" id="usuario" required autofocus><br>
+                        <input type="text" name="usuario" class="form-control" id="usuario" required><br>
                         <p class="mensajeError-oculto" id="mError-usuario">&nbsp;¡El usuario es incorrecto!</p>
                     </div><br>
                     <!-- CONTRASEÑA -->
@@ -138,6 +138,18 @@
                         ?>
                     </p>
 
+               
+   
+                    <?php
+                        if(isset($_GET['accion']) && $_GET['accion'] == "passwordCambiada"){ 
+                        echo "<script>swal('AnimeTEK', 'La contraseña se ha cambiado correctamente.', 'success');</script>";
+                        
+                    }?>
+                    <?php
+                        if(isset($_GET['accion']) && $_GET['accion'] == "emailEnviado"){ 
+                        echo "<script>swal('AnimeTEK', 'Se ha enviado un email a su correo electronico para cambiar la contraseña.', 'info');</script>";
+                        
+                    }?>
             
                     
                 </form>

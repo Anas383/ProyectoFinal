@@ -41,11 +41,7 @@
 
 
     <!-- CABECERA PARA HOME ANIMETEK -->
-    <header class="cabecera d-none d-sm-none d-md-block">
-        <center>
-            <img src="../../../IMG/Anime.png"alt="" srcset=""><img src="../../../IMG/TEK.png" width="200px" height="150px" alt="" srcset="">
-        </center>      
-    </header>
+    <?php include_once 'CabeceraAnimeTEK.php';?>
 
 
     <!-- MENÚ ANIMETEK  -->
@@ -122,32 +118,32 @@
            
             </div><br>
 
-                <!-- VENTANA EMERGENTE PARA ELIMINAR PRODUCTO -->
-                <div class="modal fade" id="emergenteIniciaSesionCatalogo" tabindex="-1" role="dialog" aria-labelledby="emergenteIniciaSesionCatalogo"
-                    aria-hidden="true">
-                    <div class="modal-dialog ventanaEmergente" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title " id="emergenteIniciaSesionCatalogo">AnimeTEK</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true"><i class="fas fa-window-close"></i></span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                Para añadir productos a tu carrito debes iniciar sesión.
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-                                <span class="">
-                                    <button type="button" class="btn btn-success">
-                                        <a href="../Login/Login.php" style="text-decoration: none; color:white">Iniciar Sesión</a>
-                                    </button>
-                                </span>
-
-                            </div>
-                        </div>
-                    </div>
+    <!-- VENTANA EMERGENTE INICIAR SESION PARA COMPRAR -->
+    <div class="modal fade" id="emergenteIniciaSesionCatalogo" tabindex="-1" role="dialog" aria-labelledby="emergenteIniciaSesionCatalogo"
+        aria-hidden="true">
+        <div class="modal-dialog ventanaEmergente" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title " id="emergenteIniciaSesionCatalogo">AnimeTEK</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true"><i class="fas fa-window-close"></i></span>
+                    </button>
                 </div>
+                <div class="modal-body">
+                    Para añadir productos a tu carrito debes iniciar sesión.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                    <span class="">
+                        <button type="button" class="btn btn-success">
+                            <a href="../Login/Login.php" style="text-decoration: none; color:white">Iniciar Sesión</a>
+                        </button>
+                    </span>
+
+                </div>
+            </div>
+        </div>
+    </div>
            
   <div class="row mb-5">
             

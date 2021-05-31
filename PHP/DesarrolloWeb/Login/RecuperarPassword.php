@@ -96,10 +96,21 @@
             <div class=" col-md-6 contenedorFormulario ">
                 <form action="MandarEmailRecuperacion.php" id="FormularioLogin" method="post">
                     <legend>Recuperar Contraseña</legend>
-                    <!-- USUARIO -->
+          
+                     <!-- USUARIO -->
+                     <div class="grupo_usuario">
+                        <label for="usuario" class="form-label">Usuario</label>
+                        <input type="text" name="usuario" class="form-control" id="usuario" required><br>
+                        <p class="mensajeError-oculto" id="mError-usuario">&nbsp;¡El usuario es incorrecto!</p>
+                    </div><br>
+                    <div class="grupo_dni  ">
+                            <label for="dni">DNI</label>
+                            <input type="dni" name="dni" id="dni"  class="form-control" required><br>
+                            <p class="mensajeError-oculto" id="mError-dni">&nbsp;¡El DNI no cumple el formato.!</p>
+                    </div><br>
                     <div class="grupo_email">
                         <label for="email" class="form-label">Email</label>
-                        <input type="text" name="email" class="form-control" id="email" required autofocus><br>
+                        <input type="text" name="email" class="form-control" id="email" required ><br>
                         <p class="mensajeError-oculto" id="mError-email">&nbsp;¡El email es incorrecto!</p>
                     </div><br>
                    
@@ -114,8 +125,10 @@
                     <br>
                     <p class="errorFormulariosBD">
                         <?php 
-                            if(isset($_GET['error']) && $_GET['error'] == "ContraseñaIncorrecta"){ echo '<i class="fas fa-exclamation-triangle"></i>&nbsp;&nbsp;'."La contraseña que ha introducido es incorrecta.";}
-                            if(isset($_GET['error']) && $_GET['error'] == "usuarioNoEncontrado"){ echo '<i class="fas fa-exclamation-triangle"></i>&nbsp;&nbsp;'."El usuario que ha introducido no existe.";  } 
+                             if(isset($_GET['error']) && $_GET['error'] == "usuarioExiste"){ echo '<i class="fas fa-exclamation-triangle"></i>&nbsp;&nbsp;'."El usuario que ha introducido no existe.";  } 
+                             if(isset($_GET['error']) && $_GET['error'] == "emailExiste"){ echo '<i class="fas fa-exclamation-triangle"></i>&nbsp;&nbsp;'."El email  que ha introducido no corresponde con el usuario introducido.";  }
+                             if(isset($_GET['error']) && $_GET['error'] == "dniExiste"){ echo '<i class="fas fa-exclamation-triangle"></i>&nbsp;&nbsp;'."El DNI que ha introducido no corresponde con el usuario introducido.";  }
+
                         ?>
                     </p>
 
@@ -134,7 +147,7 @@
     <?php include_once "../InterfazWeb/Footer.php"?>
      
     <!--Scripts-->   
-    <script src="../../../JS/FormularioLogin.js"></script> 
+    <script src="../../../JS/FormularioRecuperarPassword.js"></script> 
     <script src="https://use.fontawesome.com/releases/v5.15.2/js/all.js" data-auto-a11y="true"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
 </body>

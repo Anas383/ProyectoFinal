@@ -14,6 +14,11 @@ function consultaBuscarUsuario($conexion,$usuario){
     $resultado = mysqli_query($conexion,$consulta);
     return $resultado;
 }
+function cambiarPassword($conexion,$idUsuario, $password){
+    $consulta = "UPDATE Usuarios SET Password = '$password' WHERE (idUsuario = '$idUsuario');";
+    $resultado = mysqli_query($conexion,$consulta);
+    return $resultado;
+}
 function consultaBuscarUsuarioID($conexion,$idUsuario){
     $consulta = "Select * from Usuarios WHERE  idUsuario = '$idUsuario'";
     $resultado = mysqli_query($conexion,$consulta);
@@ -35,7 +40,19 @@ function buscarEmail($conexion,$email){
     $resultado = mysqli_query($conexion,$consulta);
     return $resultado;
 }
+function buscarEmailRecoverPassword($conexion,$email, $usuario){
+    //BUSCAMOS SI EXISTE EL EMAIL
+    $consulta = "Select * from Usuarios WHERE  Email = '$email' and Usuario='$usuario'";
+    //EJECUTAMOS LA CONSULTA
+    $resultado = mysqli_query($conexion,$consulta);
+    return $resultado;
+}
 
+function consultaBuscarDNIRecoverPassword($conexion,$dni, $usuario){
+    $consulta = "Select * from Usuarios WHERE  DNI = '$dni' and Usuario='$usuario'";
+    $resultado = mysqli_query($conexion,$consulta);
+    return $resultado;
+}
 function consultaBuscarDNI($conexion,$dni){
     $consulta = "Select * from Usuarios WHERE  DNI = '$dni'";
     $resultado = mysqli_query($conexion,$consulta);

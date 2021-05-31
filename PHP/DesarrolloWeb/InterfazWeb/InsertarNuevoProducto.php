@@ -1,5 +1,8 @@
 <?php
-
+if(!isset($_SERVER['HTTP_REFERER'])){
+    header("Location: Home.php");
+    exit;
+}
     require '../../BD/ConectorBD.php';
     require '../../BD/DAOUsuarios.php';
     require '../../BD/DAOProductos.php';
@@ -89,7 +92,7 @@
                             <label for="nombre"><strong>Nombre del producto</strong></label>
                             <input type="text" name="nombre"  id="nombre" class="form-control" required >
                             <br>
-                            <p class="mensajeError-oculto" id="mError-nombre">&nbsp;¡El nombre solo puede contener letras mayúsculas, minúsculas y espacios para nombres compuestos![1-20]</p>
+                            <p class="mensajeError-oculto" id="mError-nombre">&nbsp;¡El producto tiene que tener un nombre!</p>
                         </div><br>
 
                         <div class="grupo_categorias  col-md-12 ">
@@ -98,14 +101,14 @@
                                 <div class="input-group-prepend">
                                   <label class="input-group-text" for="categorias">Categorías</label>
                                 </div>
-                                <select class="custom-select" name="categorias" id="categorias">
-                                  <option selected>Elige una categoría</option>
+                                <select class="custom-select" name="categorias" id="categorias" required>
+                                  <option  value="" >Elige una categoría</option>
                                   <?php 
                                     $listarCategorias= listarCategorias($conexion);
                                     while( $categorias = mysqli_fetch_assoc($listarCategorias)){ 
                                   
                                   ?>
-                                  <option value="<?php echo $categorias['idCategoria'] ?>"><?php echo $categorias['NombreCategoria'] ?></option>
+                                  <option value="<?php echo $categorias['idCategoria'];?>"><?php echo $categorias['NombreCategoria'] ?></option>
                                   <?php
                                     }
                                 ?>
@@ -114,23 +117,20 @@
                         </div>
 
                         <div class="grupo_descripcion form-group col-md-12">
-                                <label for="descripcion">Descripción del producto</label>
-                                <textarea class="form-control" id="descripcion" rows="3" name="descripcion" minlength="0" maxlength="10000"  required>
-                                </textarea>
-                                <p>Carácteres: <span>
-                                </span></p>
+                            <label for="descripcion">Descripción del producto</label>
+                            <textarea class="form-control" id="descripcion" rows="3" name="descripcion" minlength="1" maxlength="10000" required></textarea>
                               
                         </div>
 
                         <div class="grupo_precio col-md-12  ">
                             <label for="precio"><strong>Precio del producto</strong></label>
-                            <input type="text" name="precio" placeholder="00.00"  id="precio" class="form-control" required >
+                            <input type="number" name="precio" step=".01" placeholder="00.00"  id="precio" class="form-control" required >
                             <br>
                             <p class="mensajeError-oculto" id="mError-precio">&nbsp;¡El precio no cumple el formato!</p>
                         </div><br>
                         <div class="grupo_stock col-md-12  ">
                             <label for="stock"><strong>Stock del producto</strong></label>
-                            <input type="number" name="stock"   id="stock" class="form-control" required >
+                            <input type="number"  min="1" name="stock"   id="stock" class="form-control" required >
                             
                         </div><br>
                         <!-- imagen -->
@@ -173,5 +173,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.js" type="text/javascript"></script>               
     <script src="../../../JS/Catalogo.js"></script>
+    <script src="../../../JS/FormInsertarProducto.js"></script>
 </body>
 </html>
