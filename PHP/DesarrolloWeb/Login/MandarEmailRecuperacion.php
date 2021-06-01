@@ -18,7 +18,7 @@ $conexion= conectar(true);
     }else if(mysqli_num_rows($buscarDNI)==0){
     header('Location: RecuperarPassword.php?error=dniExiste');
     }else{
-        $name = "AnimeTEK";
+    $name = "AnimeTEK";
      $subject = "Recupera tu contraseña AnimeTEK";
      $texto= "aquí";
      $url="http://localhost/ProyectoAnimeTEK/PHP/DesarrolloWeb/Login/NuevaPassword.php?usuario=$usuario";

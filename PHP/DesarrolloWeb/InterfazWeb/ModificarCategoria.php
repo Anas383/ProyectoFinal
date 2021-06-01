@@ -90,22 +90,18 @@ if(!isset($_SERVER['HTTP_REFERER'])){
                     <li class="breadcrumb-item " aria-current="page">Modificar Categoría</li>
                 </ol>
             </nav>
-                <form action="GuardarModificacionesCategoria.php?idCategoria=<?php echo $categoria['idCategoria'];?>" method="post" enctype="multipart/form-data">
+                <form action="GuardarModificacionesCategoria.php?idCategoria=<?php echo $categoria['idCategoria'];?>" id="FormCategorias" method="post" enctype="multipart/form-data">
                     <legend>Modificar categoría:<br><?php echo $categoria['NombreCategoria'];?></legend>  
                         <!-- NOMBRE-->
                         <div class="grupo_nombre col-md-12  ">
                             <label for="nombre"><strong>Nombre de la categoría</strong></label>
                             <input type="text" name="nombre"  id="nombre" class="form-control" value="<?php echo $categoria['NombreCategoria'];?>" >
                             <br>
-                            <p class="mensajeError-oculto" id="mError-nombre">&nbsp;¡El nombre solo puede contener letras mayúsculas, minúsculas y espacios para nombres compuestos![1-20]</p>
+                            <p class="mensajeError-oculto" id="mError-nombre">&nbsp;¡La categoría debe tener un nombre!</p>
                         </div><br>
                         <div class="grupo_descripcion form-group col-md-12">
                                 <label for="descripcion">Descripción de la categoría</label>
-                                <textarea class="form-control" id="descripcion" rows="3" name="descripcion" minlength="0" maxlength="10000"  >
-                                <?php echo $categoria['DescripcionCategoria'];?>
-                                </textarea>
-                                <p>Carácteres: <span>
-                                </span></p>      
+                                <textarea class="form-control" id="descripcion" rows="3" name="descripcion" minlength="0" maxlength="10000"><?php echo $categoria['DescripcionCategoria'];?></textarea>  
                         </div>
 
                         <!-- logo -->
@@ -115,7 +111,7 @@ if(!isset($_SERVER['HTTP_REFERER'])){
                         </div><br>
 
                        <div class="grupo_envio ">
-                            <input type="submit" class="btn btn-success btn-lg col-md-12" value="Enviar">
+                            <input type="submit" class="btn btn-success btn-lg col-md-12" value="Guardar">
                         </div><br>
                                   
                     </div>
@@ -139,5 +135,6 @@ if(!isset($_SERVER['HTTP_REFERER'])){
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.js" type="text/javascript"></script>               
     <script src="../../../JS/Catalogo.js"></script>
+    <script src="../../../JS/FormCategorias.js"></script>
 </body>
 </html>

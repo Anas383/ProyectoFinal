@@ -127,8 +127,8 @@ if(!isset($_SERVER['HTTP_REFERER'])){
 
                         <div class="grupo_descripcion form-group col-md-12">
                             <label for="descripcion">Descripción del producto</label>
-                            <textarea class="form-control" id="descripcion" rows="3" name="descripcion" minlength="1" maxlength="10000" required>
-                            <?php echo $producto['DetallesProducto'];?></textarea>
+                            <textarea class="form-control" id="descripcion" rows="3" name="descripcion" minlength="1" maxlength="10000" required><?php echo $producto['DetallesProducto'];?></textarea>
+                            <p><span id="caracteres"></span></p>
                         </div>
 
                         <div class="grupo_precio col-md-12  ">

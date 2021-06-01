@@ -1,8 +1,7 @@
 let nombre=document.getElementById('nombre');
-let categorias=document.getElementById('categorias');
 let descripcion= document.getElementById("descripcion");
 let caracteres = document.getElementById("caracteres");
-let formulario= document.getElementById('FormularioAñadirProductos');
+let formulario= document.getElementById('FormCategorias');
 let errorNombre=document.getElementById('mError-nombre');
 
 const patrones={

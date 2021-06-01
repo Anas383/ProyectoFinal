@@ -1,10 +1,13 @@
 <?php
-
+  
     require '../../BD/ConectorBD.php';
     require '../../BD/DAOUsuarios.php';
     $conexion=conectar(true);
     session_start();
     $usuario= $_GET['usuario'];
+    if(!$usuario){
+        header("Location: ../InterfazWeb/Home.php");
+    }
 ?>
 
 
