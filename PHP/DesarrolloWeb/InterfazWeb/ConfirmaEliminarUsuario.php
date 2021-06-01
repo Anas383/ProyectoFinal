@@ -15,14 +15,14 @@
 <!DOCTYPE html>
 <html lang="es-ES">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eliminar Usuario AnimeTEK</title>
-    <link rel="icon" href="../../../IMG/Logo/LogoFullTransparente.ico">
-     <!--Links para las fuentes de Google Fonts.-->
-     <link rel="preconnect" href="https://fonts.gstatic.com">
-     <link href="https://fonts.googleapis.com/css2?family=Teko:wght@300&display=swap" rel="stylesheet">
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Eliminar Usuario AnimeTEK</title>
+        <link rel="icon" href="../../../IMG/Logo/LogoFullTransparente.ico">
+        <!--Links para las fuentes de Google Fonts.-->
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Teko:wght@300&display=swap" rel="stylesheet">
 
         <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Kiwi+Maru:wght@300&display=swap" rel="stylesheet">
@@ -41,11 +41,7 @@
 
 
     <!-- CABECERA PARA HOME ANIMETEK -->
-    <header class="cabecera d-none d-sm-none d-md-block">
-        <center>
-            <img src="../../../IMG/Anime.png"alt="" srcset=""><img src="../../../IMG/TEK.png" width="200px" height="150px" alt="" srcset="">
-        </center>      
-    </header>
+    <?php include_once 'CabeceraAnimeTEK.php';?>
 
 
     <!-- MENÚ ANIMETEK  -->
