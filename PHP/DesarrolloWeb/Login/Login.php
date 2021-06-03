@@ -1,8 +1,10 @@
 <?php
-
+    //LLAMAMOS CON REQUIRE AL CONECTOR DE LA BASE DE DATOS Y A LOS DAO DE FUNCIONES
     require '../../BD/ConectorBD.php';
     require '../../BD/DAOUsuarios.php';
+    //CONECTAMOS A LA BASE DE DATOS
     $conexion=conectar(true);
+    //INICIAMOS SESION 
     session_start();
 ?>
 
@@ -15,34 +17,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inicio de Sesión AnimeTEK</title>
     <link rel="icon" href="../../../IMG/Logo/LogoFullTransparente.ico">
-     <!--Links para las fuentes de Google Fonts.-->
-     <link rel="preconnect" href="https://fonts.gstatic.com">
-     <link href="https://fonts.googleapis.com/css2?family=Teko:wght@300&display=swap" rel="stylesheet">
-
-        <link rel="preconnect" href="https://fonts.gstatic.com">
-        <link href="https://fonts.googleapis.com/css2?family=Kiwi+Maru:wght@300&display=swap" rel="stylesheet">
-        <!--Link para la versión de Bootstrap.-->
-		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
-        <!--Links para el footer.-->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
-        <link rel="stylesheet" href="../../../CSS/Estilos.css">
-        <script src="../../../JS/Loader.js"></script>
-        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <!--Links para las fuentes de Google Fonts.-->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Teko:wght@300&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Kiwi+Maru:wght@300&display=swap" rel="stylesheet">
+    <!--Link para la versión de Bootstrap.-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <!--Links para el footer.-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- LINK ESTILOS DE LA PÁGINA CSS  -->
+    <link rel="stylesheet" href="../../../CSS/Estilos.css">
+    <!-- SCRIPT PARA LOADER -->
+    <script src="../../../JS/Loader.js"></script>
+    <!-- SCRIPT PARA SWEETALERT -->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 <body >
     <!--Loader.-->
     <?php include_once "../InterfazWeb/Loader.php"?>
 
-    <!-- CABECERA PARA HOME ANIMETEK -->
-    <header class="cabecera d-none d-sm-none d-md-block">
-        <center>
-            <img src="../../../IMG/Anime.png"alt="" srcset=""><img src="../../../IMG/TEK.png" width="200px" height="150px" alt="" srcset="">
-        </center>      
-    </header>
+    <!-- CABECERA ANIMETEK -->
+    <?php include_once '../InterfazWeb/CabeceraAnimeTEK.php';?>
 
 
-    <!-- MENÚ ANIMETEK  -->
+    <!-- ESTE ES EL MENÚ DE NAVEGACIÓN DE ANIMETEK  -->
     <div class="sticky-top">
         <nav class="navbar navbar-expand-lg navbar-dark ">
             <a class="navbar-brand" href="../InterfazWeb/Home.php">
@@ -57,37 +57,11 @@
                     <a class="nav-item nav-link " href="../InterfazWeb/Catalogo.php">Catálogo</a>
                     <a class="nav-item nav-link " href="../InterfazWeb/MasSobreAnimeTEK.php">Más sobre AnimeTEK</a>
                       
-                </div>
+            </div>
+                <!-- ESTE INCLUDE CONTINE UNA PARTE DEL MENU QUE SOLO SE MUESTRA A USUARIOS  -->
                 <?php include_once '../InterfazWeb/MenuUsuarios.php';?>
         </nav>
     </div><br>
-
-     <!-- VENTANA EMERGENTE PARA EL BOTON LogOut -->
-    <div class="modal fade" id="emergenteLogOut" tabindex="-1" role="dialog" aria-labelledby="emergenteLogOut"
-        aria-hidden="true">
-        <div class="modal-dialog ventanaEmergente" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title " id="emergenteLogOut">LogOut</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    ¿Quiéres cerrar sesión?
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-                    <span class="">
-                        <button type="button" class="btn btn-success">
-                            <a href="../Login/Desconectarse.php" style="text-decoration: none; color:white">Aceptar</a>
-                        </button>
-                    </span>
-
-                </div>
-            </div>
-        </div>
-    </div>
  
     <div class="container">
 
@@ -162,11 +136,14 @@
     <br>
     <br>
     <br>
+    <!-- ESTE INCLUDE ES EL FOOTER -->
     <?php include_once "../InterfazWeb/Footer.php"?>
      
     <!--Scripts-->   
     <script src="../../../JS/FormularioLogin.js"></script> 
+    <!-- SCRIPT FONT AWSOME PARA LOS ICONOS  -->
     <script src="https://use.fontawesome.com/releases/v5.15.2/js/all.js" data-auto-a11y="true"></script>
+    <!-- SCRIPT BOOTSTRAP -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
 </body>
 </html>

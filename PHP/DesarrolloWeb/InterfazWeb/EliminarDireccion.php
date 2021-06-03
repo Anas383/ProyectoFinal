@@ -1,17 +1,19 @@
 <?php
-if(!isset($_SERVER['HTTP_REFERER'])){
-    header("Location: Home.php");
-    exit;
-}
-require '../../BD/ConectorBD.php';
-require '../../BD/DAOUsuarios.php';
-$conexion=conectar(true);
-
-$idDireccion=$_GET['idDireccion'];
-
-
-$eliminarDireccion=eliminarDireccion($conexion, $idDireccion);
-header('Location: AdministrarDirecciones.php');
+    //CON ESTE IF CONTROLAMOS QUE LOS USUARIOS NO PUEDAN ACCEDER MEDIANTE UN LINK A LAS PAGINAS QUE NO QUEREMOS
+    if(!isset($_SERVER['HTTP_REFERER'])){
+        header("Location: Home.php");
+        exit;
+    }
+    //LLAMAMOS CON REQUIRE AL CONECTOR DE LA BASE DE DATOS Y A LOS DAO DE FUNCIONES
+    require '../../BD/ConectorBD.php';
+    require '../../BD/DAOUsuarios.php';
+    //CONECTAMOS A LA BASE DE DATOS
+    $conexion=conectar(true);
+    //RECOGEMOS  LOS DATOS PROCEDENTES DEL PHP
+    $idDireccion=$_GET['idDireccion'];
+    // ELIMINAMOS LA DIRECCIÓN
+    $eliminarDireccion=eliminarDireccion($conexion, $idDireccion);
+    header('Location: AdministrarDirecciones.php');
 
 
 ?>

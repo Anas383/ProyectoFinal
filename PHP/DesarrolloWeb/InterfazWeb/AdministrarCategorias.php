@@ -1,12 +1,16 @@
 <?php
+    //CON ESTE IF CONTROLAMOS QUE LOS USUARIOS NO PUEDAN ACCEDER MEDIANTE UN LINK A LAS PAGINAS QUE NO QUEREMOS
     if(!isset($_SERVER['HTTP_REFERER'])){
-    header("Location: Home.php");
-    exit;
+        header("Location: Home.php");
+        exit;
     }
+    //LLAMAMOS CON REQUIRE AL CONECTOR DE LA BASE DE DATOS Y A LOS DAO DE FUNCIONES
     require '../../BD/ConectorBD.php';
     require '../../BD/DAOUsuarios.php';
     require '../../BD/DAOProductos.php';
+    //CONECTAMOS A LA BASE DE DATOS
     $conexion=conectar(true);
+    //INICIAMOS SESION 
     session_start();
 ?>
 
@@ -22,27 +26,30 @@
      <!--Links para las fuentes de Google Fonts.-->
      <link rel="preconnect" href="https://fonts.gstatic.com">
      <link href="https://fonts.googleapis.com/css2?family=Teko:wght@300&display=swap" rel="stylesheet">
-
-        <link rel="preconnect" href="https://fonts.gstatic.com">
-        <link href="https://fonts.googleapis.com/css2?family=Kiwi+Maru:wght@300&display=swap" rel="stylesheet">
-        <!--Link para la versión de Bootstrap.-->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-        <!--Links para el footer.-->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
-        <link rel="stylesheet" href="../../../CSS/Estilos.css">
-        <script src="../../../JS/Loader.js"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Kiwi+Maru:wght@300&display=swap" rel="stylesheet">
+    <!--Link para la versión de Bootstrap.-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!--Links para el footer.-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- LINK ESTILOS DE LA PÁGINA CSS  -->
+    <link rel="stylesheet" href="../../../CSS/Estilos.css">
+    <!-- SCRIPT PARA LOADER -->
+    <script src="../../../JS/Loader.js"></script>
+    <!-- SCRIPT PARA SWEETALERT -->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 </head>
-<body >
+<body>
     <!--Loader.-->
     <?php include_once "Loader.php"?>
 
 
-    <!-- CABECERA PARA HOME ANIMETEK -->
+    <!-- CABECERA ANIMETEK -->
     <?php include_once 'CabeceraAnimeTEK.php';?>
 
-    <!-- MENÚ ANIMETEK  -->
+    <!-- ESTE ES EL MENÚ DE NAVEGACIÓN DE ANIMETEK  -->
     <div class="sticky-top">
         <nav class="navbar navbar-expand-lg navbar-dark menu ">
             <a class="navbar-brand" href="Home.php">
@@ -56,31 +63,33 @@
                     <a class="nav-item nav-link " href="Home.php">Home <span class="sr-only">Home</span></a>
                     <a class="nav-item nav-link " href="Catalogo.php">Catálogo</a>
                     <a class="nav-item nav-link " href="MasSobreAnimeTEK.php">Más sobre AnimeTEK</a>
+                    <!-- ESTE INCLUDE CONTINE UNA PARTE DEL MENU QUE SOLO SE MUESTRA A USUARIOS ADMINISTRADORES -->
                     <?php include_once 'MenuAdministradores.php'?>
                       
-                </div>
+            </div>
                 
-            
-            <?php include_once 'MenuUsuarios.php';?>
+                <!-- ESTE INCLUDE CONTINE UNA PARTE DEL MENU QUE SOLO SE MUESTRA A USUARIOS  -->
+                <?php include_once 'MenuUsuarios.php';?>
         </nav>
         
     </div><br>
-
+    <!-- VENTANA EMERGENTE PARA EL LOGOUT -->
     <?php include_once 'VentanaEmergenteLogOut.php';?>
-  
+    <!-- CONTENEDOR PRINCIPAL -->
     <div class="container-fluid">
         <div class="row">
-        <div class="col-md-8">
+            <div class="col-md-8">
+                <!--ESTAS SON LAS  MIGAS DE PAN -->
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
-                    <li class="breadcrumb-item active " aria-current="page">Home</li>
-                        <li class="breadcrumb-item  " aria-current="page">Administración de Categorías</li>
-                        
+                        <li class="breadcrumb-item active " aria-current="page">Home</li>
+                        <li class="breadcrumb-item  " aria-current="page">Administración de Categorías</li>   
                     </ol>
                 </nav>
             </div>
-            <div class="col-md-2"><a href="InsertarNuevaCategoria.php" class="btn btn-success mb-1 col-md-12"><i class="fas fa-plus"></i> &nbsp;Añadir Categoría</a></div>
-            
+            <!-- ESTE ES EL BOTON QUE LLEVA AL FORMULARIO INSERTAR CATEGORÍA -->
+            <div class="col-md-2"><a href="InsertarNuevaCategoria.php" class="btn btn-success mb-1 col-md-12"><i class="fas fa-plus"></i>&nbsp;Añadir Categoría</a></div>
+            <!-- ESTE ES EL INPUT PARA BUSCAR EN LA TABLA CATEGORÍAS -->
             <div class="col-md-2">
                 <form action="BuscarCategoriasAdmin.php" method="GET" class=" mb-1 ">
                     <div class="input-group">
@@ -90,55 +99,71 @@
                         </div>
                     </div>                   
                 </form>
-            
             </div>
         </div>
+        <!-- ESTA ES LA TABLA QUE MUESTRA TODAS LAS CATEGORÍAS EN LA BASE DE DATOS -->
         <div class="row">
-        <div class="table-responsive col-md-12">
-            <table class="table bg-light rounded   text-center">
-                
-                <thead class="bg-danger  ">
-                <tr>
-                    <th scope="col">Id Categoria</th>
-                    <th scope="col">Nombre de la categoría</th>
-                    <th scope="col">Descripción</th>
-                    <th scope="col">Acciones</th>
-                </tr>
-                </thead>
-                <?php 
-                    $listarCategorias= listarCategorias($conexion); 
-                    while($categorias=mysqli_fetch_assoc($listarCategorias)){
-                        
-                ?>
-                <tbody>
-                    <tr >
-                        <td><?php echo $categorias['idCategoria'];?></td>
-                        <td><?php echo $categorias['NombreCategoria'];?></td>
-                        <td><?php echo $categorias['DescripcionCategoria'];?></td>
-                        <td class="botonesTablasEdicion"><a href="ModificarCategoria.php?idCategoria=<?php echo $categorias['idCategoria'];?>" class="btn btn-primary "><i class="fas fa-pen"></i>&nbsp;&nbsp;Modificar</a><a href="ConfirmarCategoriaEliminada.php?idCategoria=<?php echo $categorias['idCategoria'];?>" class="btn btn-danger "><i class="fas fa-times"></i>&nbsp;&nbsp;Eliminar</a></td>
-                        <?php
-                             
-                        }
-                      
-                        ?>
+            <div class="table-responsive col-md-12">
+                <table class="table bg-light rounded   text-center">
+                    <!-- CABECERA DE LA TABLA CON LA CLASE BG DANGER PARA DARLE COLOR ROJO -->
+                    <thead class="bg-danger">
+                    <tr>
+                        <th scope="col">Id Categoria</th>
+                        <th scope="col">Nombre de la categoría</th>
+                        <th scope="col">Descripción</th>
+                        <th scope="col">Acciones</th>
                     </tr>
-                
-                </tbody>
-            </table>
-            <br>
-            <br>
-            <br>
-            <br>            
-        </div>
+                    </thead>
+                    <?php 
+                        //ESTA ES LA CONSULTA QUE ME LISTA TODAS LAS CATEGORÍAS 
+                        $listarCategorias= listarCategorias($conexion); 
+
+                        // AQUÍ IMPRIMIMOS MEDIANTE UN WHILE Y UN MYSQLI_FETCH_ASSOC, EL CUAL SIRVE PARA
+                        // CONVERTIR LAS FILAS OBTENIDAS POR LA CONSULTA EN UN ARRAY
+
+                        while($categorias=mysqli_fetch_assoc($listarCategorias)){
+                            
+                    ?>
+                    <tbody>
+                        <!-- IMPRIMIMOS LOS DATOS -->
+                        <tr>
+                            <td><?php echo $categorias['idCategoria'];?></td>
+                            <td><?php echo $categorias['NombreCategoria'];?></td>
+                            <td><?php echo $categorias['DescripcionCategoria'];?></td>
+                            <td class="botonesTablasEdicion"><a href="ModificarCategoria.php?idCategoria=<?php echo $categorias['idCategoria'];?>" class="btn btn-primary "><i class="fas fa-pen"></i>&nbsp;&nbsp;Modificar</a><a href="ConfirmarCategoriaEliminada.php?idCategoria=<?php echo $categorias['idCategoria'];?>" class="btn btn-danger "><i class="fas fa-times"></i>&nbsp;&nbsp;Eliminar</a></td>
+                        <?php
+                            
+                        }
+                    
+                        ?>
+                        <?php
+                        if(isset($_GET['error']) && $_GET['error'] == "categoriaNoEliminada"){ 
+                            echo "<script>swal('AnimeTEK', 'No se ha podido eliminar la categoría, hay productos que dependen de ella, eliminalos primero.', 'error');</script>";
+                        
+                        }?>
+            
+                        </tr>
+                    
+                    </tbody>
+                </table>
+                <br>
+                <br>
+                <br>
+                <br>            
+            </div>
         </div>
         
     </div>
     <br>
+    <!-- ESTE INCLUDE ES EL FOOTER -->
     <?php include_once "Footer.php"?>
     
-    <!--Scripts-->  
+    <!--Scripts--> 
+    <!-- SCRIPT FONT AWSOME PARA LOS ICONOS  -->
     <script src="https://use.fontawesome.com/releases/v5.15.2/js/all.js" data-auto-a11y="true"></script>
+    <!-- SCRIPT DE BOOTSTRAP  -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+    <!-- SCRIPT NECESARIO PARA JQUERY -->
     <script src="https://code.jquery.com/jquery-3.5.1.js" type="text/javascript"></script>
     <script src="../../../JS/Catalogo.js"></script> 
 </body>

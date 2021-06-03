@@ -1,13 +1,17 @@
 <?php
-
-require '../../BD/ConectorBD.php';
-require '../../BD/DAOUsuarios.php';
-require '../../BD/DAOProductos.php';
-$conexion=conectar(true);
-session_start();
-$idUsuario= $_SESSION['idUsuario'];
-$buscarUsuario=consultaBuscarUsuarioID($conexion,$idUsuario);
-$usuario=mysqli_fetch_assoc($buscarUsuario);
+    //LLAMAMOS CON REQUIRE AL CONECTOR DE LA BASE DE DATOS Y A LOS DAO DE FUNCIONES
+    require '../../BD/ConectorBD.php';
+    require '../../BD/DAOUsuarios.php';
+    require '../../BD/DAOProductos.php';
+    //CONECTAMOS A LA BASE DE DATOS
+    $conexion=conectar(true);
+    // INICIAMOS SESION
+    session_start();
+    //RECOGEMOS EL idUsuario EN UNA VARIABLE
+    $idUsuario= $_SESSION['idUsuario'];
+    // CON ESTA CONSULTA BUSCAMOS AL USUARIO
+    $buscarUsuario=consultaBuscarUsuarioID($conexion,$idUsuario);
+    $usuario=mysqli_fetch_assoc($buscarUsuario);
 
 ?>
 
@@ -20,19 +24,20 @@ $usuario=mysqli_fetch_assoc($buscarUsuario);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editar Perfil AnimeTEK</title>
     <link rel="icon" href="../../../IMG/Logo/LogoFullTransparente.ico">
-     <!--Links para las fuentes de Google Fonts.-->
-     <link rel="preconnect" href="https://fonts.gstatic.com">
-     <link href="https://fonts.googleapis.com/css2?family=Teko:wght@300&display=swap" rel="stylesheet">
-
-        <link rel="preconnect" href="https://fonts.gstatic.com">
-        <link href="https://fonts.googleapis.com/css2?family=Kiwi+Maru:wght@300&display=swap" rel="stylesheet">
-        <!--Link para la versión de Bootstrap.-->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-        <!--Links para el footer.-->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
-        <link rel="stylesheet" href="../../../CSS/Estilos.css">
-        <script src="../../../JS/Loader.js"></script>
+    <!--Links para las fuentes de Google Fonts.-->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Teko:wght@300&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Kiwi+Maru:wght@300&display=swap" rel="stylesheet">
+    <!--Link para la versión de Bootstrap.-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!--Links para el footer.-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- LINK ESTILOS DE LA PÁGINA CSS  -->
+    <link rel="stylesheet" href="../../../CSS/Estilos.css">
+    <!-- SCRIPT PARA LOADER -->
+    <script src="../../../JS/Loader.js"></script>
 
 </head>
 <body >
@@ -40,11 +45,11 @@ $usuario=mysqli_fetch_assoc($buscarUsuario);
     <?php include_once "Loader.php"?>
 
 
-    <!-- CABECERA PARA HOME ANIMETEK -->
+    <!-- CABECERA ANIMETEK -->
     <?php include_once 'CabeceraAnimeTEK.php';?>
 
 
-    <!-- MENÚ ANIMETEK  -->
+    <!-- ESTE ES EL MENÚ DE NAVEGACIÓN DE ANIMETEK  -->
     <div class="sticky-top">
         <nav class="navbar navbar-expand-lg navbar-dark menu ">
             <a class="navbar-brand" href="Home.php">
@@ -58,23 +63,25 @@ $usuario=mysqli_fetch_assoc($buscarUsuario);
                     <a class="nav-item nav-link " href="Home.php">Home <span class="sr-only">Home</span></a>
                     <a class="nav-item nav-link " href="Catalogo.php">Catálogo</a>
                     <a class="nav-item nav-link " href="MasSobreAnimeTEK.php">Más sobre AnimeTEK</a>
+                    <!-- ESTE INCLUDE CONTINE UNA PARTE DEL MENU QUE SOLO SE MUESTRA A USUARIOS ADMINISTRADORES -->
                     <?php include_once 'MenuAdministradores.php'?>
                       
-                </div>
+            </div>
                 
-            
+            <!-- ESTE INCLUDE CONTINE UNA PARTE DEL MENU QUE SOLO SE MUESTRA A USUARIOS  --> 
             <?php include_once 'MenuUsuarios.php';?>
         </nav>
         
     </div><br> 
-
+    <!-- VENTANA EMERGENTE LOGOUT -->
     <?php include_once 'VentanaEmergenteLogOut.php';?>
- 
+    <!-- CONTENEDOR PRINCIPAL --> 
     <div class="container">
         
         <div class="row">
             <span class="col-md-3"></span>
             <div class=" col-md-6 contenedorFormulario ">
+                <!-- FORMULARIO PARA EDITAR PERFIL -->
                 <form action="GuardarModificacionesPerfil.php?idUsuario=<?php echo $usuario['idUsuario'];?>" id="FormularioRegistro" method="post" enctype="multipart/form-data">
                     <legend>Editar Perfil <?php echo $usuario['Usuario']?> </legend>
                     <div class="form-row">
@@ -134,12 +141,12 @@ $usuario=mysqli_fetch_assoc($buscarUsuario);
                             <p class="mensajeError-oculto" id="mError-email">&nbsp;¡El correo no cumple el formato.!</p>
                         </div><br>
                        
-                        <!-- imagen -->
+                        <!-- IMAGEN -->
                         <div class="form-group grupo_ col-md-12 " >
                             <label for="fotoPerfil">Foto de Perfil</label><br>
                             <input type="file"  name="fotoPerfil" id="fotoPerfil">
                         </div><br>
-                                        
+                        <!-- BOTONES DE ENVIO Y RESET           -->
                         <div class="grupo_envio col-md-6 ">
                             <input type="submit" class="btn btn-success btn-lg col-md-12" value="Enviar">
                         </div>
@@ -150,8 +157,6 @@ $usuario=mysqli_fetch_assoc($buscarUsuario);
                         </div>
                         
                     </div>
-                
-    
     
                 </form>
 
@@ -159,12 +164,9 @@ $usuario=mysqli_fetch_assoc($buscarUsuario);
             <span class="col-md-3"></span>
         </div> 
            
-
-
-       
-        
     </div>
     <br>
+    <!-- ESTE INCLUDE ES EL FOOTER -->
     <?php include_once "Footer.php"?>
    
     <!--Scripts-->  

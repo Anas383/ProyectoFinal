@@ -1,9 +1,10 @@
 <?php
+    // TRAEMOS LA SESION
+    session_start();
+    // Y LA DESTRUIMOS
+    session_destroy();
 
-session_start();
-session_destroy();
-
-header('Location:../InterfazWeb/Home.php');
+    header('Location:../InterfazWeb/Home.php');
 
 
 ?>

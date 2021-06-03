@@ -155,7 +155,7 @@ function validarUsuario() {
 }
 
 
-
+// VALIDAR EMAIL
 function validarEmail() {
     if (patrones.patronEmail.test(email.value)) {
 
@@ -177,7 +177,7 @@ function validarEmail() {
 
 
 
-
+// VALIDAR TELEFONO
 
 function validarTelefono() {
     if (patrones.patronTelefono.test(telefono.value)) {
@@ -250,7 +250,7 @@ function validarLetraDNI() {
     }
     return resultado;
 }
-
+// EVENTO PARA NO DEJAR ENVIAR EL FORMULARIO SIN UN CAMPO ESTA FALSE
 formularioEditarPerfil.addEventListener("submit", (e) => {
 
     if(validarUsuario() && validarNombre() &&  validarApellido1() && validarApellido2() && validarTelefono() && validarDNi() && validarEmail()){

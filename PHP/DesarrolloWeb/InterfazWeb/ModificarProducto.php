@@ -1,14 +1,20 @@
 <?php
-if(!isset($_SERVER['HTTP_REFERER'])){
-    header("Location: Home.php");
-    exit;
-}
+    //CON ESTE IF CONTROLAMOS QUE LOS USUARIOS NO PUEDAN ACCEDER MEDIANTE UN LINK A LAS PAGINAS QUE NO QUEREMOS
+    if(!isset($_SERVER['HTTP_REFERER'])){
+        header("Location: Home.php");
+        exit;
+    }
+    //LLAMAMOS CON REQUIRE AL CONECTOR DE LA BASE DE DATOS Y A LOS DAO DE FUNCIONES
     require '../../BD/ConectorBD.php';
     require '../../BD/DAOUsuarios.php';
     require '../../BD/DAOProductos.php';
+    //CONECTAMOS A LA BASE DE DATOS
     $conexion=conectar(true);
+    //INICIAMOS SESION
     session_start();
+    // RECIBIMOS Y GUARDAMOS EN UNA VARIABLE EL GET DEL idProducto
     $idProducto=$_GET['idProducto'];
+    // BUSCAMOS EL PRODUCTO SEGUN EL ID
     $buscarProducto=buscarProductoPorID($conexion, $idProducto);
     $producto=mysqli_fetch_assoc($buscarProducto);
 ?>
@@ -25,16 +31,17 @@ if(!isset($_SERVER['HTTP_REFERER'])){
      <!--Links para las fuentes de Google Fonts.-->
      <link rel="preconnect" href="https://fonts.gstatic.com">
      <link href="https://fonts.googleapis.com/css2?family=Teko:wght@300&display=swap" rel="stylesheet">
-
-        <link rel="preconnect" href="https://fonts.gstatic.com">
-        <link href="https://fonts.googleapis.com/css2?family=Kiwi+Maru:wght@300&display=swap" rel="stylesheet">
-        <!--Link para la versión de Bootstrap.-->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-        <!--Links para el footer.-->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
-        <link rel="stylesheet" href="../../../CSS/Estilos.css">
-        <script src="../../../JS/Loader.js"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Kiwi+Maru:wght@300&display=swap" rel="stylesheet">
+    <!--Link para la versión de Bootstrap.-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!--Links para el footer.-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- LINK ESTILOS DE LA PÁGINA CSS -->
+    <link rel="stylesheet" href="../../../CSS/Estilos.css">
+    <!-- SCRIPT PARA LOADER -->
+    <script src="../../../JS/Loader.js"></script>
 
 </head>
 <body >
@@ -42,11 +49,11 @@ if(!isset($_SERVER['HTTP_REFERER'])){
     <?php include_once "Loader.php"?>
 
 
-    <!-- CABECERA PARA HOME ANIMETEK -->
+    <!-- CABECERA ANIMETEK -->
     <?php include_once 'CabeceraAnimeTEK.php';?>
 
 
-    <!-- MENÚ ANIMETEK  -->
+    <!-- ESTE ES EL MENÚ DE NAVEGACIÓN DE ANIMETEK  -->
     <div class="sticky-top">
         <nav class="navbar navbar-expand-lg navbar-dark menu ">
             <a class="navbar-brand" href="Home.php">
@@ -60,30 +67,33 @@ if(!isset($_SERVER['HTTP_REFERER'])){
                     <a class="nav-item nav-link " href="Home.php">Home <span class="sr-only">Home</span></a>
                     <a class="nav-item nav-link " href="Catalogo.php">Catálogo</a>
                     <a class="nav-item nav-link " href="MasSobreAnimeTEK.php">Más sobre AnimeTEK</a>
+                    <!-- ESTE INCLUDE CONTINE UNA PARTE DEL MENU QUE SOLO SE MUESTRA A USUARIOS ADMINISTRADORES -->
                     <?php include_once 'MenuAdministradores.php'?>
                       
-                </div>
+            </div>
                 
-            
+            <!-- ESTE INCLUDE CONTINE UNA PARTE DEL MENU QUE SOLO SE MUESTRA A USUARIOS  -->
             <?php include_once 'MenuUsuarios.php';?>
         </nav>
         
     </div><br> 
-
+    <!-- VENTANA EMERGENTE PARA EL LOGOUT -->
     <?php include_once 'VentanaEmergenteLogOut.php';?>
- 
+    <!-- CONTENEDOR PRINCIPAL -->
     <div class="container">
         
         <div class="row">
             <span class="col-md-3"></span>
             <div class=" col-md-6 contenedorFormulario ">
+                <!--ESTAS SON LAS  MIGAS DE PAN -->
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
-                    <li class="breadcrumb-item active " aria-current="page">Home</li>
+                        <li class="breadcrumb-item active " aria-current="page">Home</li>
                         <li class="breadcrumb-item active " aria-current="page">Administración de Productos</li>
                         <li class="breadcrumb-item " aria-current="page">Modificar Producto</li>
                     </ol>
                 </nav>
+                <!-- FORMULARIO MODIFICAR PRODUCTO-->
                 <form action="GuardarModificacionesProducto.php?idProducto=<?php echo $producto['idProducto'];?>" id="FormularioAñadirProductos" method="post" enctype="multipart/form-data">
                     <legend>Modificar producto:<br><?php echo $producto['NombreProducto'];?> </legend>  
                         <!-- NOMBRE-->
@@ -91,7 +101,7 @@ if(!isset($_SERVER['HTTP_REFERER'])){
                             <label for="nombre"><strong>Nombre del producto</strong></label>
                             <input type="text" name="nombre"  id="nombre" class="form-control" value="<?php echo $producto['NombreProducto'];?>" >
                             <br>
-                            <p class="mensajeError-oculto" id="mError-nombre">&nbsp;¡El producto debe contenr un nombre</p>
+                            <p class="mensajeError-oculto" id="mError-nombre">&nbsp;¡El producto debe contener un nombre!</p>
                         </div><br>
 
                         <div class="grupo_categorias  col-md-12 ">
@@ -101,24 +111,27 @@ if(!isset($_SERVER['HTTP_REFERER'])){
                                   <label class="input-group-text" for="categorias">Categorías</label>
                                 </div>
                                 <select class="custom-select" name="categorias" id="categorias">
-                                    <?php 
+                                    <?php
+                                        //SELECCIONAMOS EL idCategoria DEL PRODUCTO 
                                         $idCategoriaProducto=$producto['idCategoria'];
+                                        //Y BUSCAMOS LA CATEGORIA DE ESTE PRODUCTO
                                         $categoriaProducto=buscarCategoriaPorID($conexion, $idCategoriaProducto);
                                         $categoriaP=mysqli_fetch_assoc($categoriaProducto);
             
                                     ?>
-                                  <option value="<?php echo $categoriaP['idCategoria']?>" selected><?php echo $categoriaP['NombreCategoria']?></option>
-                                  <?php 
-                                    $listarCategorias= listarCategorias($conexion);
-                                    while( $categorias = mysqli_fetch_assoc($listarCategorias)){ 
+                                    <!-- AQUI MOSTRAMOS EL OPTION SELECTED CON EL NOMBRE DE LA CATEGORIA DEL PRODUCTO -->
+                                    <option value="<?php echo $categoriaP['idCategoria']?>" selected><?php echo $categoriaP['NombreCategoria']?></option>
+                                    <?php 
+                                        $listarCategorias= listarCategorias($conexion);
+                                        while( $categorias = mysqli_fetch_assoc($listarCategorias)){ 
                                   
-                                  ?>
-                                  <option value="<?php echo $categorias['idCategoria']?>"><?php echo $categorias['NombreCategoria'] ?></option>
-                                  <?php
-                                    }
-                                ?>
+                                    ?>
+                                    <option value="<?php echo $categorias['idCategoria']?>"><?php echo $categorias['NombreCategoria'] ?></option>
+                                    <?php
+                                        }
+                                    ?>
                                 </select>
-                              </div>
+                            </div>
                         </div>
 
                         <div class="grupo_descripcion form-group col-md-12">
@@ -135,7 +148,7 @@ if(!isset($_SERVER['HTTP_REFERER'])){
                         </div><br>
                         <div class="grupo_stock col-md-12  ">
                             <label for="stock"><strong>Stock del producto</strong></label>
-                            <input type="number" name="stock"   id="stock" class="form-control" value="<?php echo $producto['Stock'];?>" required>
+                            <input type="number" name="stock" min="0"  id="stock" class="form-control" value="<?php echo $producto['Stock'];?>" required>
                             
                         </div><br>
                         <!-- imagen -->
@@ -155,26 +168,24 @@ if(!isset($_SERVER['HTTP_REFERER'])){
                         </p>
                     </div>
                   
-                        
-    
-    
                 </form>
 
             </div>
             <span class="col-md-3"></span>
         </div> 
-           
-
-
        
         
     </div>
     <br>
+    <!-- ESTE INCLUDE ES EL FOOTER -->
     <?php include_once "Footer.php"?>
    
     <!--Scripts-->  
+    <!-- SCRIPT FONT AWSOME PARA LOS ICONOS  -->
     <script src="https://use.fontawesome.com/releases/v5.15.2/js/all.js" data-auto-a11y="true"></script>
+    <!-- SCRIPT DE BOOTSTRAP  -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+    <!-- SCRIPT NECESARIO PARA JQUERY -->
     <script src="https://code.jquery.com/jquery-3.5.1.js" type="text/javascript"></script>               
     <script src="../../../JS/Catalogo.js"></script>
     <script src="../../../JS/FormInsertarProducto.js"></script>

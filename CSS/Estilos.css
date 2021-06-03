@@ -1,8 +1,11 @@
+
+/* PADDING Y MARGIN PARA TODO EL DOCUMENTO */
 *{
     padding: 0;
     margin: 0.0;
 }
 
+/* FONDO PARA EL BODY */
 body{
     
     background-image: url('https://static.vecteezy.com/system/resources/previews/000/628/023/non_2x/scandinavian-nordic-pattern-background-vector.png');
@@ -10,7 +13,7 @@ body{
 }
 
 
-
+/* ESTILOS PARA LA CLASE CONTENEDOR */
 .contenedor{
     background-color: #99868ff6;
     padding: 1.063rem;
@@ -20,16 +23,20 @@ body{
     box-shadow: -1px 17px 16px 10px rgba(0,0,0,0.75);
 }
 
+/* FONDO MENU DE NAVEGACION */
 .navbar{
     background-color: #212237;
     
 }
+/* SOMBRA PARA EL MENU */
 .menu{
     background-color: #212237;
     -webkit-box-shadow: 2px 10px 3px 3px rgba(0,0,0,0.75);
     -moz-box-shadow: 2px 10px 3px 3px rgba(0,0,0,0.75);
     box-shadow: 2px 10px 3px 3px rgba(0,0,0,0.75);
 }
+
+/* ESTILOS AGRANDAR PARA EL LOGO DEL MENU */
 .navbar-brand{
     transition: transform(0.5);
 }
@@ -37,11 +44,12 @@ body{
     transform: scale(1.6);
 }
 
+/* FONDO CABECERA */
 .cabecera{
     background-color: #212237;
     
 }
-
+/* ESTILO PARA LA LETRA DEL MENU, COLOR, TAMAÑO,ETC  */
 .fuenteMenu a{
     font-family: 'Teko', sans-serif;
     font-size: 1.688rem;
@@ -50,19 +58,21 @@ body{
 .fuenteMenu a:hover{
     transform: scale(1.1);
 }
+
+/* ESTILO PARA LA LETRA DEL FOOTER, COLOR, TAMAÑO,ETC  */
 .fuenteFooter a, p{
     font-family: 'Teko', sans-serif;
     font-size: 1.688rem;
 }
 
-
+/* ESTILO PARA LOS ENLACES DEL MENU */
 .linksMenu a{
     color:white;
     text-decoration: none;
 
 }
 
-
+/* ESTILOS PARA FOOTER */
 .pieDePagina
 {
     
@@ -73,6 +83,7 @@ body{
     -moz-box-shadow: -1px -4px 16px 10px rgba(0,0,0,0.75);
     box-shadow: -1px -4px 16px 10px rgba(0,0,0,0.75);
 }
+/* TITULOS H3 DEL FOOTER */
 .pieDePagina h3 
 {
     margin-top: 0;
@@ -80,6 +91,7 @@ body{
     font-weight: bold;
     font-size: 1rem;
 }
+/* ESTILOS PARA LA LISTA NO ORDENADA DEL FOOTER */
 .pieDePagina ul 
 {
     padding: 0;
@@ -88,6 +100,7 @@ body{
     font-size: 0.875rem;
     margin-bottom: 0;
 }
+/* ESTILOS PARA LOS ENLACES DE LA LISTA NO ORDENADA DEL FOOTER */
 .pieDePagina ul a 
 {
     color: inherit;
@@ -98,6 +111,7 @@ body{
 {
     opacity: 0.8;
 }
+/* ESTILOS PARA HACER RESPONSIVE EL FOOTER */
 @media(max-width: 47.938rem) 
 {
     .pieDePagina .item:not(.social) 
@@ -134,6 +148,8 @@ body{
         margin-top: 2.25rem;
     }
 }
+
+/* ESTILOS PARA EL SOCIAL BAR DEL FOOTER */
 .pieDePagina .item.social > a  
 {
     font-size: 2.25rem;
@@ -152,6 +168,7 @@ body{
 {
     opacity: 0.9;
 }
+/* ESTILOS PARA EL APARTADO DE COPYRIGHT FOOTER */
 .pieDePagina .copyright 
 {
     text-align: center;
@@ -160,6 +177,7 @@ body{
     font-size: 1.875rem;
     margin-bottom: 0;
 }
+/* FONDOS PARA LOS ICONOS DEL SOCIAL BAR */
 .icono-instagram{
     background-color: #9848bd;
 }
@@ -178,16 +196,21 @@ body{
 {
     background-color:red;
 }
+
+/* CLASE PARA DESACTIVAR UN ENLACE */
 .enlaceDesactivado
 {
     pointer-events: none; 
     cursor: default;
 }
+/* MARFEN Y FUENTE PARA LA LISTA DEL FOOTER */
 .listaFooter
 {
     margin-left: 0.625rem;
     font-size: 85%;
 }
+
+/* ESTILOS PARA EL MAPA DE MAPS */
 .mapa
 {
     width: 15.625rem;
@@ -228,7 +251,7 @@ body{
     box-sizing: border-box;
 }
 
-/* Loader */
+/* ESTILOS PARA EL LOADER */
 *
 {
     margin: 0;
@@ -341,8 +364,8 @@ body{
         transform: rotate(360deg);
     }
 }
-.loader
-{
+/* ESTILOS LOADER  */
+.loader{
     background:#212237;
     width: 100%;
     height: 100%;
@@ -371,7 +394,7 @@ body{
 }
 
 
-/* VENTANA EMERGENTE */
+/* VENTANA EMERGENTE PARA MODAL DE BOOTSTRAP */
 
 .modal-header{
     background-color: #212237;
@@ -393,7 +416,7 @@ body{
 }
 
 
-/* MENSAJES DE ERROR */
+/* ESTILOS MENSAJES DE ERROR */
 
 
 .mensajeError-oculto{
@@ -402,6 +425,7 @@ body{
     display: none;
  
 }
+
 .mensajeError-activo{
     font-size: 0.977rem;
     color: red;
@@ -410,6 +434,7 @@ body{
     display: block;
 
 }
+/* ESTILOS PARA EL CONTENEDOR DEL FORMULARIO */
 .contenedorFormulario{
     background-color:white; 
     padding:2%; 
@@ -419,15 +444,17 @@ body{
     box-shadow: 1px 3px 6px 11px rgba(0,0,0,0.75);
 }
 
-
+/* ESTILOS PARA LOS LABEL */
 label{
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-weight: 900;
 }
+/* ESTILOS PARA LOS LEGEND DE FORMULARIOS */
 legend{
     font-family: 'Audiowide', cursive;
 }
 
+/* MENSAJE ERROR PHP*/
 .errorFormulariosBD{
     text-align: center;
     background-color: red;
@@ -435,29 +462,26 @@ legend{
     border-radius: 6px;
 }
 
-.iconoSonido{
-    display: block;
-}
-.iconoMute{
-    display: none;
-}
 
+/* TITULOS PARA LA PAGINA PRINCIPAL*/
 .titulosPrincipal{
     font-family: 'Audiowide', cursive;
     color: white;
+    
     -webkit-text-stroke: 2px black;
 }
 
-
+/* ICONO DE CERRAR MODAL BOOTSTRAP */
 .close span{
     color:white;
 }
 
+/* ESTILO DE LETRA PARA MODAL DE BOOTSTRAP */
 .modal-header{
     font-family: 'Audiowide', cursive;
 }
 
-
+/* ESTILOS PARA  CONTENDOR EN BLANCO */
 .contenedorPerfil{
     background-color: #f0f9ff;
     border-radius: 0.625rem;
@@ -467,10 +491,12 @@ legend{
     box-shadow: 1px 3px 6px 11px rgba(0,0,0,0.75);
 
 }
+/* ESTILOS PARA  TITULOS H2 DE CONTENEDOR BLANCO */
 .contenedorPerfil h2{
     font-family: 'Audiowide', cursive;
 
 }
+/* ESTILOS PARA SPAN CONTENDOR EN BLANCO */
 .contenedorPerfil span{
     font-family: 'Times New Roman', Times, serif;
     font-size: 1.367rem;
@@ -478,7 +504,7 @@ legend{
 
 }
 
-
+/* ESTILO PARA  FOTO TE PERFIL */
 .fotoPerfil{
     display: block;
     margin-left: auto;
@@ -493,28 +519,31 @@ legend{
   
     
 }
+/* ESTILO PARA OSCURECER FOTO TE PERFIL AL PASAR EL RATON */
 .fotoPerfil:hover{
    
     filter: brightness(40%);
     
 }
 
-
+/* ESTILO Y POSICION BOTONES DE ELIMNAR Y MODIFICAR TABLAS*/
 .botonesTablasEdicion{
     display:grid; 
     grid-template-columns: auto auto; 
     grid-gap:2%;
 }
+/* ESTILO PARA EL THEAD DE LAS TABLAS*/
 .cabeceraTabla{
     border-radius: 0.625rem;
 }
+/* FUENTE PARA TODAS LAS TABLAS DE LA PAGINA */
 table{
 
  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
   
 }
 
-
+/* ESTILO PARA LAS TARJETAS DEL CATALOGO */
 .tarjetasProductos{
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     background-color:#212237e3; 
@@ -527,6 +556,7 @@ table{
     height: 12.5rem;
 }
 
+/* ESTILO PARA EL BOTON DE LAS BARRAS DE BUSQUEDA */
 .botonBuscar{
     background-color: #212237;
     transition-property: bachground;
@@ -536,7 +566,7 @@ table{
    background-color:#2a2c42 ;
 }
 
-/*PAYPAL*/
+/* ESTILOS RESPONSIVE PARA EL BOTON DE PAYPAL*/
 /* Media query for mobile viewport */
 @media screen and (max-width: 400px) {
     #paypal-button-container {
@@ -551,6 +581,7 @@ table{
     }
 }
 
+/* FUENTE PARA LOS TITULOS DEL HOME */
 .tituloHome{
     font-family: 'Righteous', cursive;
     font-size: 5rem;
@@ -560,14 +591,17 @@ table{
 
 
 }
+
+/* CAMBIAR COLOR DE LAS FLECHAS DE BOOTSTRAP*/
 .carousel-control-prev-icon {
     background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23000' viewBox='0 0 8 8'%3E%3Cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3E%3C/svg%3E") !important;
    }
    
-   .carousel-control-next-icon {
-     background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23000' viewBox='0 0 8 8'%3E%3Cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E") !important;
-   }
+.carousel-control-next-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23000' viewBox='0 0 8 8'%3E%3Cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E") !important;
+}
 
+/* ESTILOS PARA LOS ENLACES DEL MAPA DEL SITIO */
 .listaSiteMap a{
     color: red;
     text-decoration: none;
@@ -576,9 +610,5 @@ table{
     color: blue;
   
 }
-
-
-
-
 
 

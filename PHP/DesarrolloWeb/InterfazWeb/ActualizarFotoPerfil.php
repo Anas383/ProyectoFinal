@@ -1,26 +1,20 @@
-
 <?php
-session_start();
-//Lo primero es importar el archivo para conectarnos a la BD y luego el archivo con el que realizaremos 
-//Las consultas
 
-require '../../BD/ConectorBD.php';
-require '../../BD/DAOUsuarios.php';
-$conexion=conectar(true);
+    //LLAMAMOS CON REQUIRE AL CONECTOR DE LA BASE DE DATOS Y A LOs DAO DE FUNCIONES
+    require '../../BD/ConectorBD.php';
+    require '../../BD/DAOUsuarios.php';
+    //CONECTAMOS A LA BASE DE DATOS
+    $conexion=conectar(true);
 
-//Ahora toca recoger los datos introducidos por el usuario en el html
-$fotoPerfil=addslashes(file_get_contents($_FILES['fotoPerfil']['tmp_name']));;
-$idUsuario= $_GET['idUsuario'];
-
-
-echo $idUsuario;
-$actualizarFotoPerfil= actualizarFotoPerfil($conexion, $fotoPerfil, $idUsuario);
-header("Location: Perfil.php");
+    //RECOGEMOS  LOS DATOS PROCEDENTES DEL PHP 
+    $fotoPerfil = addslashes(file_get_contents($_FILES['fotoPerfil']['tmp_name']));
+    $idUsuario = $_GET['idUsuario'];
 
 
-
-
-
+    // REALIZAMOS LA CONSULTA PARA ACTUALIZAR LA FOTO DE PERFIL
+    $actualizarFotoPerfil= actualizarFotoPerfil($conexion, $fotoPerfil, $idUsuario);
+    //REDIRIGIMOS AL PERFIL DE NUEVO
+    header("Location: Perfil.php");
 
 ?>
 

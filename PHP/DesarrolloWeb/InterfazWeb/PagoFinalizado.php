@@ -1,13 +1,17 @@
 <?php
-if(!isset($_SERVER['HTTP_REFERER'])){
-    header("Location: Home.php");
-    exit;
-}
+    //CON ESTE IF CONTROLAMOS QUE LOS USUARIOS NO PUEDAN ACCEDER MEDIANTE UN LINK A LAS PAGINAS QUE NO QUEREMOS
+    if(!isset($_SERVER['HTTP_REFERER'])){
+        header("Location: Home.php");
+        exit;
+    }
+    //LLAMAMOS CON REQUIRE AL CONECTOR DE LA BASE DE DATOS Y A LOS DAO DE FUNCIONES
     require '../../BD/ConectorBD.php';
     require '../../BD/DAOUsuarios.php';
     require '../../BD/DAOProductos.php';
     require '../../BD/Config.php';
+    //CONECTAMOS A LA BASE DE DATOS  
     $conexion=conectar(true);
+    // INCIAMOS SESION
     session_start();
 ?>
 
@@ -20,29 +24,30 @@ if(!isset($_SERVER['HTTP_REFERER'])){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Realizar Pago AnimeTEK</title>
     <link rel="icon" href="../../../IMG/Logo/LogoFullTransparente.ico">
-     <!--Links para las fuentes de Google Fonts.-->
-     <link rel="preconnect" href="https://fonts.gstatic.com">
-     <link href="https://fonts.googleapis.com/css2?family=Teko:wght@300&display=swap" rel="stylesheet">
-
-        <link rel="preconnect" href="https://fonts.gstatic.com">
-        <link href="https://fonts.googleapis.com/css2?family=Kiwi+Maru:wght@300&display=swap" rel="stylesheet">
-        <!--Link para la versión de Bootstrap.-->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-        <!--Links para el footer.-->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
-        <link rel="stylesheet" href="../../../CSS/Estilos.css">
-        <script src="../../../JS/Loader.js"></script>
+    <!--Links para las fuentes de Google Fonts.-->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Teko:wght@300&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Kiwi+Maru:wght@300&display=swap" rel="stylesheet">
+    <!--Link para la versión de Bootstrap.-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!--Links para el footer.-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- LINK ESTILOS DE LA PÁGINA CSS  -->
+    <link rel="stylesheet" href="../../../CSS/Estilos.css">
+    <!-- SCRIPT PARA LOADER -->
+    <script src="../../../JS/Loader.js"></script>
        
      
 </head>
 <body >
 <?php include_once "Loader.php"?>
-    <!-- CABECERA PARA HOME ANIMETEK -->
+    <!-- CABECERA ANIMETEK -->
     <?php include_once 'CabeceraAnimeTEK.php';?>
 
     
-    <!-- MENÚ ANIMETEK  -->
+    <!-- ESTE ES EL MENÚ DE NAVEGACIÓN DE ANIMETEK  -->
     <div class="sticky-top">
         <nav class="navbar navbar-expand-lg navbar-dark menu ">
             <a class="navbar-brand" href="Home.php">
@@ -56,26 +61,28 @@ if(!isset($_SERVER['HTTP_REFERER'])){
                     <a class="nav-item nav-link " href="Home.php">Home <span class="sr-only">Home</span></a>
                     <a class="nav-item nav-link " href="Catalogo.php">Catálogo</a>
                     <a class="nav-item nav-link " href="MasSobreAnimeTEK.php">Más sobre AnimeTEK</a>
+                    <!-- ESTE INCLUDE CONTINE UNA PARTE DEL MENU QUE SOLO SE MUESTRA A USUARIOS ADMINISTRADORES -->
                     <?php include_once 'MenuAdministradores.php'?>
                       
-                </div>
+            </div>
                 
-            
+            <!-- ESTE INCLUDE CONTINE UNA PARTE DEL MENU QUE SOLO SE MUESTRA A USUARIOS  -->
             <?php include_once 'MenuUsuarios.php';?>
         </nav>
         
     </div><br>
-
+    <!-- VENTANA EMERGENTE PARA EL LOGOUT -->
     <?php include_once 'VentanaEmergenteLogOut.php';?>
-  
+    <!-- CONTENEDOR PRINCIPAL -->
     <div class="container">
         <div class="contenedorPerfil">
         
             <div class="jumbotron text-center ">
                 <div class="container">
-                    <h1 class="display-4" style="font-size: 4rem;">Enhorabuena has finalizado tu compra.</h1>
+                    <h1 class="display-4" style="font-size: 4.5vw;">Enhorabuena has finalizado tu compra.</h1>
                     <br>
                     <a href="Home.php" class="btn btn-success btn-lg">Ir al home</a>
+                    <div class="d-block d-sm-block d-md-none"><br></div>
                     <a href="Catalogo.php" class="btn btn-primary btn-lg">Ir al catálogo</a>
                 </div>
             </div>
@@ -83,11 +90,15 @@ if(!isset($_SERVER['HTTP_REFERER'])){
         </div><br>
     </div>
     <br>
+    <!-- ESTE INCLUDE ES EL FOOTER -->
     <?php include_once "Footer.php"?>
     
     <!--Scripts--> 
+    <!-- SCRIPT FONT AWSOME PARA LOS ICONOS  --> 
     <script src="https://use.fontawesome.com/releases/v5.15.2/js/all.js" data-auto-a11y="true"></script>
+    <!-- SCRIPT DE BOOTSTRAP  -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+    <!-- SCRIPT NECESARIO PARA JQUERY -->
     <script src="https://code.jquery.com/jquery-3.5.1.js" type="text/javascript"></script>               
     <script src="../../../JS/Catalogo.js"></script>
 </body>

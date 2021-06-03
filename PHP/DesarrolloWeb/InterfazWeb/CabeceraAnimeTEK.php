@@ -1,3 +1,4 @@
+<!-- ESTA ES LA CABECERA QUE SOLO SALE EN ESCRITORIOS -->
 <header class="cabecera d-none d-sm-none d-md-block">
         <center>
             <img src="../../../IMG/Fondo/goku_60.gif" width="250rem"  alt=""> 

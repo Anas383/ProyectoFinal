@@ -1,7 +1,9 @@
+
+// DECLARACION DE VARIABLES
 let password = document.getElementById('password');
 let repetirPassword = document.getElementById('repeatPassword');
 let formulario= document.getElementById('FormularioNuevaPassword');
-
+// MENSAJES DE ERROR
 let errorPassword=document.getElementById('mError-password');
 let errorRepetirContraseña=document.getElementById('mError-repeatPassword');
 
@@ -13,6 +15,7 @@ const patrones={
 
 }
 
+// EVENTOS
 password.addEventListener("keyup", validarPassword);
 password.addEventListener("blur", validarPassword);
 repetirPassword.addEventListener("keyup", validarRepeatPassword);
@@ -67,45 +70,47 @@ function validarRepeatPassword() {
 
 
 function mostrarPassword(){
-    var cambio = document.getElementById("password");
+    // RECOGEMOS EL CAMPO PASSWORD
+    let cambio = document.getElementById("password");
+    // SI LA CONTRASEÑA ESTA EN TIPO PASSWORD SE CAMBIA A TEXTO
     if(cambio.type == "password"){
         cambio.type = "text";
+        // SELECCIONAMOS ESE ICONO Y LO CAMBIAMOS 
         $('.icon').removeClass('fa fa-eye-slash').addClass('fa fa-eye');
     }else{
+        // EN CASO CONTRARIO QUE EL TIPO PASE A PASSWORD
         cambio.type = "password";
+         // SELECCIONAMOS ESE ICONO Y LO CAMBIAMOS 
             $('.icon').removeClass('fa fa-eye').addClass('fa fa-eye-slash');
         }
     } 
 
     $(document).ready(function () {
-    //CheckBox mostrar contraseña
-    $('#ShowPassword').click(function () {
-    $('#Password').attr('type', $(this).is(':checked') ? 'text' : 'password');
-});
+        //CheckBox mostrar contraseña
+        $('#ShowPassword').click(function () {
+        $('#Password').attr('type', $(this).is(':checked') ? 'text' : 'password');
+    });
 });
 
 function mostrarRepeatPassword(){
-    var cambioR = document.getElementById("repeatPassword");
+     // RECOGEMOS EL CAMPO PASSWORD
+    let cambioR = document.getElementById("repeatPassword");
+    // SI LA CONTRASEÑA ESTA EN TIPO PASSWORD SE CAMBIA A TEXTO
     if(cambioR.type == "password"){
         cambioR.type = "text";
+        // SELECCIONAMOS ESE ICONO Y LO CAMBIAMOS 
         $('.iconR').removeClass('fa fa-eye-slash').addClass('fa fa-eye');
     }else{
+        // EN CASO CONTRARIO QUE EL TIPO PASE A PASSWORD
         cambioR.type = "password";
+        // SELECCIONAMOS ESE ICONO Y LO CAMBIAMOS 
             $('.iconR').removeClass('fa fa-eye').addClass('fa fa-eye-slash');
         }
     } 
 
     $(document).ready(function () {
     //CheckBox mostrar contraseña
-    $('#showRepeatPassword').click(function () {
-    $('#repeatPassword').attr('type', $(this).is(':checked') ? 'text' : 'password');
-});
-});
-formulario.addEventListener("submit", (e) => {
-
-    if(validarPassword() && validarRepeatPassword() ){
-
-    }else{
-        e.preventDefault();
-    }
+        $('#showRepeatPassword').click(function () {
+        $('#repeatPassword').attr('type', $(this).is(':checked') ? 'text' : 'password');
+    });
 });

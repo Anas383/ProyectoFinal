@@ -1,3 +1,4 @@
+// DECLARACION DE VARIABLES
 let cp = document.getElementById('cp');
 let provincia = document.getElementById('provincia');
 let comunidadAutonoma = document.getElementById('comunidadAutonoma');
@@ -6,8 +7,16 @@ let numero = document.getElementById('numero');
 let piso = document.getElementById('piso');
 let portal = document.getElementById('portal');
 let formularioDirecciones=document.getElementById('formularioDirecciones');
+// MENSAJES DE ERROR
+let errorCP=document.getElementById('mError-cp');
+let errorProvincia=document.getElementById('mError-provincia');
+let errorComunidadAutonoma=document.getElementById('mError-comunidadAutonoma');
+let errorCalle=document.getElementById('mError-calle');
+let errorNumero=document.getElementById('mError-numero');
+let errorPiso=document.getElementById('mError-piso');
+let errorPortal =document.getElementById('mError-portal');
 
-
+// PATRONES
 const patrones={
     patronCP:/^[0-9]{5}$/,
     patronProvincia:/^.\D+$/,
@@ -17,7 +26,7 @@ const patrones={
     patronPortal: /^(Portal|Escalera) [A-Za-z]{1,9}$/,
     patronNumero: /^\d+$/
 }
-
+// EVENTOS
 cp.addEventListener("keyup", validarCP);
 cp.addEventListener("blur", validarCP);
 cp.addEventListener("keyup", validarCP1);
@@ -39,9 +48,9 @@ piso.addEventListener("blur", validarPiso);
 portal.addEventListener("keyup", validarPortal);
 portal.addEventListener("blur", validarPortal);
 numero.addEventListener("keyup", validarNumero);
-
 numero.addEventListener("blur", validarNumero);
 
+// VALIDAR CODIGO POSTAL 1
 function validarCP1(cPostal){
 
     let provincias = {
@@ -64,13 +73,19 @@ function validarCP1(cPostal){
     if(patrones.patronCP.test(cp.value)){
 
         cp.className="form-control is-valid";
+        errorCP.classList.remove('mensajeError-activo');
+        errorCP.classList.add('mensajeError-oculto');
+        
     	return true;
     }
     else{
         cp.className="form-control is-invalid";
+        errorCP.classList.remove('mensajeError-oculto');
+        errorCP.classList.add('mensajeError-activo');
   		return false;
     }
 }
+// VALIDAR CODIGO POSTAL 2
 function validarCP2(cPostal){
 
     let comunidades = {
@@ -93,10 +108,14 @@ function validarCP2(cPostal){
     if(patrones.patronCP.test(cp.value)){
 
         cp.className="form-control is-valid";
+        errorCP.classList.remove('mensajeError-activo');
+        errorCP.classList.add('mensajeError-oculto');
     	return true;
     }
     else{
         cp.className="form-control is-invalid";
+        errorCP.classList.remove('mensajeError-oculto');
+        errorCP.classList.add('mensajeError-activo');
     	return false;
     }
 }
@@ -110,10 +129,14 @@ function  validarCP() {
     if(patrones.patronCP.test(cp.value)){
 
         cp.className="form-control is-valid";
+        errorCP.classList.remove('mensajeError-activo');
+        errorCP.classList.add('mensajeError-oculto');
     	return true;
     }
     else{
         cp.className="form-control is-invalid";
+        errorCP.classList.remove('mensajeError-oculto');
+        errorCP.classList.add('mensajeError-activo');
     	return false;
     }
 }
@@ -125,11 +148,15 @@ function validarCA(){
 	if(patrones.patronComunidadAutonoma.test(comunidadAutonoma.value)){
 
 		comunidadAutonoma.className="form-control is-valid";
+        errorComunidadAutonoma.classList.remove('mensajeError-activo');
+        errorComunidadAutonoma.classList.add('mensajeError-oculto');
     	return true;
 	}
 	else{
 
 		comunidadAutonoma.className="form-control is-invalid";
+        errorComunidadAutonoma.classList.remove('mensajeError-oculto');
+        errorComunidadAutonoma.classList.add('mensajeError-activo');
     	return false;
 	}
 }
@@ -141,11 +168,15 @@ function validarProvincia(){
 	if(patrones.patronProvincia.test(provincia.value)){
 
 		provincia.className="form-control is-valid";
+        errorProvincia.classList.remove('mensajeError-activo');
+        errorProvincia.classList.add('mensajeError-oculto');
     	return true;
 	}
 	else{
 
 		provincia.className="form-control is-invalid";
+        errorProvincia.classList.remove('mensajeError-oculto');
+        errorProvincia.classList.add('mensajeError-activo');    
     	return false;
 	}
 }
@@ -155,40 +186,52 @@ function validarCalle() {
    calle.value =calle.value.charAt(0).toUpperCase() +calle.value.slice(1);
     if(patrones.patronCalle.test(calle.value)){
        calle.className="form-control is-valid";
+       errorCalle.classList.remove('mensajeError-activo');
+        errorCalle.classList.add('mensajeError-oculto');
     	return true;
     }else{
         calle.className="form-control is-invalid";
+        errorCalle.classList.remove('mensajeError-oculto');
+        errorCalle.classList.add('mensajeError-activo'); 
     	return false;
     }
     
 }
 
-//VALIDAR CALLE
+//VALIDAR PISO
 function validarPiso() {
     piso.value =piso.value.charAt(0).toUpperCase() +piso.value.slice(1);
      if(patrones.patronPiso.test(piso.value)){
         piso.className="form-control is-valid";
+        errorPiso.classList.remove('mensajeError-activo');
+        errorPiso.classList.add('mensajeError-oculto');
          return true;
      }else{
          piso.className="form-control is-invalid";
+        errorPiso.classList.remove('mensajeError-oculto');
+        errorPiso.classList.add('mensajeError-activo'); 
          return false;
      }
      
  }
 
- //VALIDAR CALLE
+ //VALIDAR PORTAL
 function validarPortal() {
     portal.value =portal.value.charAt(0).toUpperCase() +portal.value.slice(1);
      if(patrones.patronPortal.test(portal.value)){
         portal.className="form-control is-valid";
+        errorPortal.classList.remove('mensajeError-activo');
+        errorPortal.classList.add('mensajeError-oculto');
          return true;
      }else{
-         portal.className="form-control is-invalid";
+        portal.className="form-control is-invalid";
+        errorPortal.classList.remove('mensajeError-oculto');
+        errorPortal.classList.add('mensajeError-activo'); 
          return false;
      }
      
  }
-
+// VALIDAR NUMERO
  function validarNumero() {
     if(patrones.patronNumero.test(numero.value)){
         numero.className="form-control is-valid";
@@ -199,7 +242,7 @@ function validarPortal() {
      }
  }
 
-
+// EVENTO PARA NO DEJAR ENVIAR EL FORMULARIO SIN UN CAMPO ESTA FALSE
 
  formularioDirecciones.addEventListener("submit", (e) => {
      if(piso.value=="" && portal.value==""){

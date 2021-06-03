@@ -1,5 +1,5 @@
 
-     <!-- VENTANA EMERGENTE PARA ELIMINAR USUARIO -->
+     <!-- VENTANA EMERGENTE PARA  DIRECCIONES AL REALIZAR EL PAGO-->
      <div class="modal fade" id="emergenteDireccionesAlPagar" tabindex="-1" role="dialog" aria-labelledby="emergenteDireccionesAlPagar"
         aria-hidden="true">
         <div class="modal-dialog ventanaEmergente" role="document">
@@ -24,7 +24,7 @@
                         <div class=" grupo_cp form-group col-md-6">
                             <label for="cp">Código Postal</label>
                             <input type="text" name="cp" class="form-control" id="cp" value="<?php echo $domicilio['CP'] ?>" required>
-                        <p class="mensajeError-oculto" id="mError-cp">¡Código Postal incorrecta!</p>
+                        <p class="mensajeError-oculto" id="mError-cp">¡Código Postal incorrecto!</p>
                         </div>
                     
                         <div class=" grupo_provincia form-group col-md-6">
@@ -44,20 +44,20 @@
                         </div>
                         <div class="grupo_numero form-group col-md-6">
                                 <label for="numero">Número</label>
-                                <input type="number" name="numero" class="form-control"  value="<?php echo $domicilio['Numero'] ?>" id="numero" required>
-                            <p class="mensajeError-oculto" id="mError-numero">¡Número incorrecta!</p>
+                                <input type="number" name="numero" min="1" class="form-control"  value="<?php echo $domicilio['Numero'] ?>" id="numero" required>
+                            <p class="mensajeError-oculto" id="mError-numero">¡Número incorrecto!</p>
                         </div>
                     
                         <div class="grupo_piso form-group col-md-6">
                                 <label for="piso">Piso</label>
                                 <input type="text" name="piso" class="form-control"  value="<?php echo $domicilio['Piso'] ?>" id="piso">
-                            <p class="mensajeError-oculto" id="mError-piso">¡Piso incorrecta!</p>
+                            <p class="mensajeError-oculto" id="mError-piso">¡Piso incorrecto!</p>
                         </div>
                         
                         <div class="grupo_portal form-group col-md-12">
                                 <label for="portal">Portal</label>
                                 <input type="text" name="portal" class="form-control"  value="<?php echo $domicilio['Portal'] ?>" id="portal">
-                            <p class="mensajeError-oculto" id="mError-portal">¡Portal incorrecta!</p>
+                            <p class="mensajeError-oculto" id="mError-portal">¡Portal incorrecto!</p>
                         </div>
                     </div>
                   

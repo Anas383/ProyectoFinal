@@ -1,9 +1,10 @@
+//DECLARACION DE VARIABLES
 let usuario=document.getElementById('usuario');
 let email = document.getElementById("email");
 let dni = document.getElementById("dni");
 let formulario= document.getElementById('FormularioRecuperarPassword');
 
-
+//MENSAJES DE ERROR
 let errorUsuario=document.getElementById('mError-usuario');
 let errorEmail=document.getElementById('mError-email');
 let errorDNI=document.getElementById('mError-dni');
@@ -16,7 +17,7 @@ const patrones={
     patronDNI : /\d\d\d\d\d\d\d\d+(T|R|W|A|G|M|Y|F|P|D|X|B|N|J|Z|S|Q|V|H|L|C|K|E){1}/i
 
 }
-
+//EVENTOS
 usuario.addEventListener("keyup", validarUsuario);
 usuario.addEventListener("blur", validarUsuario);
 email.addEventListener("keyup", validarEmail);
@@ -25,7 +26,7 @@ dni.addEventListener("keyup", validarDNi);
 
 
 
-
+//FUNCION VALIDAR USUARIO
 function validarUsuario() {
     if (patrones.patronUsuario.test(usuario.value)) {
         console.log("correcto");
@@ -50,7 +51,7 @@ function validarUsuario() {
 }
 
 
-
+// FUNCION VALIDAR EMAIL
 function validarEmail() {
     if (patrones.patronEmail.test(email.value)) {
 
@@ -121,6 +122,8 @@ function validarLetraDNI() {
     }
     return resultado;
 }
+
+// EVENTO PARA NO DEJAR ENVIAR EL FORMULARIO SIN UN CAMPO ESTA FALSE
 formulario.addEventListener("submit", (e) => {
 
     if(validarUsuario()  && validarDNi() && validarEmail()){

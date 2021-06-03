@@ -1,5 +1,5 @@
 
-     <!-- VENTANA EMERGENTE PARA EL BOTON LogOut -->
+     <!-- VENTANA EMERGENTE PARA EL BOTON LOGOUT -->
      <div class="modal fade" id="emergenteLogOut" tabindex="-1" role="dialog" aria-labelledby="emergenteLogOut"
         aria-hidden="true">
         <div class="modal-dialog ventanaEmergente" role="document">

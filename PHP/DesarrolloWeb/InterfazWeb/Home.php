@@ -1,8 +1,11 @@
 <?php
+ //LLAMAMOS CON REQUIRE AL CONECTOR DE LA BASE DE DATOS Y A LOS DAO DE FUNCIONES
   require '../../BD/ConectorBD.php';
   require '../../BD/DAOUsuarios.php';
   require '../../BD/DAOProductos.php';
+  //CONECTAMOS A LA BASE DE DATOS
   $conexion=conectar(true);
+  //INICIAMOS SESION 
   session_start();
 
 ?>
@@ -16,21 +19,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home AnimeTEK</title>
     <link rel="icon" href="../../../IMG/Logo/LogoFullTransparente.ico">
-     <!--Links para las fuentes de Google Fonts.-->
-     <link rel="preconnect" href="https://fonts.gstatic.com">
-     <link href="https://fonts.googleapis.com/css2?family=Teko:wght@300&display=swap" rel="stylesheet">
-
-        <link rel="preconnect" href="https://fonts.gstatic.com">
-        <link href="https://fonts.googleapis.com/css2?family=Kiwi+Maru:wght@300&display=swap" rel="stylesheet">
-        <link rel="preconnect" href="https://fonts.gstatic.com">
-        <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
-        <!--Link para la versión de Bootstrap.-->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-        <!--Links para el footer.-->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
-        <link rel="stylesheet" href="../../../CSS/Estilos.css">
-        <script src="../../../JS/Loader.js"></script>
+    <!--Links para las fuentes de Google Fonts.-->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Teko:wght@300&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Kiwi+Maru:wght@300&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
+    <!--Link para la versión de Bootstrap.-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!--Links para el footer.-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- LINK ESTILOS DE LA PÁGINA CSS  -->
+    <link rel="stylesheet" href="../../../CSS/Estilos.css">
+    <!-- SCRIPT PARA LOADER -->
+    <script src="../../../JS/Loader.js"></script>
         
         
 
@@ -38,9 +42,9 @@
 <body >
     <!--Loader.-->
     <?php include_once "Loader.php"?>
-    <!-- CABECERA PARA HOME ANIMETEK -->
+    <!-- CABECERA  ANIMETEK -->
     <?php include_once 'CabeceraAnimeTEK.php';?>
-    <!-- MENÚ ANIMETEK  -->
+    <!-- ESTE ES EL MENÚ DE NAVEGACIÓN DE ANIMETEK  -->
     <div class="sticky-top">
         <nav class="navbar navbar-expand-lg navbar-dark menu ">
             <a class="navbar-brand" href="Home.php">
@@ -54,140 +58,150 @@
                   <a class="nav-item nav-link  active" href="Home.php">Home <span class="sr-only">Home</span></a>
                   <a class="nav-item nav-link " href="Catalogo.php">Catálogo</a>
                   <a class="nav-item nav-link " href="MasSobreAnimeTEK.php">Más sobre AnimeTEK</a>
+                  <!-- ESTE INCLUDE CONTINE UNA PARTE DEL MENU QUE SOLO SE MUESTRA A USUARIOS ADMINISTRADORES -->
                   <?php include_once 'MenuAdministradores.php'?>
                       
-                </div>
-                
+            </div>
+            <!-- ESTE INCLUDE CONTINE UNA PARTE DEL MENU QUE SOLO SE MUESTRA A USUARIOS  -->    
             <?php include_once 'MenuUsuarios.php';?>
         </nav>
         
     </div><br>
-
-  <?php include_once 'VentanaEmergenteLogOut.php';?>
-  <!-- VENTANA EMERGENTE PARA LOS USUARIOS REGISTRADOS -->
+    <!-- VENTANA EMERGENTE PARA EL LOGOUT --> 
+    <?php include_once 'VentanaEmergenteLogOut.php';?>
+    <!-- VENTANA EMERGENTE PARA LOS USUARIOS REGISTRADOS -->
     <p>
         <?php
-            if(isset($_GET['registrado']) && $_GET['registrado'] == "usuarioRegistrado"){ echo '
-                <div class="modal" id="usuarioSeRegistro" tabindex="-1">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title">AnimeTEK</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            ¡ Te has registrado correctamente!
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
-                            <a href="../Login/Login.php" class="btn btn-success"> Iniciar sesión</a>
-                        
-                        </div>
+            if(isset($_GET['registrado']) && $_GET['registrado'] == "usuarioRegistrado"){ 
+                echo '
+                    <div class="modal" id="usuarioSeRegistro" tabindex="-1">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">AnimeTEK</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    ¡ Te has registrado correctamente!
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+                                    <a href="../Login/Login.php" class="btn btn-success"> Iniciar sesión</a>
+                                
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>';}
+                ';}
         ?>
     </p>
   
-  
+    <!-- CONTENEDOR PRINCIPAL -->           
     <div class="container">
         <div class="contenedor">
             
-        <div style="display: inline;">
-            <img class="d-none d-sm-none d-md-block" src="../../../IMG/Fondo/onePieceGif.gif" width="150rem" align="left" alt=""> 
-            <img class="d-none d-sm-none d-md-block" src="../../../IMG/Fondo/fortnite.gif" width="100rem" align="right" alt="">       
-            <div class="tituloHome  text-center d-none d-sm-none d-md-block">Productos</div>
-            
-        </div>
-        
-        <div class="tituloHome  d-block d-sm-block d-md-none" style="font-size:2.5rem">Productos</div>       
-        <div class="dropdown-divider "></div><br>        
-          <div class="row">
-              
-            <span class="d-none d-sm-none d-md-block col-md-3">
-            <p class="tituloHome " style="font-size:2rem">Categorías <span  style="font-size:1.5rem; color: black;"><i class="fas fa-list"></i></span></p>
-            <div class="list-group">
-              
-              <?php
-              
-              $buscarCategorias =  listarCategorias($conexion);
-
-              while($categorias = mysqli_fetch_assoc($buscarCategorias))
-              {
-          ?>
-              <a href="Filtrar.php?idCategoria=<?php echo $categorias['idCategoria'];?>" class="list-group-item list-group-item-action"><?php echo $categorias['NombreCategoria'];?></a>
-            <?php
-              }
-            ?>
+            <div style="display: inline;">
+                <img class="d-none d-sm-none d-md-block" src="../../../IMG/Fondo/onePieceGif.gif" width="150rem" align="left" alt=""> 
+                <img class="d-none d-sm-none d-md-block" src="../../../IMG/Fondo/thanos-gangnam-style.gif" width="100rem" align="right" alt="">       
+                <div class="tituloHome  text-center d-none d-sm-none d-md-block">Productos</div>
+                
             </div>
-            </span>
+            
+            <div class="tituloHome  d-block d-sm-block d-md-none" style="font-size:2.5rem">Productos</div>       
+            <div class="dropdown-divider "></div><br>        
+            <div class="row">
+                <!-- ESTE ES EL LIST GROUP DE BOOTSTRAP EN EL QUE MUESTRO LAS CATEGORIAS DE NUESTROS PRODUCTOS -->
+                <span class="d-none d-sm-none d-md-block col-md-3">
+                <p class="tituloHome " style="font-size:2rem">Categorías <span  style="font-size:1.5rem; color: black;"><i class="fas fa-list"></i></span></p>
+                <div class="list-group">
+                
+                <?php
+                // REALIZAMOS UNA CONSULTA QUE ES LISTAR TODAS LAS CATEGORÍAS
+                $buscarCategorias =  listarCategorias($conexion);
 
-            <section class="col-md-6 ">
-              
-              <div id="carouselExampleIndicators1" class="carousel slide border border-dark" data-ride="carousel">
-                       
-                <div class="carousel-inner">
-                    <?php
-                      
-                        $buscarProductosRandom =  buscarProductosRandom($conexion);
-                        $i = 0;
-                        while($productosRandom = mysqli_fetch_assoc($buscarProductosRandom))
-                        {
-                    ?>
-                            <div class="carousel-item <?php echo ($i == 0) ? 'active' : '';?>">
-                                <a href="DetallesProducto.php?idProducto=<?php echo $productosRandom['idProducto'];?>">
-                                    <img class="d-block w-100 rounded" src="data:image/jpeg;base64,<?php echo base64_encode($productosRandom['Imagen']);?>" alt="Videojuego" style="width:100%; height:400px;">
-                                </a>
-                            </div>
-                    <?php
-                            $i++;
-                        }
-                    ?>
+                while($categorias = mysqli_fetch_assoc($buscarCategorias))
+                {
+                ?>
+                <a href="Filtrar.php?idCategoria=<?php echo $categorias['idCategoria'];?>" class="list-group-item list-group-item-action"><?php echo $categorias['NombreCategoria'];?></a>
+                <?php
+                }
+                ?>
                 </div>
-                <a class="carousel-control-prev" href="#carouselExampleIndicators1" role="button" data-slide="prev">
-                           <span  class="carousel-control-prev-icon" aria-hidden="true"></span>
-                           <span class="sr-only">Anterior</span>
-                       </a>
-                       <a class="carousel-control-next" href="#carouselExampleIndicators1" role="button" data-slide="next">
-                           <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                           <span class="sr-only">Siguiente</span>
-                       </a>
-               
-
-
-            </section>
-            <span class="col-md-3 ">
-            <p class="tituloHome " style="font-size: 1.6rem"> Destacados <i style="color: yellow;" class="fas fa-star"></i></p>
-            <div id="carouselExampleIndicators2" class="carousel slide" data-ride="carousel">
-                       
-                       <div class="carousel-inner">
-                           <?php
-                             
-                               $buscarDestacados =   productosDetacados($conexion);
-                               $i = 0;
-                               while($productosDestacados = mysqli_fetch_assoc($buscarDestacados))
-                               {
-                           ?>
-                                   <div class="carousel-item <?php echo ($i == 0) ? 'active' : '';?>">
-                                       <a href="DetallesProducto.php?idProducto=<?php echo $productosDestacados['idProducto'];?>">
-                                           <img class="d-block w-100 rounded" src="data:image/jpeg;base64,<?php echo base64_encode($productosDestacados['Imagen']);?>"  style="width:100%; height:300px;">
-                                       </a>
-                                   </div>
-                           <?php
-                                   $i++;
-                               }
-                           ?>
-                       </div>
-                       
-                     </div>
-            </span>
-          </div>
+                </span>
+                <!-- ESTE ES EL CAROUSEL DE PRODUCTOS ALEATORIOS -->
+                <section class="col-md-6 ">
+                
+                    <div id="carouselExampleIndicators1" class="carousel slide border border-dark" data-ride="carousel">
+                            
+                        <div class="carousel-inner">
+                            <?php
+                                // AQUI HACEMOS UNA CONSULTA QUE ES ESCOGER PRODUCTOS ALEATORIOS DE LA TABLA PRODUCTOS
+                                $buscarProductosRandom =  buscarProductosRandom($conexion);
+                                $i = 0;
+                                while($productosRandom = mysqli_fetch_assoc($buscarProductosRandom))
+                                {
+                            ?>
+                                    <div class="carousel-item <?php echo ($i == 0) ? 'active' : '';?>">
+                                        <a href="DetallesProducto.php?idProducto=<?php echo $productosRandom['idProducto'];?>">
+                                            <img class="d-block w-100 rounded" src="data:image/jpeg;base64,<?php echo base64_encode($productosRandom['Imagen']);?>" alt="Videojuego" style="width:100%; height:400px;">
+                                        </a>
+                                    </div>
+                            <?php
+                                    $i++;
+                                }
+                            ?>
+                        </div>
+                        <a class="carousel-control-prev" href="#carouselExampleIndicators1" role="button" data-slide="prev">
+                            <span  class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Anterior</span>
+                        </a>
+                        <a class="carousel-control-next" href="#carouselExampleIndicators1" role="button" data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Siguiente</span>
+                        </a>
+                    </div>
+                </section>
+                <!-- ESTE ES EL CAROUSEL DE PRODUCTOS DESTACADOS -->
+                <span class="col-md-3 ">
+                    <p class="tituloHome " style="font-size: 1.6rem"> Destacados <i style="color: yellow;" class="fas fa-star"></i></p>
+                    <div id="carouselExampleIndicators2" class="carousel slide" data-ride="carousel">
+                            
+                        <div class="carousel-inner">
+                            <?php
+                                // AQUI BUSCAMOS LOS PRODUCTOS CON MAYOR VALORACION
+                                $buscarDestacados =   productosDetacados($conexion);
+                                $i = 0;
+                                while($productosDestacados = mysqli_fetch_assoc($buscarDestacados))
+                                {
+                            ?>
+                                <div class="carousel-item <?php echo ($i == 0) ? 'active' : '';?>">
+                                    <a href="DetallesProducto.php?idProducto=<?php echo $productosDestacados['idProducto'];?>">
+                                        <img class="d-block w-100 rounded" src="data:image/jpeg;base64,<?php echo base64_encode($productosDestacados['Imagen']);?>"  style="width:100%; height:300px;">
+                                    </a>
+                                </div>
+                            <?php
+                                    $i++;
+                                }
+                            ?>
+                        </div>
+                        <a class="carousel-control-prev" href="#carouselExampleIndicators2" role="button" data-slide="prev">
+                            <span  class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Anterior</span>
+                        </a>
+                        <a class="carousel-control-next" href="#carouselExampleIndicators2" role="button" data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Siguiente</span>
+                        </a>   
+                    </div>
+                </span>
+            </div>
     
-      </div>
+        </div>
     </div>
     <br>
+    <!-- ESTE ES EL LINK DEL FOOTER -->
     <?php include_once "Footer.php"?>
     <!--Scripts--> 
     <script src="../../../JS/Home.js"></script> 

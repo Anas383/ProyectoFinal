@@ -1,16 +1,18 @@
+//DECLARACION DE VARIABLES
 let nombre=document.getElementById('nombre');
 let categorias=document.getElementById('categorias');
 let descripcion= document.getElementById("descripcion");
 let caracteres = document.getElementById("caracteres");
 let formulario= document.getElementById('FormularioAñadirProductos');
+//MENSAJES DE ERROR
 let errorNombre=document.getElementById('mError-nombre');
-
+//PATRONES
 const patrones={
     patronNom:/./,
     
 
 }
-
+//EVENTOS
 nombre.addEventListener("keyup", validarNombre);
 nombre.addEventListener("blur", validarNombre);
 descripcion.addEventListener("keyup", contarCaracteres);
@@ -45,7 +47,7 @@ function validarNombre() {
     }
 
 }
-
+// EVENTO PARA NO DEJAR ENVIAR EL FORMULARIO SIN UN CAMPO ESTA FALSE
 formulario.addEventListener("submit", (e) => {
 
     if(validarNombre()){

@@ -1,16 +1,20 @@
 <?php
-if(!isset($_SERVER['HTTP_REFERER'])){
-    header("Location: Home.php");
-    exit;
-}
-require '../../BD/ConectorBD.php';
-require '../../BD/DAOUsuarios.php';
-$conexion=conectar(true);
-session_start();
-
-$idUsuario=$_GET['idUsuario'];
-
-$eliminarUsuario=eliminarCarro($conexion, $idUsuario);
-
-header("Location: EliminarUsuario.php?idUsuario=$idUsuario");
+    //CON ESTE IF CONTROLAMOS QUE LOS USUARIOS NO PUEDAN ACCEDER MEDIANTE UN LINK A LAS PAGINAS QUE NO QUEREMOS
+    if(!isset($_SERVER['HTTP_REFERER'])){
+        header("Location: Home.php");
+        exit;
+    }
+    //LLAMAMOS CON REQUIRE AL CONECTOR DE LA BASE DE DATOS Y A LOS DAO DE FUNCIONES
+    require '../../BD/ConectorBD.php';
+    require '../../BD/DAOUsuarios.php';
+    //CONECTAMOS A LA BASE DE DATOS
+    $conexion=conectar(true);
+    // INICIAMOS SESION
+    session_start();
+    //RECOGEMOS  LOS DATOS PROCEDENTES DEL PHP
+    $idUsuario=$_GET['idUsuario'];
+    // ELIMINAMOS EL CARRITO
+    $eliminarUsuario=eliminarCarro($conexion, $idUsuario);
+    // REEDIRECCIONAMOS CON UN HEADER QUE CONTIENE ? PARA UN GET
+    header("Location: EliminarUsuario.php?idUsuario=$idUsuario");
 ?>
